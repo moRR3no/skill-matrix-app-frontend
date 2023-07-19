@@ -27,6 +27,14 @@
             "prefix": "app",
             "style": "kebab-case"
           }
+        ],
+        "@typescript-eslint/no-empty-function": "on",
+        "@angular-eslint/no-empty-lifecycle-method": "on",
+        "@angular-eslint/template/cyclomatic-complexity": [
+          "warn",
+          {
+            "maxComplexity": 5
+          }
         ]
       }
     },
