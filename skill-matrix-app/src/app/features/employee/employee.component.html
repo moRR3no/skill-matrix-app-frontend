@@ -1,0 +1,25 @@
+<article>
+  <header>
+    <h2>Employee details:</h2>
+  </header>
+  <section>
+    <div><span>id: </span>{{employee.id}}</div>
+    <div><span>name: </span>{{employee.name | uppercase}}</div>
+    <div><span>skills: </span>{{employee.skills}}</div>
+    <div><span>languages spoken: </span>{{employee.languageSpoken}}</div>
+  </section>
+  <br>
+  <section>
+    <div>
+      <label for="name">Employee name: </label>
+      <input id="name" [(ngModel)]="employee.name" placeholder="name">
+    </div>
+    <div>
+      <label for="skills">Skills: </label>
+      <input id="skills" [(ngModel)]="employee.skills" placeholder="skills"></div>
+    <div>
+      <label for="languagesSpoken">Languages: </label>
+      <input id="languagesSpoken" [(ngModel)]="employee.languageSpoken" placeholder="languages spoken">
+    </div>
+  </section>
+</article>
