@@ -1,6 +1,6 @@
 export interface Employee {
-  id: number;
+  id: string;
   name: string;
   skills: string[],
-  languageSpoken: string[]
+  languagesSpoken: string[]
 }

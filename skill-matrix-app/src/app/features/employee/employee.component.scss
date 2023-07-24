@@ -1,0 +1,53 @@
+@import '../../../styles';
+
+.employee {
+
+  &__button {
+    display: inline-block;
+    padding: $button-padding;
+    border-radius: $button-border-radius;
+    background: linear-gradient(to bottom, $button-color, $button-hover-color);
+    color: $button-text-color;
+    text-decoration: none;
+    box-shadow: $button-shadow;
+
+    &:hover {
+      background: $button-hover-color;
+    }
+
+    &:disabled {
+      background-color: #eee;
+      color: #aaa;
+      cursor: auto;
+    }
+
+    &.selected {
+      background: $button-selected-color;
+    }
+  }
+
+  &__ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  &__li {
+    margin-bottom: 2em;
+  }
+
+  &__div {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+  }
+}
+
+.employee__details {
+  width: 20%;
+
+  input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,25 +1,28 @@
-<article>
-  <header>
-    <h2>Employee details:</h2>
-  </header>
-  <section>
-    <div><span>id: </span>{{employee.id}}</div>
-    <div><span>name: </span>{{employee.name | uppercase}}</div>
-    <div><span>skills: </span>{{employee.skills}}</div>
-    <div><span>languages spoken: </span>{{employee.languageSpoken}}</div>
-  </section>
-  <br>
-  <section>
-    <div>
-      <label for="name">Employee name: </label>
-      <input id="name" [(ngModel)]="employee.name" placeholder="name">
+<section class="employee">
+  <h2 class="employee__h2">Employee: </h2>
+  <ul class="employee__ul">
+    <li class="employee__li" *ngFor="let employee of employees">
+      <div class="employee__div">
+        <button type="button" (click)="onSelect(employee)" class="employee__button"
+                [class.selected]="employee === selectedEmployee">
+          <span class="employee__button--badge">{{employee.id}} - </span>
+          <span class="employee__button--name">{{employee.name}}</span>
+        </button>
+      </div>
+    </li>
+  </ul>
+
+  <div *ngIf="selectedEmployee">
+    <h2>{{selectedEmployee.name | uppercase}} Details</h2>
+    <div>id: {{selectedEmployee.id}}</div>
+    <div class="employee__details">
+      <div><label for="employee-name">Employee name: </label>
+        <input id="employee-name" [(ngModel)]="selectedEmployee.name" placeholder="name"></div>
+      <div><label for="employee-skills">Skills: </label>
+        <input id="employee-skills" [(ngModel)]="selectedEmployee.skills" placeholder="skills"></div>
+      <div><label for="employee-languagesSpoken">Languages spoken: </label>
+        <input id="employee-languagesSpoken" [(ngModel)]="selectedEmployee.languagesSpoken"
+               placeholder="languagesSpoken"></div>
     </div>
-    <div>
-      <label for="skills">Skills: </label>
-      <input id="skills" [(ngModel)]="employee.skills" placeholder="skills"></div>
-    <div>
-      <label for="languagesSpoken">Languages: </label>
-      <input id="languagesSpoken" [(ngModel)]="employee.languageSpoken" placeholder="languages spoken">
-    </div>
-  </section>
-</article>
+  </div>
+</section>
