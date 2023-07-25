@@ -1,15 +1,16 @@
-<section class="employee">
-  <h2 class="employee__h2">Employee: </h2>
-  <ul class="employee__ul">
-    <li class="employee__li" *ngFor="let employee of employees">
-      <div class="employee__div">
-        <button type="button" (click)="onSelect(employee)" class="employee__button"
+<section class="employees">
+  <h2 class="employees__title">Employee: </h2>
+  <ul class="employees__list">
+    <li class="employees__employee" *ngFor="let employee of employees">
+      <div class="employees__employee--alignment">
+        <button type="button" (click)="onSelect(employee)" class="employees__button"
                 [class.selected]="employee === selectedEmployee">
-          <span class="employee__button--badge">{{employee.id}} - </span>
-          <span class="employee__button--name">{{employee.name}}</span>
+          <span class="employees__button-badge">{{employee.id}} - </span>
+          <span class="employees__button-name">{{employee.name}}</span>
         </button>
       </div>
     </li>
   </ul>
+
   <app-employee-detail [employee]="selectedEmployee"></app-employee-detail>
 </section>

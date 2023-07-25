@@ -9,7 +9,7 @@ import {EMPLOYEES} from "../../mocks/mock-employee";
 })
 export class EmployeeComponent {
 
-  employees = EMPLOYEES;
+  employees: Employee[] = EMPLOYEES;
 
   selectedEmployee?: Employee;
 
