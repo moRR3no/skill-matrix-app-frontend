@@ -1,0 +1,14 @@
+<p>employee-detail works!</p>
+<div *ngIf="employee">
+  <h2>{{employee.name | uppercase}} Details</h2>
+  <div>id: {{employee.id}}</div>
+  <div class="employee__details">
+    <div><label for="employee-name">Employee name: </label>
+      <input id="employee-name" [(ngModel)]="employee.name" placeholder="name"></div>
+    <div><label for="employee-skills">Skills: </label>
+      <input id="employee-skills" [(ngModel)]="employee.skills" placeholder="skills"></div>
+    <div><label for="employee-languagesSpoken">Languages spoken: </label>
+      <input id="employee-languagesSpoken" [(ngModel)]="employee.languagesSpoken"
+             placeholder="languagesSpoken"></div>
+  </div>
+</div>

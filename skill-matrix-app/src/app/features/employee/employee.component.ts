@@ -7,18 +7,14 @@ import {EMPLOYEES} from "../../mocks/mock-employee";
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss']
 })
-export class EmployeeComponent{
+export class EmployeeComponent {
 
   employees = EMPLOYEES;
 
   selectedEmployee?: Employee;
+
   onSelect(employee: Employee): void {
     this.selectedEmployee = employee;
   }
-  employee: Employee = {
-    id: '1',
-    name: 'Konrado',
-    skills: ['Java', 'Spring Boot'],
-    languagesSpoken: ['Polish', 'English', 'Spanish']
-  };
+
 }

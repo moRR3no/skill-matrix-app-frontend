@@ -11,18 +11,5 @@
       </div>
     </li>
   </ul>
-
-  <div *ngIf="selectedEmployee">
-    <h2>{{selectedEmployee.name | uppercase}} Details</h2>
-    <div>id: {{selectedEmployee.id}}</div>
-    <div class="employee__details">
-      <div><label for="employee-name">Employee name: </label>
-        <input id="employee-name" [(ngModel)]="selectedEmployee.name" placeholder="name"></div>
-      <div><label for="employee-skills">Skills: </label>
-        <input id="employee-skills" [(ngModel)]="selectedEmployee.skills" placeholder="skills"></div>
-      <div><label for="employee-languagesSpoken">Languages spoken: </label>
-        <input id="employee-languagesSpoken" [(ngModel)]="selectedEmployee.languagesSpoken"
-               placeholder="languagesSpoken"></div>
-    </div>
-  </div>
+  <app-employee-detail [employee]="selectedEmployee"></app-employee-detail>
 </section>
