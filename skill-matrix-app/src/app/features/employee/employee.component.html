@@ -1,12 +1,12 @@
-<section class="employee">
-  <h2 class="employee__h2">Employee: </h2>
-  <ul class="employee__ul">
-    <li class="employee__li" *ngFor="let employee of employees">
-      <div class="employee__div">
-        <button type="button" (click)="onSelect(employee)" class="employee__button"
+<section class="employees">
+  <h2 class="employees__title">Employee: </h2>
+  <ul class="employees__list">
+    <li class="employees__employee" *ngFor="let employee of employees">
+      <div class="employees__employee--alignment">
+        <button type="button" (click)="onSelect(employee)" class="employees__button"
                 [class.selected]="employee === selectedEmployee">
-          <span class="employee__button--badge">{{employee.id}} - </span>
-          <span class="employee__button--name">{{employee.name}}</span>
+          <span class="employees__button-badge">{{employee.id}} - </span>
+          <span class="employees__button-name">{{employee.name}}</span>
         </button>
       </div>
     </li>
@@ -15,13 +15,13 @@
   <div *ngIf="selectedEmployee">
     <h2>{{selectedEmployee.name | uppercase}} Details</h2>
     <div>id: {{selectedEmployee.id}}</div>
-    <div class="employee__details">
-      <div><label for="employee-name">Employee name: </label>
-        <input id="employee-name" [(ngModel)]="selectedEmployee.name" placeholder="name"></div>
-      <div><label for="employee-skills">Skills: </label>
-        <input id="employee-skills" [(ngModel)]="selectedEmployee.skills" placeholder="skills"></div>
-      <div><label for="employee-languagesSpoken">Languages spoken: </label>
-        <input id="employee-languagesSpoken" [(ngModel)]="selectedEmployee.languagesSpoken"
+    <div class="employees__details">
+      <div><label for="employees-name">Employee name: </label>
+        <input id="employees-name" [(ngModel)]="selectedEmployee.name" placeholder="name"></div>
+      <div><label for="employees-skills">Skills: </label>
+        <input id="employees-skills" [(ngModel)]="selectedEmployee.skills" placeholder="skills"></div>
+      <div><label for="employees-languagesSpoken">Languages spoken: </label>
+        <input id="employees-languagesSpoken" [(ngModel)]="selectedEmployee.languagesSpoken"
                placeholder="languagesSpoken"></div>
     </div>
   </div>
