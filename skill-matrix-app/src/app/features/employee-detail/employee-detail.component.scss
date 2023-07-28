@@ -1,6 +1,18 @@
-.employees__details {
-  width: 20%;
+@import '../../../styles';
 
+
+.employees__details {
+  font-size: 1.2em;
+  width: 30%;
+
+  input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.field {
   input {
     display: flex;
     align-items: center;

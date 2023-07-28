@@ -1,13 +1,90 @@
 <div *ngIf="employee">
   <h2>{{employee.name | uppercase}} Details</h2>
-  <div>id: {{employee.id}}</div>
+
   <div class="employees__details">
-    <div><label for="employee-name">Employee name: </label>
-      <input id="employee-name" [(ngModel)]="employee.name" placeholder="name"></div>
-    <div><label for="employee-skills">Skills: </label>
-      <input id="employee-skills" [(ngModel)]="employee.skills" placeholder="skills"></div>
-    <div><label for="employee-languagesSpoken">Languages spoken: </label>
-      <input id="employee-languagesSpoken" [(ngModel)]="employee.languagesSpoken"
-             placeholder="languagesSpoken"></div>
+    <div>id: {{employee.id}}</div>
+    <div>Employee name: {{employee.name}}
+
+    </div>
+    <div>Skills: {{employee.skills}}
+
+    </div>
+    <div>Languages: {{employee.languagesSpoken}}
+
+    </div>
   </div>
+
+  <div>
+    <h1>Update employee: </h1>
+    <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="field">
+        <label for="update__name">name</label>
+        <input id="update__name" type="text" class="input" formControlName="name">
+      </div>
+
+      <div class="field">
+        <label for="update__skills">skills</label>
+        <input id="update__skills" type="text" class="input" formControlName="skills">
+      </div>
+      <div class="field">
+        <label for="update__languages">languages</label>
+        <input id="update__languages" type="text" class="input" formControlName="languagesSpoken">
+      </div>
+
+      <div>
+        <button type="submit" class="button" [disabled]="!registerForm.valid">Update</button>
+      </div>
+
+    </form>
+    <pre>
+    {{registerForm.value | json}}
+  </pre>
+
+  </div>
+
 </div>
+<div>
+  <h1>Add employee: </h1>
+  <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="field">
+      <label for="name">name</label>
+      <input id="name" type="text" class="input" formControlName="name">
+    </div>
+
+    <div class="field">
+      <label for="skills">skills</label>
+      <input id="skills" type="text" class="input" formControlName="skills">
+    </div>
+    <div class="field">
+      <label for="languages">languages</label>
+      <input id="languages" type="text" class="input" formControlName="languagesSpoken">
+    </div>
+
+    <div>
+      <button type="submit" class="button" [disabled]="!registerForm.valid">Register</button>
+    </div>
+
+  </form>
+  <pre>
+    {{registerForm.value | json}}
+  </pre>
+
+</div>
+
+
+<!--    <div>-->
+<!--      <select multiple formControlName="technologies">-->
+<!--        <option *ngFor="let tech of technologiesList" [ngValue]="tech">-->
+<!--          {{tech}}-->
+<!--        </option>-->
+<!--      </select>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="technologies">Website:</label>-->
+<!--      <div *ngFor="let web of technologiesList">-->
+<!--        <label>-->
+<!--          <input type="checkbox" [value]="web.id" (change)="onCheckboxChange($event)" />-->
+<!--          {{web.name}}-->
+<!--        </label>-->
+<!--      </div>-->
+<!--    </div>-->

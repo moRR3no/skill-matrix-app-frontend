@@ -5,12 +5,15 @@
       <div class="employees__employee--alignment">
         <button type="button" (click)="onSelect(employee)" class="employees__button"
                 [class.selected]="employee === selectedEmployee">
-          <span class="employees__button-badge">{{employee.id}} - </span>
+
           <span class="employees__button-name">{{employee.name}}</span>
         </button>
       </div>
     </li>
   </ul>
 
-  <app-employee-detail [employee]="selectedEmployee"></app-employee-detail>
+  <app-employee-detail [employee]="selectedEmployee"
+                       [employeeList]="employees"
+                       (newEmployeeEvent)="addEmployeeList($event)">
+  </app-employee-detail>
 </section>
