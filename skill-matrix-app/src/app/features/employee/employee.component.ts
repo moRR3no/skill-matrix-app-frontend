@@ -13,6 +13,7 @@ export class EmployeeComponent {
   selectedEmployee?: Employee;
 
   addEmployeeList(employee: Employee): void {
+    this.setId(employee);
     this.employees.push(employee);
   }
 
@@ -27,6 +28,10 @@ export class EmployeeComponent {
 
   onSelect(employee: Employee): void {
     this.selectedEmployee = employee;
+  }
+
+  private setId (employee: Employee): void {
+    employee.id = crypto.randomUUID();
   }
 
   private getEmployeeById (id: string): Employee | undefined {

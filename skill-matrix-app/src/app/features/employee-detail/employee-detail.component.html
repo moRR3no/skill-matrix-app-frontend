@@ -13,8 +13,7 @@
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
     <div class="form__field">
-      <label for="id">id</label>
-      <input id="id" type="text" class="form__field-input" formControlName="id">
+      <span formControlName="id">{{employee ? 'id: '+employee.id : ''}}</span>
     </div>
 
     <div class="form__field">
@@ -26,6 +25,7 @@
       <label for="skills">skills</label>
       <input id="skills" type="text" class="form__field-input" formControlName="skills">
     </div>
+
     <div class="form__field">
       <label for="languages">languages</label>
       <input id="languages" type="text" class="form__field-input" formControlName="languagesSpoken">
