@@ -58,7 +58,4 @@ export class EmployeeDetailComponent implements OnChanges {
   private updateEmployee(value: Employee): void {
     this.updateEmployeeEvent.emit(value);
   }
-
-  protected readonly crypto: Crypto = crypto;
-
 }
