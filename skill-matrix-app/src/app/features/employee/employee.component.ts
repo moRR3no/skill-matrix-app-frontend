@@ -16,8 +16,6 @@ export class EmployeeComponent {
     this.employees.push(employee);
   }
 
-
-
   updateEmployee (employee: Employee): void {
     const worker = this.getEmployeeById(employee.id);
     if (worker) {
@@ -27,13 +25,12 @@ export class EmployeeComponent {
     this.selectedEmployee=undefined;
   }
 
-  getEmployeeById (id: string): Employee | undefined {
-    return this.employees.find(emp => emp.id === id);
-  }
-
   onSelect(employee: Employee): void {
     this.selectedEmployee = employee;
   }
 
+  private getEmployeeById (id: string): Employee | undefined {
+    return this.employees.find(emp => emp.id === id);
+  }
 
 }

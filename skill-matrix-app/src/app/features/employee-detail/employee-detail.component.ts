@@ -1,8 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {Employee} from "../../models/employee";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {EMPLOYEES} from "../../mocks/mock-employee";
-import {EmployeeComponent} from "../employee/employee.component";
 
 
 @Component({
@@ -19,7 +17,6 @@ export class EmployeeDetailComponent implements OnChanges {
 
   constructor(private fb: FormBuilder) {
   };
-
 
   registerForm: FormGroup = this.fb.group({
     id: '',
@@ -39,9 +36,7 @@ export class EmployeeDetailComponent implements OnChanges {
     }
   };
 
-
   onSubmit(): void {
-    console.log('submitted form', this.registerForm.getRawValue());
     const newEmployee = this.registerForm.getRawValue();
     if (this.employee) {
       this.updateEmployee(newEmployee);
@@ -51,11 +46,11 @@ export class EmployeeDetailComponent implements OnChanges {
     this.registerForm.reset();
   }
 
-  private addNewEmployee(value: Employee) {
+  private addNewEmployee(value: Employee): void {
     this.newEmployeeEvent.emit(value);
   }
 
-  private updateEmployee(value: Employee) {
+  private updateEmployee(value: Employee): void {
     this.updateEmployeeEvent.emit(value);
   }
 
