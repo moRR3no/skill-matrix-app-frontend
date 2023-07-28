@@ -14,38 +14,44 @@
     </div>
   </div>
 
-  <div>
-    <h1>Update employee: </h1>
-    <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <div class="field">
-        <label for="update__name">name</label>
-        <input id="update__name" type="text" class="input" formControlName="name">
-      </div>
+<!--  <div>-->
+<!--    <h1>Update employee: </h1>-->
+<!--    <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">-->
+<!--      <div class="id">Id: {{employee.id}}</div>-->
+<!--      <div class="field">-->
+<!--        <label for="update__name">name</label>-->
+<!--        <input id="update__name" type="text" class="input" formControlName="name">-->
+<!--      </div>-->
 
-      <div class="field">
-        <label for="update__skills">skills</label>
-        <input id="update__skills" type="text" class="input" formControlName="skills">
-      </div>
-      <div class="field">
-        <label for="update__languages">languages</label>
-        <input id="update__languages" type="text" class="input" formControlName="languagesSpoken">
-      </div>
+<!--      <div class="field">-->
+<!--        <label for="update__skills">skills</label>-->
+<!--        <input id="update__skills"type="text" class="input" formControlName="skills">-->
+<!--      </div>-->
+<!--      <div class="field">-->
+<!--        <label for="update__languages">languages</label>-->
+<!--        <input id="update__languages" type="text" class="input" formControlName="languagesSpoken">-->
+<!--      </div>-->
 
-      <div>
-        <button type="submit" class="button" [disabled]="!registerForm.valid">Update</button>
-      </div>
+<!--      <div>-->
+<!--        <button type="submit" class="button" [disabled]="!registerForm.valid">Update</button>-->
+<!--      </div>-->
 
-    </form>
-    <pre>
-    {{registerForm.value | json}}
-  </pre>
+<!--    </form>-->
+<!--    <pre>-->
+<!--    {{registerForm.value | json}}-->
+<!--  </pre>-->
 
-  </div>
+<!--  </div>-->
 
 </div>
 <div>
-  <h1>Add employee: </h1>
+  <h1>{{employee ? 'Edit: ' : 'Add: '}}</h1>
   <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="field">
+      <label for="id">id</label>
+      <input id="id" type="text" class="input" formControlName="id">
+    </div>
+
     <div class="field">
       <label for="name">name</label>
       <input id="name" type="text" class="input" formControlName="name">
@@ -61,7 +67,7 @@
     </div>
 
     <div>
-      <button type="submit" class="button" [disabled]="!registerForm.valid">Register</button>
+      <button type="submit" class="button" [disabled]="registerForm.invalid">Register</button>
     </div>
 
   </form>

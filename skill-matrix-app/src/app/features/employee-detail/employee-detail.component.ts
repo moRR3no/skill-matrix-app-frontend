@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {Employee} from "../../models/employee";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {EMPLOYEES} from "../../mocks/mock-employee";
@@ -10,19 +10,15 @@ import {EmployeeComponent} from "../employee/employee.component";
   templateUrl: './employee-detail.component.html',
   styleUrls: ['./employee-detail.component.scss']
 })
-export class EmployeeDetailComponent {
+export class EmployeeDetailComponent implements OnChanges {
 
   @Input() employee?: Employee;
   @Input() employeeList?: Employee[];
   @Output() newEmployeeEvent: EventEmitter<Employee> = new EventEmitter<Employee>();
   @Output() updateEmployeeEvent: EventEmitter<Employee> = new EventEmitter<Employee>();
 
-  constructor(private fb: FormBuilder) {};
-
-  addNewEmployee(value: Employee) {
-    this.newEmployeeEvent.emit(value);
-  }
-
+  constructor(private fb: FormBuilder) {
+  };
 
 
   registerForm: FormGroup = this.fb.group({
@@ -32,21 +28,35 @@ export class EmployeeDetailComponent {
     languagesSpoken: ['']
   });
 
-  // onChanges(): void {
-  //   this.registerForm.patchValue({
-  //     id: this.employee?.id,
-  //     name: this.employee?.name,
-  //     skills: this.employee?.skills,
-  //     languagesSpoken: this.employee?.languagesSpoken
-  //   });
-  // };
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['employee']) {
+      this.registerForm.patchValue({
+        id: this.employee?.id,
+        name: this.employee?.name,
+        skills: this.employee?.skills,
+        languagesSpoken: this.employee?.languagesSpoken
+      });
+    }
+  };
 
 
   onSubmit(): void {
-    console.log('submitted form', this.registerForm.value);
+    console.log('submitted form', this.registerForm.getRawValue());
     const newEmployee = this.registerForm.getRawValue();
-    this.addNewEmployee(newEmployee);
+    if (this.employee) {
+      this.updateEmployee(newEmployee);
+    } else {
+      this.addNewEmployee(newEmployee);
+    }
+    this.registerForm.reset();
   }
 
+  private addNewEmployee(value: Employee) {
+    this.newEmployeeEvent.emit(value);
+  }
+
+  private updateEmployee(value: Employee) {
+    this.updateEmployeeEvent.emit(value);
+  }
 
 }

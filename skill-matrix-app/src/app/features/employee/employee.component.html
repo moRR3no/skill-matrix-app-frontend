@@ -14,6 +14,8 @@
 
   <app-employee-detail [employee]="selectedEmployee"
                        [employeeList]="employees"
-                       (newEmployeeEvent)="addEmployeeList($event)">
+                       (newEmployeeEvent)="addEmployeeList($event)"
+                       (updateEmployeeEvent)="updateEmployee($event)"
+>
   </app-employee-detail>
 </section>
