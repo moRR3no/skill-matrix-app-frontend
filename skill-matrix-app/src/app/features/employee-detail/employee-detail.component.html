@@ -1,13 +1,12 @@
 <div *ngIf="employee">
   <h2>{{employee.name | uppercase}} Details</h2>
   <div>id: {{employee.id}}</div>
-  <div class="employees__details">
+  <div class="details">
     <div><label for="employee-name">Employee name: </label>
-      <input id="employee-name" [(ngModel)]="employee.name" placeholder="name"></div>
+      <input id="employee-name" [(ngModel)]="employee.name" class="details__input" placeholder="name"></div>
     <div><label for="employee-skills">Skills: </label>
-      <input id="employee-skills" [(ngModel)]="employee.skills" placeholder="skills"></div>
+      <input id="employee-skills" [(ngModel)]="employee.skills" class="details__input" placeholder="skills"></div>
     <div><label for="employee-languagesSpoken">Languages spoken: </label>
-      <input id="employee-languagesSpoken" [(ngModel)]="employee.languagesSpoken"
-             placeholder="languagesSpoken"></div>
+      <input id="employee-languagesSpoken" [(ngModel)]="employee.languagesSpoken" class="details__input" placeholder="languagesSpoken"></div>
   </div>
 </div>

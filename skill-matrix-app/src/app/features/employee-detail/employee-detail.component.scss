@@ -1,7 +1,7 @@
-.employees__details {
+.details {
   width: 20%;
 
-  input {
+  &__input {
     display: flex;
     align-items: center;
     justify-content: center;
