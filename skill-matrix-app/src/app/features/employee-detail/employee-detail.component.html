@@ -22,13 +22,21 @@
     </div>
 
     <div class="form__field">
-      <label for="skills">skills</label>
-      <input id="skills" type="text" class="form__field-input" formControlName="skills">
+      <label for="skills">skills </label>
+      <select multiple formControlName="skills" id="skills" class="form__field-select">
+        <option *ngFor="let skill of skills" [ngValue]="skill">
+          {{skill}}
+        </option>
+      </select>
     </div>
 
     <div class="form__field">
-      <label for="languages">languages</label>
-      <input id="languages" type="text" class="form__field-input" formControlName="languagesSpoken">
+      <label for="languages">languages </label>
+      <select multiple formControlName="languagesSpoken" id="languages" class="form__field-select">
+        <option *ngFor="let language of languagesSpoken" [ngValue]="language">
+          {{language}}
+        </option>
+      </select>
     </div>
 
     <div>

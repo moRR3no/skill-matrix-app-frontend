@@ -7,11 +7,17 @@
 }
 
 .form {
+
   &__field {
-    .form__field-input {
+    font-size: 1.3em;
+    padding-bottom: 1.1em;
+
+    &-input, &-select {
       display: flex;
       align-items: center;
       justify-content: center;
     }
+
   }
+
 }

@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {Employee} from "../../models/employee";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {SKILLS} from "../../mocks/mock-skills";
+import {LANGUAGES} from "../../mocks/mock-languagesSpoken";
 
 
 @Component({
@@ -17,6 +19,9 @@ export class EmployeeDetailComponent implements OnChanges {
 
   constructor(private fb: FormBuilder) {
   };
+
+  skills: string[] = SKILLS;
+  languagesSpoken: string[] = LANGUAGES;
 
   registerForm: FormGroup = this.fb.group({
     id: '',
