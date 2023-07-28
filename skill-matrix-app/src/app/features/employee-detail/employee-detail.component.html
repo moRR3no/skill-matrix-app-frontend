@@ -1,79 +1,42 @@
 <div *ngIf="employee">
   <h2>{{employee.name | uppercase}} Details</h2>
-
-  <div class="employees__details">
+  <div class="details">
     <div>id: {{employee.id}}</div>
-    <div>Employee name: {{employee.name}}
-
-    </div>
-    <div>Skills: {{employee.skills}}
-
-    </div>
-    <div>Languages: {{employee.languagesSpoken}}
-
-    </div>
+    <div>Employee name: {{employee.name}}</div>
+    <div>Skills: {{employee.skills}}</div>
+    <div>Languages: {{employee.languagesSpoken}}</div>
   </div>
-
-  <!--  <div>-->
-  <!--    <h1>Update employee: </h1>-->
-  <!--    <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">-->
-  <!--      <div class="id">Id: {{employee.id}}</div>-->
-  <!--      <div class="field">-->
-  <!--        <label for="update__name">name</label>-->
-  <!--        <input id="update__name" type="text" class="input" formControlName="name">-->
-  <!--      </div>-->
-
-  <!--      <div class="field">-->
-  <!--        <label for="update__skills">skills</label>-->
-  <!--        <input id="update__skills"type="text" class="input" formControlName="skills">-->
-  <!--      </div>-->
-  <!--      <div class="field">-->
-  <!--        <label for="update__languages">languages</label>-->
-  <!--        <input id="update__languages" type="text" class="input" formControlName="languagesSpoken">-->
-  <!--      </div>-->
-
-  <!--      <div>-->
-  <!--        <button type="submit" class="button" [disabled]="!registerForm.valid">Update</button>-->
-  <!--      </div>-->
-
-  <!--    </form>-->
-  <!--    <pre>-->
-  <!--    {{registerForm.value | json}}-->
-  <!--  </pre>-->
-
-  <!--  </div>-->
-
 </div>
-<div>
+
+<div class="form">
   <h1>{{employee ? 'Edit: ' : 'Add: '}}</h1>
-  <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="field">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <div class="form__field">
       <label for="id">id</label>
-      <input id="id" type="text" class="input" formControlName="id">
+      <input id="id" type="text" class="form__field-input" formControlName="id">
     </div>
 
-    <div class="field">
+    <div class="form__field">
       <label for="name">name</label>
-      <input id="name" type="text" class="input" formControlName="name">
+      <input id="name" type="text" class="form__field-input" formControlName="name">
     </div>
 
-    <div class="field">
+    <div class="form__field">
       <label for="skills">skills</label>
-      <input id="skills" type="text" class="input" formControlName="skills">
+      <input id="skills" type="text" class="form__field-input" formControlName="skills">
     </div>
-    <div class="field">
+    <div class="form__field">
       <label for="languages">languages</label>
-      <input id="languages" type="text" class="input" formControlName="languagesSpoken">
+      <input id="languages" type="text" class="form__field-input" formControlName="languagesSpoken">
     </div>
 
     <div>
-      <button type="submit" class="button"
-              [disabled]="registerForm.invalid">{{employee ? 'Update' : 'Register'}}</button>
+      <button type="submit" [disabled]="registerForm.invalid">{{employee ? 'Update' : 'Register'}}</button>
     </div>
 
   </form>
-  <pre>
-    {{registerForm.value | json}}
-  </pre>
+  <br>
+  <div>{{registerForm.value | json}}</div>
 
 </div>

@@ -1,21 +1,17 @@
 @import '../../../styles';
 
 
-.employees__details {
+.details {
   font-size: 1.2em;
   width: 30%;
-
-  input {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 }
 
-.field {
-  input {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.form {
+  &__field {
+    .form__field-input {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
