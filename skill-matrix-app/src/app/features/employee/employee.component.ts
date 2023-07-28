@@ -16,5 +16,5 @@ export class EmployeeComponent {
   onSelect(employee: Employee): void {
     this.selectedEmployee = employee;
   }
-  
+
 }
