@@ -1,28 +1,28 @@
 <div *ngIf="employee">
-  <h2>{{employee.name | uppercase}} Details</h2>
+  <h2>{{employee.name | uppercase}} {{"employee.detail.title" | translate}} :</h2>
   <div class="details">
-    <div>id: {{employee.id}}</div>
-    <div>Employee name: {{employee.name}}</div>
-    <div>Skills: {{employee.skills}}</div>
-    <div>Languages: {{employee.languagesSpoken}}</div>
+    <div>{{"employee.detail.id" | translate}}: {{employee.id}}</div>
+    <div>{{"employee.detail.name" | translate}}: {{employee.name}}</div>
+    <div>{{"employee.detail.skills" | translate}}: {{employee.skills}}</div>
+    <div>{{"employee.detail.languages" | translate}}: {{employee.languagesSpoken}}</div>
   </div>
 </div>
 
 <div class="form">
-  <h1>{{employee ? 'Edit: ' : 'Add: '}}</h1>
+  <h1>{{employee ? ("form.edit.title" | translate) : ("form.add.title" | translate) }}</h1>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
     <div class="form__field">
-      <span formControlName="id">{{employee ? 'id: '+employee.id : ''}}</span>
+      <span formControlName="id">{{employee ? ("form.id" | translate) + employee.id : ''}}</span>
     </div>
 
     <div class="form__field">
-      <label for="name">name</label>
+      <label for="name">{{"form.name" | translate}}</label>
       <input id="name" type="text" class="form__field-input" formControlName="name">
     </div>
 
     <div class="form__field">
-      <label for="skills">skills </label>
+      <label for="skills">{{"form.skills" | translate}}</label>
       <select multiple formControlName="skills" id="skills" class="form__field-select">
         <option *ngFor="let skill of skills" [ngValue]="skill">
           {{skill}}
@@ -31,7 +31,7 @@
     </div>
 
     <div class="form__field">
-      <label for="languages">languages </label>
+      <label for="languages">{{"form.languages" | translate}}</label>
       <select multiple formControlName="languagesSpoken" id="languages" class="form__field-select">
         <option *ngFor="let language of languagesSpoken" [ngValue]="language">
           {{language}}
@@ -40,11 +40,33 @@
     </div>
 
     <div>
-      <button type="submit" [disabled]="registerForm.invalid">{{employee ? 'Update' : 'Register'}}</button>
+      <button type="submit"
+              [disabled]="registerForm.invalid">{{employee ? ("button.update" | translate) : ("button.register" | translate)}}</button>
     </div>
 
   </form>
   <br>
   <div>{{registerForm.value | json}}</div>
+
+  <footer class="language-switch">
+    <button
+      class="language-switch__button"
+      [class.language-switch__button--selected]="
+      this.translate.currentLang === 'pl'
+    "
+      (click)="setLanguage('pl')">
+      pl
+    </button>
+    |
+    <button
+      class="language-switch__button"
+      [class.language-switch__button--selected]="
+      this.translate.currentLang === 'en'
+    "
+      (click)="setLanguage('en')">
+      en
+    </button>
+  </footer>
+
 
 </div>

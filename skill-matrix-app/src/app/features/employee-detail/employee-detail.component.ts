@@ -3,6 +3,7 @@ import {Employee} from "../../models/employee";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {SKILLS} from "../../mocks/mock-skills";
 import {LANGUAGES} from "../../mocks/mock-languagesSpoken";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -17,18 +18,25 @@ export class EmployeeDetailComponent implements OnChanges {
   @Output() newEmployeeEvent: EventEmitter<Employee> = new EventEmitter<Employee>();
   @Output() updateEmployeeEvent: EventEmitter<Employee> = new EventEmitter<Employee>();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public translate: TranslateService) {
+    this.registerForm = this.fb.group({
+      id: '',
+      name: '',
+      skills: [''],
+      languagesSpoken: ['']
+    });
+    translate.addLangs(['en', 'pl']);
+    translate.setDefaultLang('en');
+    translate.use('en');
   };
+
+  setLanguage(value: string): void {
+    this.translate.use(value);
+  }
 
   skills: string[] = SKILLS;
   languagesSpoken: string[] = LANGUAGES;
-
-  registerForm: FormGroup = this.fb.group({
-    id: '',
-    name: '',
-    skills: [''],
-    languagesSpoken: ['']
-  });
+  registerForm: FormGroup;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['employee']) {

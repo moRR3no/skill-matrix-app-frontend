@@ -1,0 +1,24 @@
+{
+  "employee": {
+    "title": "Employee",
+    "detail": {
+      "title": "Details",
+      "id": "id",
+      "name": "Employee name",
+      "skills": "Skills",
+      "languages": "Languages"
+    }
+  },
+  "form": {
+    "edit.title": "Edit:",
+    "add.title": "Add:",
+    "id": "id: ",
+    "name": "name",
+    "skills": "skills",
+    "languages": "languages"
+  },
+  "button": {
+    "update": "Update",
+    "register": "Register"
+  }
+}

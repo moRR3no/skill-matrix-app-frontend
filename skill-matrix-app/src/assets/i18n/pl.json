@@ -1,0 +1,24 @@
+{
+  "employee": {
+    "title": "Pracownik",
+    "detail": {
+      "title": "Szczegóły",
+      "id": "id",
+      "name": "Imię pracownika",
+      "skills": "Umiejętności",
+      "languages": "Języki"
+    }
+  },
+  "form": {
+    "edit.title": "Edycja:",
+    "add.title": "Dodaj:",
+    "id": "id: ",
+    "name": "imię",
+    "skills": "umiejętności",
+    "languages": "języki"
+  },
+  "button": {
+    "update": "Aktualizuj",
+    "register": "Zarejestruj"
+  }
+}
