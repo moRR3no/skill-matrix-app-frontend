@@ -42,8 +42,6 @@ export class EmployeeDetailComponent implements OnChanges {
   registerForm: FormGroup;
 
 
-
-
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['employee']) {
       this.registerForm.patchValue({

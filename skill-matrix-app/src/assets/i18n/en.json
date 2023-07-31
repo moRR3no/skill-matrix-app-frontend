@@ -1,24 +1,29 @@
 {
   "employee": {
-    "title": "Employee",
-    "detail": {
-      "title": "Details",
-      "id": "id",
-      "name": "Employee name",
+    "title": "Employees"
+  },
+  "details": {
+    "title": "Details",
+    "id": "id",
+    "name": "Employee name",
+    "manager": "Manager",
+    "date": "Hire date",
+    "skills": "Skills",
+    "projects": "Projects",
+    "form": {
+      "title.edit": "Edit:",
+      "title.add": "Add:",
+      "id": "id: ",
+      "name": "Name",
+      "surname": "Surname",
+      "manager": "Manager",
+      "date": "Hire date",
       "skills": "Skills",
-      "languages": "Languages"
+      "projects": "Projects",
+      "button": {
+        "update": "Update",
+        "register": "Register"
+      }
     }
-  },
-  "form": {
-    "edit.title": "Edit:",
-    "add.title": "Add:",
-    "id": "id: ",
-    "name": "name",
-    "skills": "skills",
-    "languages": "languages"
-  },
-  "button": {
-    "update": "Update",
-    "register": "Register"
   }
 }

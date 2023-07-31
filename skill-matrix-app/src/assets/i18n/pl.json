@@ -1,24 +1,29 @@
 {
   "employee": {
-    "title": "Pracownik",
-    "detail": {
-      "title": "Szczegóły",
-      "id": "id",
-      "name": "Imię pracownika",
+    "title": "Pracownicy"
+  },
+  "details": {
+    "title": "Szczegóły",
+    "id": "id",
+    "name": "Imię i nazwisko",
+    "manager": "Menedżer",
+    "date": "Data zatrudnienia",
+    "skills": "Umiejętności",
+    "projects": "Projekty",
+    "form": {
+      "title.edit": "Edycja:",
+      "title.add": "Dodaj:",
+      "id": "id: ",
+      "name": "Imię",
+      "surname": "Nazwisko",
+      "manager": "Menedżer",
+      "date": "Data zatrudnienia",
       "skills": "Umiejętności",
-      "languages": "Języki"
+      "projects": "Projekty",
+      "button": {
+        "update": "Aktualizuj",
+        "register": "Zarejestruj"
+      }
     }
-  },
-  "form": {
-    "edit.title": "Edycja:",
-    "add.title": "Dodaj:",
-    "id": "id: ",
-    "name": "imię",
-    "skills": "umiejętności",
-    "languages": "języki"
-  },
-  "button": {
-    "update": "Aktualizuj",
-    "register": "Zarejestruj"
   }
 }
