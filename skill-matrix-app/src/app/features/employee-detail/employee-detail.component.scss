@@ -1,9 +1,29 @@
-.details {
-  width: 20%;
+@import '../../../styles';
 
-  &__input {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+.details {
+
+  &__info {
+    font-size: 1.2rem;
+    width: 30%;
+  }
+
+  &__form {
+
+    &--title {
+      font-size: 1.4rem;
+      margin-bottom: 0;
+    }
+
+    &--field {
+      font-size: 1.2rem;
+      padding-bottom: 1.1rem;
+
+      &-input, &-select {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
   }
 }
