@@ -19,6 +19,7 @@ export class EmployeeComponent {
 
   updateEmployee (employee: Employee): void {
     const tempEmployee = this.getEmployeeById(employee.id);
+    this.updateManagers(employee);
     if (tempEmployee) {
       this.employees.splice(
         this.employees.indexOf(tempEmployee), 1, employee);
@@ -36,6 +37,14 @@ export class EmployeeComponent {
 
   private getEmployeeById (id: string): Employee | undefined {
     return this.employees.find(emp => emp.id === id);
+  }
+
+  private updateManagers(employeeManager: Employee) {
+    this.employees.map((employee) => {
+      if (employee.manager?.id == employeeManager.id) {
+        employee.manager = employeeManager;
+      }
+    });
   }
 
 }

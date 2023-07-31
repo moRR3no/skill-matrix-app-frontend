@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '
 import {Employee} from "../../models/employee";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {SKILLS} from "../../mocks/mock-skills";
+import {PROJECTS} from "../../mocks/mock-projects";
 
 
 
@@ -20,6 +21,7 @@ export class EmployeeDetailComponent implements OnChanges {
   constructor(private fb: FormBuilder) {
   };
 
+  projects: string[] = PROJECTS;
   skills: string[] = SKILLS;
 
 
@@ -27,7 +29,10 @@ export class EmployeeDetailComponent implements OnChanges {
     id: '',
     name: '',
     surname: '',
-    skills: ['']
+    manager: {} as Employee,
+    date: new Date(),
+    skills: [''],
+    projects: ['']
   });
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -36,7 +41,11 @@ export class EmployeeDetailComponent implements OnChanges {
         id: this.employee?.id,
         name: this.employee?.name,
         surname: this.employee?.surname,
-        skills: this.employee?.skills
+        manager: this.employee?.manager,
+        date: this.employee?.date.toISOString()
+          .slice(0, 10),
+        skills: this.employee?.skills,
+        projects: this.employee?.projects
       });
     }
   };

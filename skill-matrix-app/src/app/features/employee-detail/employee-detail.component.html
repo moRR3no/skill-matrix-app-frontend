@@ -4,12 +4,15 @@
     <div class="details__info">
       <div>id: {{employee.id}}</div>
       <div>Employee name: {{employee.name}} {{employee.surname}}</div>
+      <div>Manager: {{employee.manager?.name}} {{employee.manager?.surname}}</div>
+      <div>Hire date: {{employee.date | date: 'dd.MM.yyyy'}}</div>
       <div>Skills: {{employee.skills}}</div>
+      <div>Projects: {{employee.projects}}</div>
     </div>
   </div>
 
   <div class="details__form">
-    <h2>{{employee ? 'Edit: ' : 'Add: '}}</h2>
+    <h2 class="details__form--title">{{employee ? 'Edit: ' : 'Add: '}}</h2>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
       <div class="details__form--field">
@@ -17,20 +20,44 @@
       </div>
 
       <div class="details__form--field">
-        <label for="name">name</label>
+        <label for="name">Name:</label>
         <input id="name" type="text" class="details__form--field-input" formControlName="name">
       </div>
 
       <div class="details__form--field">
-        <label for="surname">surname</label>
+        <label for="surname">Surname:</label>
         <input id="surname" type="text" class="details__form--field-input" formControlName="surname">
       </div>
 
       <div class="details__form--field">
-        <label for="skills">skills </label>
+      <label for="manager">Manager:</label>
+      <select formControlName="manager" id="manager" class="details__form--field-select">
+        <option *ngFor="let employeeOption of employeeList" [ngValue]="employeeOption">
+          {{ employeeOption.name + " " + employeeOption.surname }}
+        </option>
+      </select>
+      </div>
+
+      <div class="details__form--field">
+        <label for="date">Hire date:</label>
+        <input type="date" id="date" formControlName="date" class="details__form--field-input"
+          [value]="registerForm.get('date')?.value | date: 'dd.MM.yyyy'"/>
+      </div>
+
+      <div class="details__form--field">
+        <label for="skills">Skills:</label>
         <select multiple formControlName="skills" id="skills" class="details__form--field-select">
           <option *ngFor="let skill of skills" [ngValue]="skill">
             {{skill}}
+          </option>
+        </select>
+      </div>
+
+      <div class="details__form--field">
+        <label for="projects">Projects:</label>
+        <select multiple formControlName="projects" id="projects" class="details__form--field-select">
+          <option *ngFor="let project of projects" [ngValue]="project">
+            {{project}}
           </option>
         </select>
       </div>
