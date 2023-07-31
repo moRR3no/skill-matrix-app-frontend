@@ -12,16 +12,16 @@ export class EmployeeComponent {
   employees: Employee[] = EMPLOYEES;
   selectedEmployee?: Employee;
 
-  addEmployeeList(employee: Employee): void {
+  addEmployeeToList(employee: Employee): void {
     this.setId(employee);
     this.employees.push(employee);
   }
 
   updateEmployee (employee: Employee): void {
-    const worker = this.getEmployeeById(employee.id);
-    if (worker) {
+    const tempEmployee = this.getEmployeeById(employee.id);
+    if (tempEmployee) {
       this.employees.splice(
-        this.employees.indexOf(worker), 1, employee);
+        this.employees.indexOf(tempEmployee), 1, employee);
     }
     this.selectedEmployee=undefined;
   }

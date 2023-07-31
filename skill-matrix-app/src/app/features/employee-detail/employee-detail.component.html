@@ -1,15 +1,15 @@
 <div *ngIf="employee">
-  <h2>{{employee.name | uppercase}} Details</h2>
+  <h2>{{employee.name | uppercase}} {{employee.surname | uppercase}} Details</h2>
   <div class="details">
     <div>id: {{employee.id}}</div>
-    <div>Employee name: {{employee.name}}</div>
+    <div>Employee name: {{employee.name}} {{employee.surname}}</div>
     <div>Skills: {{employee.skills}}</div>
     <div>Languages: {{employee.languagesSpoken}}</div>
   </div>
 </div>
 
 <div class="form">
-  <h1>{{employee ? 'Edit: ' : 'Add: '}}</h1>
+  <h2>{{employee ? 'Edit: ' : 'Add: '}}</h2>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
     <div class="form__field">
@@ -19,6 +19,11 @@
     <div class="form__field">
       <label for="name">name</label>
       <input id="name" type="text" class="form__field-input" formControlName="name">
+    </div>
+
+    <div class="form__field">
+      <label for="surname">surname</label>
+      <input id="surname" type="text" class="form__field-input" formControlName="surname">
     </div>
 
     <div class="form__field">
