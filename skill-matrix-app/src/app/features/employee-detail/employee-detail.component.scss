@@ -2,20 +2,23 @@
 
 
 .details {
-  font-size: 1.2rem;
-  width: 30%;
-}
 
-.form {
+  &__info {
+    font-size: 1.2rem;
+    width: 30%;
+  }
 
-  &__field {
-    font-size: 1.3rem;
-    padding-bottom: 1.1rem;
+  &__form {
 
-    &-input, &-select {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    &--field {
+      font-size: 1.3rem;
+      padding-bottom: 1.1rem;
+
+      &-input, &-select {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 }
