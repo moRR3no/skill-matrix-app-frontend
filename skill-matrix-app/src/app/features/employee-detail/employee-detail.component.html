@@ -4,7 +4,6 @@
     <div>id: {{employee.id}}</div>
     <div>Employee name: {{employee.name}} {{employee.surname}}</div>
     <div>Skills: {{employee.skills}}</div>
-    <div>Languages: {{employee.languagesSpoken}}</div>
   </div>
 </div>
 
@@ -31,15 +30,6 @@
       <select multiple formControlName="skills" id="skills" class="form__field-select">
         <option *ngFor="let skill of skills" [ngValue]="skill">
           {{skill}}
-        </option>
-      </select>
-    </div>
-
-    <div class="form__field">
-      <label for="languages">languages </label>
-      <select multiple formControlName="languagesSpoken" id="languages" class="form__field-select">
-        <option *ngFor="let language of languagesSpoken" [ngValue]="language">
-          {{language}}
         </option>
       </select>
     </div>

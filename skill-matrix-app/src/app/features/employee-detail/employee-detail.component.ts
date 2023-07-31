@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '
 import {Employee} from "../../models/employee";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {SKILLS} from "../../mocks/mock-skills";
-import {LANGUAGES} from "../../mocks/mock-languagesSpoken";
+
 
 
 @Component({
@@ -21,14 +21,13 @@ export class EmployeeDetailComponent implements OnChanges {
   };
 
   skills: string[] = SKILLS;
-  languagesSpoken: string[] = LANGUAGES;
+
 
   registerForm: FormGroup = this.fb.group({
     id: '',
     name: '',
     surname: '',
-    skills: [''],
-    languagesSpoken: ['']
+    skills: ['']
   });
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -37,8 +36,7 @@ export class EmployeeDetailComponent implements OnChanges {
         id: this.employee?.id,
         name: this.employee?.name,
         surname: this.employee?.surname,
-        skills: this.employee?.skills,
-        languagesSpoken: this.employee?.languagesSpoken
+        skills: this.employee?.skills
       });
     }
   };
