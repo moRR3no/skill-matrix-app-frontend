@@ -2,8 +2,9 @@ import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '
 import {Employee} from "../../models/employee";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {SKILLS} from "../../mocks/mock-skills";
-import {LANGUAGES} from "../../mocks/mock-languagesSpoken";
 import {TranslateService} from "@ngx-translate/core";
+import {PROJECTS} from "../../mocks/mock-projects";
+
 
 
 @Component({
@@ -22,29 +23,38 @@ export class EmployeeDetailComponent implements OnChanges {
     this.registerForm = this.fb.group({
       id: '',
       name: '',
+      surname: '',
+      manager: {} as Employee,
+      date: new Date(),
       skills: [''],
-      languagesSpoken: ['']
+      projects: ['']
     });
     translate.addLangs(['en', 'pl']);
     translate.setDefaultLang('en');
     translate.use('en');
   };
-
   setLanguage(value: string): void {
     this.translate.use(value);
   }
 
+  projects: string[] = PROJECTS;
   skills: string[] = SKILLS;
-  languagesSpoken: string[] = LANGUAGES;
   registerForm: FormGroup;
+
+
+
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['employee']) {
       this.registerForm.patchValue({
         id: this.employee?.id,
         name: this.employee?.name,
+        surname: this.employee?.surname,
+        manager: this.employee?.manager,
+        date: this.employee?.date.toISOString()
+          .slice(0, 10),
         skills: this.employee?.skills,
-        languagesSpoken: this.employee?.languagesSpoken
+        projects: this.employee?.projects
       });
     }
   };

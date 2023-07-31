@@ -1,48 +1,70 @@
-<div *ngIf="employee">
-  <h2>{{employee.name | uppercase}} {{"employee.detail.title" | translate}} :</h2>
-  <div class="details">
-    <div>{{"employee.detail.id" | translate}}: {{employee.id}}</div>
-    <div>{{"employee.detail.name" | translate}}: {{employee.name}}</div>
-    <div>{{"employee.detail.skills" | translate}}: {{employee.skills}}</div>
-    <div>{{"employee.detail.languages" | translate}}: {{employee.languagesSpoken}}</div>
+<div class="details">
+  <div *ngIf="employee">
+    <h2>{{employee.name | uppercase}} {{employee.surname | uppercase}} Details</h2>
+    <div class="details__info">
+      <div>id: {{employee.id}}</div>
+      <div>Employee name: {{employee.name}} {{employee.surname}}</div>
+      <div>Manager: {{employee.manager?.name}} {{employee.manager?.surname}}</div>
+      <div>Hire date: {{employee.date | date: 'dd.MM.yyyy'}}</div>
+      <div>Skills: {{employee.skills}}</div>
+      <div>Projects: {{employee.projects}}</div>
+    </div>
   </div>
-</div>
 
-<div class="form">
-  <h1>{{employee ? ("form.edit.title" | translate) : ("form.add.title" | translate) }}</h1>
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="details__form">
+    <h2 class="details__form--title">{{employee ? 'Edit: ' : 'Add: '}}</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-    <div class="form__field">
-      <span formControlName="id">{{employee ? ("form.id" | translate) + employee.id : ''}}</span>
-    </div>
+      <div class="details__form--field">
+        <span formControlName="id">{{employee ? 'id: ' + employee.id : ''}}</span>
+      </div>
 
-    <div class="form__field">
-      <label for="name">{{"form.name" | translate}}</label>
-      <input id="name" type="text" class="form__field-input" formControlName="name">
-    </div>
+      <div class="details__form--field">
+        <label for="name">Name:</label>
+        <input id="name" type="text" class="details__form--field-input" formControlName="name">
+      </div>
 
-    <div class="form__field">
-      <label for="skills">{{"form.skills" | translate}}</label>
-      <select multiple formControlName="skills" id="skills" class="form__field-select">
-        <option *ngFor="let skill of skills" [ngValue]="skill">
-          {{skill}}
+      <div class="details__form--field">
+        <label for="surname">Surname:</label>
+        <input id="surname" type="text" class="details__form--field-input" formControlName="surname">
+      </div>
+
+      <div class="details__form--field">
+      <label for="manager">Manager:</label>
+      <select formControlName="manager" id="manager" class="details__form--field-select">
+        <option *ngFor="let employeeOption of employeeList" [ngValue]="employeeOption">
+          {{ employeeOption.name + " " + employeeOption.surname }}
         </option>
       </select>
-    </div>
+      </div>
 
-    <div class="form__field">
-      <label for="languages">{{"form.languages" | translate}}</label>
-      <select multiple formControlName="languagesSpoken" id="languages" class="form__field-select">
-        <option *ngFor="let language of languagesSpoken" [ngValue]="language">
-          {{language}}
-        </option>
-      </select>
-    </div>
+      <div class="details__form--field">
+        <label for="date">Hire date:</label>
+        <input type="date" id="date" formControlName="date" class="details__form--field-input"
+          [value]="registerForm.get('date')?.value | date: 'dd.MM.yyyy'"/>
+      </div>
 
-    <div>
-      <button type="submit"
-              [disabled]="registerForm.invalid">{{employee ? ("button.update" | translate) : ("button.register" | translate)}}</button>
-    </div>
+      <div class="details__form--field">
+        <label for="skills">Skills:</label>
+        <select multiple formControlName="skills" id="skills" class="details__form--field-select">
+          <option *ngFor="let skill of skills" [ngValue]="skill">
+            {{skill}}
+          </option>
+        </select>
+      </div>
+
+      <div class="details__form--field">
+        <label for="projects">Projects:</label>
+        <select multiple formControlName="projects" id="projects" class="details__form--field-select">
+          <option *ngFor="let project of projects" [ngValue]="project">
+            {{project}}
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <button type="submit" [disabled]="registerForm.invalid">{{employee ? 'Update' : 'Register'}}</button>
+      </div>
 
   </form>
   <br>

@@ -6,7 +6,7 @@
         <button type="button" (click)="onSelect(employee)" class="employees__button"
                 [class.selected]="employee === selectedEmployee">
 
-          <span class="employees__button-name">{{employee.name}}</span>
+          <span class="employees__button-name">{{employee.name}} {{employee.surname}}</span>
         </button>
       </div>
     </li>
@@ -14,7 +14,7 @@
 
   <app-employee-detail [employee]="selectedEmployee"
                        [employeeList]="employees"
-                       (newEmployeeEvent)="addEmployeeList($event)"
+                       (newEmployeeEvent)="addEmployeeToList($event)"
                        (updateEmployeeEvent)="updateEmployee($event)"
 >
   </app-employee-detail>
