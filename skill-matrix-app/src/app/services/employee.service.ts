@@ -4,16 +4,18 @@ import {Employee} from "../models/employee";
 import {SKILLS} from "../mocks/mock-skills";
 import {PROJECTS} from "../mocks/mock-projects";
 import {Observable, of} from "rxjs";
+import {MessageService} from "./message.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  constructor() { }
+  constructor(private messageService: MessageService) { }
 
   getEmployees(): Observable<Employee[]> {
     const employees = of(EMPLOYEES);
+    this.messageService.add('EmployeeService: fetched employees');
     return employees;
   }
 

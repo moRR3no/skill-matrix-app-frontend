@@ -13,9 +13,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {EmployeeComponent} from './features/employee/employee.component';
 import {EmployeeDetailComponent} from './features/employee-detail/employee-detail.component';
+import { MessagesComponent } from './features/messages/messages.component';
 
 @NgModule({
-  declarations: [AppComponent, EmployeeComponent, EmployeeDetailComponent],
+  declarations: [AppComponent, EmployeeComponent, EmployeeDetailComponent, MessagesComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',

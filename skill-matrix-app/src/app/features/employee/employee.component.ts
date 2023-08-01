@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Employee} from "../../models/employee";
 import {EmployeeService} from "../../services/employee.service";
+import {MessageService} from "../../services/message.service";
 
 @Component({
   selector: 'app-employee',
@@ -12,7 +13,7 @@ export class EmployeeComponent implements OnInit{
   employees: Employee[] = [];
   selectedEmployee?: Employee;
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(private employeeService: EmployeeService, private messageService: MessageService) {}
 
   getEmployees(): void {
     this.employeeService.getEmployees()
@@ -40,6 +41,7 @@ export class EmployeeComponent implements OnInit{
 
   onSelect(employee: Employee): void {
     this.selectedEmployee = employee;
+    this.messageService.add(`EmployeesComponent: Selected employee id=${employee.id}`);
   }
 
   private setId (employee: Employee): void {
