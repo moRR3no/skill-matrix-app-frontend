@@ -63,11 +63,13 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   }
 
   getProjects() :void {
-    this.projects = this.employeeService.getProjects();
+    this.employeeService.getProjects()
+      .subscribe(projects => this.projects = projects);
   }
 
   getSkills(): void {
-    this.skills = this.employeeService.getSkills();
+    this.employeeService.getSkills()
+      .subscribe(skills => this.skills = skills);
   }
 
   onSubmit(): void {
