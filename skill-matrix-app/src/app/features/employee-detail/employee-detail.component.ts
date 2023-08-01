@@ -50,8 +50,7 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
         name: this.employee?.name,
         surname: this.employee?.surname,
         manager: this.employee?.manager,
-        date: this.employee?.date.toISOString()
-          .slice(0, 10),
+        date: this.employee?.date,
         skills: this.employee?.skills,
         projects: this.employee?.projects
       });
