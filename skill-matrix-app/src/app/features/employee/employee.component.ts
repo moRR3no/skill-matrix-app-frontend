@@ -1,16 +1,22 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Employee} from "../../models/employee";
-import {EMPLOYEES} from "../../mocks/mock-employee";
+import {EmployeeService} from "../../services/employee.service";
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss']
 })
-export class EmployeeComponent {
+export class EmployeeComponent implements OnInit{
 
-  employees: Employee[] = EMPLOYEES;
+  employees: Employee[] = [];
   selectedEmployee?: Employee;
+
+  constructor(private employeeService: EmployeeService) {}
+
+  getHeroes(): void {
+    this.employees = this.employeeService.getEmployees();
+  }
 
   addEmployeeToList(employee: Employee): void {
     this.setId(employee);
@@ -25,6 +31,10 @@ export class EmployeeComponent {
         this.employees.indexOf(tempEmployee), 1, employee);
     }
     this.selectedEmployee=undefined;
+  }
+
+  ngOnInit(): void {
+    this.getHeroes();
   }
 
   onSelect(employee: Employee): void {
