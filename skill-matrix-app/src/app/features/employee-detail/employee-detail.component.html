@@ -16,7 +16,7 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
       <div class="details__form--field">
-        <span formControlName="id">{{employee ? ("details.form.id") + employee.id : ''}}</span>
+        <span formControlName="id">{{employee ? ("details.form.id" | translate) + employee.id : ''}}</span>
       </div>
 
       <div class="details__form--field">
