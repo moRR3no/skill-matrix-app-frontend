@@ -14,7 +14,7 @@ export class EmployeeComponent implements OnInit{
 
   constructor(private employeeService: EmployeeService) {}
 
-  getHeroes(): void {
+  getEmployees(): void {
     this.employees = this.employeeService.getEmployees();
   }
 
@@ -34,7 +34,7 @@ export class EmployeeComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getHeroes();
+    this.getEmployees();
   }
 
   onSelect(employee: Employee): void {
