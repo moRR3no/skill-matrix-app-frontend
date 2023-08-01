@@ -1,36 +1,36 @@
 <div class="details">
   <div *ngIf="employee">
-    <h2>{{employee.name | uppercase}} {{employee.surname | uppercase}} Details</h2>
+    <h2>{{employee.name | uppercase}} {{employee.surname | uppercase}} {{"details.title" | translate}}</h2>
     <div class="details__info">
-      <div>id: {{employee.id}}</div>
-      <div>Employee name: {{employee.name}} {{employee.surname}}</div>
-      <div>Manager: {{employee.manager?.name}} {{employee.manager?.surname}}</div>
-      <div>Hire date: {{employee.date | date: 'dd.MM.yyyy'}}</div>
-      <div>Skills: {{employee.skills}}</div>
-      <div>Projects: {{employee.projects}}</div>
+      <div>{{"details.id" | translate}} {{employee.id}}</div>
+      <div>{{"details.name" | translate}}: {{employee.name}} {{employee.surname}}</div>
+      <div>{{"details.manager" | translate}}: {{employee.manager?.name}} {{employee.manager?.surname}}</div>
+      <div>{{"details.date" | translate}}: {{employee.date | date: 'dd.MM.yyyy'}}</div>
+      <div>{{"details.skills" | translate}}: {{employee.skills}}</div>
+      <div>{{"details.projects" | translate}}: {{employee.projects}}</div>
     </div>
   </div>
 
   <div class="details__form">
-    <h2 class="details__form--title">{{employee ? 'Edit: ' : 'Add: '}}</h2>
+    <h2 class="details__form--title">{{employee ? ("details.form.title.edit" | translate) : ("details.form.title.add" | translate)}}</h2>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
       <div class="details__form--field">
-        <span formControlName="id">{{employee ? 'id: ' + employee.id : ''}}</span>
+        <span formControlName="id">{{employee ? ("details.form.id" | translate) + employee.id : ''}}</span>
       </div>
 
       <div class="details__form--field">
-        <label for="name">Name:</label>
+        <label for="name">{{"details.form.name" | translate}}:</label>
         <input id="name" type="text" class="details__form--field-input" formControlName="name">
       </div>
 
       <div class="details__form--field">
-        <label for="surname">Surname:</label>
+        <label for="surname">{{"details.form.surname" | translate}}:</label>
         <input id="surname" type="text" class="details__form--field-input" formControlName="surname">
       </div>
 
       <div class="details__form--field">
-      <label for="manager">Manager:</label>
+      <label for="manager">{{"details.form.manager" | translate}}:</label>
       <select formControlName="manager" id="manager" class="details__form--field-select">
         <option *ngFor="let employeeOption of employeeList" [ngValue]="employeeOption">
           {{ employeeOption.name + " " + employeeOption.surname }}
@@ -39,13 +39,13 @@
       </div>
 
       <div class="details__form--field">
-        <label for="date">Hire date:</label>
+        <label for="date">{{"details.form.date" | translate}}:</label>
         <input type="date" id="date" formControlName="date" class="details__form--field-input"
           [value]="registerForm.get('date')?.value | date: 'dd.MM.yyyy'"/>
       </div>
 
       <div class="details__form--field">
-        <label for="skills">Skills:</label>
+        <label for="skills">{{"details.form.skills" | translate}}:</label>
         <select multiple formControlName="skills" id="skills" class="details__form--field-select">
           <option *ngFor="let skill of skills" [ngValue]="skill">
             {{skill}}
@@ -54,7 +54,7 @@
       </div>
 
       <div class="details__form--field">
-        <label for="projects">Projects:</label>
+        <label for="projects">{{"details.form.projects" | translate}}:</label>
         <select multiple formControlName="projects" id="projects" class="details__form--field-select">
           <option *ngFor="let project of projects" [ngValue]="project">
             {{project}}
@@ -63,12 +63,32 @@
       </div>
 
       <div>
-        <button type="submit" [disabled]="registerForm.invalid">{{employee ? 'Update' : 'Register'}}</button>
+        <button type="submit" [disabled]="registerForm.invalid">{{employee ? ("details.form.button.update" | translate) : ("details.form.button.register" | translate)}}</button>
       </div>
 
-    </form>
-    <br>
-    <div>{{registerForm.value | json}}</div>
+  </form>
+  <br>
+  <div>{{registerForm.value | json}}</div>
 
-  </div>
+  <footer class="language-switch">
+    <button
+      class="language-switch__button"
+      [class.language-switch__button--selected]="
+      this.translate.currentLang === 'pl'
+    "
+      (click)="setLanguage('pl')">
+      pl
+    </button>
+    |
+    <button
+      class="language-switch__button"
+      [class.language-switch__button--selected]="
+      this.translate.currentLang === 'en'
+    "
+      (click)="setLanguage('en')">
+      en
+    </button>
+  </footer>
+
+
 </div>

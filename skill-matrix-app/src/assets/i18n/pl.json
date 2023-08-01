@@ -1,0 +1,29 @@
+{
+  "employee": {
+    "title": "Pracownicy"
+  },
+  "details": {
+    "title": "Szczegóły",
+    "id": "id",
+    "name": "Imię i nazwisko",
+    "manager": "Menedżer",
+    "date": "Data zatrudnienia",
+    "skills": "Umiejętności",
+    "projects": "Projekty",
+    "form": {
+      "title.edit": "Edycja:",
+      "title.add": "Dodaj:",
+      "id": "id: ",
+      "name": "Imię",
+      "surname": "Nazwisko",
+      "manager": "Menedżer",
+      "date": "Data zatrudnienia",
+      "skills": "Umiejętności",
+      "projects": "Projekty",
+      "button": {
+        "update": "Aktualizuj",
+        "register": "Zarejestruj"
+      }
+    }
+  }
+}
