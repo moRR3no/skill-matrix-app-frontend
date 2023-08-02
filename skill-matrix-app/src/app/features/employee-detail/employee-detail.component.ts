@@ -1,10 +1,21 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  EventEmitter,
+  inject,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import {Employee} from "../../models/employee";
 import {FormBuilder, FormGroup} from "@angular/forms";
 // import {SKILLS} from "../../mocks/mock-skills";
 import {TranslateService} from "@ngx-translate/core";
 // import {PROJECTS} from "../../mocks/mock-projects";
 import {EmployeeService} from "../../services/employee.service";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 
 
@@ -41,6 +52,7 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   projects: string[] = [];
   skills: string[] = [];
   registerForm: FormGroup;
+  destroyRef: DestroyRef = inject(DestroyRef);
 
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -64,11 +76,13 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
 
   getProjects() :void {
     this.employeeService.getProjects()
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(projects => this.projects = projects);
   }
 
   getSkills(): void {
     this.employeeService.getSkills()
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(skills => this.skills = skills);
   }
 
