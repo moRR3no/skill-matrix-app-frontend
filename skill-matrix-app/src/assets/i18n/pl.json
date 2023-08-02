@@ -25,5 +25,19 @@
         "register": "Zarejestruj"
       }
     }
+  },
+  "messages": {
+    "messages": "Wiadomości",
+    "clear": "Wyczyść wiadomości",
+    "employee": {
+      "service": {
+        "get.employees": "EmployeeService: pobrano pracowników",
+        "get.skills": "EmployeeService: pobrano umiejętności",
+        "get.projects": "EmployeeService: pobrano projekty"
+      },
+      "component": {
+        "selected": "EmployeesComponent: Wybrany pracownik id="
+      }
+    }
   }
 }
