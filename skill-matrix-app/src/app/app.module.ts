@@ -17,6 +17,10 @@ import { MessagesComponent } from './features/messages/messages.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
+import {MatListModule} from "@angular/material/list";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [AppComponent, EmployeeComponent, EmployeeDetailComponent, MessagesComponent],
@@ -29,7 +33,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
         deps: [HttpClient]
       }
     }),
-    BrowserAnimationsModule, MatSlideToggleModule, MatToolbarModule],
+    BrowserAnimationsModule, MatSlideToggleModule, MatToolbarModule, MatInputModule, MatSelectModule, MatListModule, MatButtonModule],
   exports: [
     TranslateModule
   ],
