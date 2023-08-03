@@ -14,6 +14,9 @@ import {AppComponent} from './app.component';
 import {EmployeeComponent} from './features/employee/employee.component';
 import {EmployeeDetailComponent} from './features/employee-detail/employee-detail.component';
 import { MessagesComponent } from './features/messages/messages.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 @NgModule({
   declarations: [AppComponent, EmployeeComponent, EmployeeDetailComponent, MessagesComponent],
@@ -25,7 +28,8 @@ import { MessagesComponent } from './features/messages/messages.component';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })],
+    }),
+    BrowserAnimationsModule, MatSlideToggleModule, MatToolbarModule],
   exports: [
     TranslateModule
   ],
