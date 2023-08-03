@@ -25,5 +25,19 @@
         "register": "Register"
       }
     }
+  },
+  "messages": {
+    "messages": "Messages",
+    "clear": "Clear messages",
+    "employee": {
+      "service": {
+        "get.employees": "EmployeeService: fetched employees",
+        "get.skills": "EmployeeService: fetched skills,",
+        "get.projects": "EmployeeService: fetched projects"
+      },
+      "component": {
+        "selected": "EmployeesComponent: Selected employee id="
+      }
+    }
   }
 }

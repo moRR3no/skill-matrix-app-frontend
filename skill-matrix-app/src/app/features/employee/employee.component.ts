@@ -1,16 +1,30 @@
-import {Component} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {Employee} from "../../models/employee";
-import {EMPLOYEES} from "../../mocks/mock-employee";
+import {EmployeeService} from "../../services/employee.service";
+import {MessageService} from "../../services/message.service";
+import {TranslateService} from "@ngx-translate/core";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss']
 })
-export class EmployeeComponent {
+export class EmployeeComponent implements OnInit{
 
-  employees: Employee[] = EMPLOYEES;
+  employees: Employee[] = [];
   selectedEmployee?: Employee;
+  destroyRef: DestroyRef = inject(DestroyRef);
+
+  constructor(private employeeService: EmployeeService,
+              private messageService: MessageService,
+              private translateService: TranslateService) {}
+
+  getEmployees(): void {
+    this.employeeService.getEmployees()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(employees => this.employees = employees);
+  }
 
   addEmployeeToList(employee: Employee): void {
     this.setId(employee);
@@ -27,8 +41,14 @@ export class EmployeeComponent {
     this.selectedEmployee=undefined;
   }
 
+  ngOnInit(): void {
+    this.getEmployees();
+  }
+
   onSelect(employee: Employee): void {
     this.selectedEmployee = employee;
+    this.messageService.add(
+      this.translateService.instant('messages.employee.component.selected') + employee.id);
   }
 
   private setId (employee: Employee): void {
