@@ -17,10 +17,12 @@
       class="details__form--title">{{employee ? ("details.form.title.edit" | translate) : ("details.form.title.add" | translate)}}</h2>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-      <div class="details__form--field">
-        <span formControlName="id">{{employee ? ("details.form.id" | translate) + employee.id : ''}}</span>
-      </div>
+      <mat-form-field *ngIf="employee" class="details__form--field">
+        <mat-label for="id">{{"details.form.id" | translate}}</mat-label>
+        <input matInput readonly id="id" formControlName="id" placeholder="{{employee.id}}">
+      </mat-form-field>
 
+      <br>
       <!--      TODO: style form field to new row position and remove <br>-->
       <mat-form-field class="details__form--field">
         <mat-label for="name">{{"details.form.name" | translate}}:</mat-label>
