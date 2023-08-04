@@ -4,7 +4,8 @@
     <mat-card>
       <mat-card-content>{{"details.id" | translate}}: {{employee.id}}</mat-card-content>
       <mat-card-content>{{"details.name" | translate}}: {{employee.name}} {{employee.surname}}</mat-card-content>
-      <mat-card-content>{{"details.manager" | translate}}: {{employee.manager?.name}} {{employee.manager?.surname}}</mat-card-content>
+      <mat-card-content>{{"details.manager" | translate}}
+        : {{employee.manager?.name}} {{employee.manager?.surname}}</mat-card-content>
       <mat-card-content>{{"details.date" | translate}}: {{employee.date | date: 'dd.MM.yyyy'}}</mat-card-content>
       <mat-card-content>{{"details.skills" | translate}}: {{employee.skills}}</mat-card-content>
       <mat-card-content>{{"details.projects" | translate}}: {{employee.projects}}</mat-card-content>
@@ -12,7 +13,7 @@
   </mat-card>
 
 
-  <div class="details__form">
+  <mat-card class="details__form">
     <h2
       class="details__form--title">{{employee ? ("details.form.title.edit" | translate) : ("details.form.title.add" | translate)}}</h2>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
@@ -91,6 +92,7 @@
 
     <footer class="language-switch">
       <button
+        mat-flat-button color="primary"
         class="language-switch__button"
         [class.language-switch__button--selected]="
       this.translate.currentLang === 'pl'
@@ -100,6 +102,7 @@
       </button>
       |
       <button
+        mat-flat-button color="primary"
         class="language-switch__button"
         [class.language-switch__button--selected]="
       this.translate.currentLang === 'en'
@@ -110,5 +113,5 @@
     </footer>
 
 
-  </div>
+  </mat-card>
 </mat-card>
