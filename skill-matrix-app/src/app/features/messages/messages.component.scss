@@ -1,8 +1,29 @@
-* {
-  text-align: right;
-  margin-left: auto;
-}
-.message {
-  position: sticky;
-  top: 0;
+
+.messages {
+  //text-align: right;
+  //margin-left: auto;
+  //position: sticky;
+  //width: 5rem;
+  //top: 0;
+  font-size: 0.7rem;
+  padding: 0;
+  margin: 0;
+
+  &__toolbar {
+    padding: 0;
+    margin: 0
+  }
+
+  &__content {
+    line-height: 0.9rem;
+  }
+
+  &__delete {
+    display:inline-block;
+    padding:13px 15px;
+
+    &--icon {
+      text-align:center;
+    }
+  }
 }

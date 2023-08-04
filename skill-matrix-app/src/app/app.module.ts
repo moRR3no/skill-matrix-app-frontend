@@ -25,12 +25,16 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatCardModule} from "@angular/material/card";
 import { LanguagePickerComponent } from './features/language-picker/language-picker.component';
+import { NavbarComponent } from './features/navbar/navbar.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatBadgeModule} from "@angular/material/badge";
 
 
 
 
 @NgModule({
-  declarations: [AppComponent, EmployeeComponent, EmployeeDetailComponent, MessagesComponent, LanguagePickerComponent],
+  declarations: [AppComponent, EmployeeComponent, EmployeeDetailComponent, MessagesComponent, LanguagePickerComponent, NavbarComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
@@ -40,7 +44,7 @@ import { LanguagePickerComponent } from './features/language-picker/language-pic
         deps: [HttpClient]
       }
     }),
-    BrowserAnimationsModule, MatNativeDateModule, MatSlideToggleModule, MatToolbarModule, MatInputModule, MatSelectModule, MatListModule, MatButtonModule, MatDatepickerModule, MatCardModule],
+    BrowserAnimationsModule, MatNativeDateModule, MatSlideToggleModule, MatToolbarModule, MatInputModule, MatSelectModule, MatListModule, MatButtonModule, MatDatepickerModule, MatCardModule, MatIconModule, MatMenuModule, MatBadgeModule],
   exports: [
     TranslateModule
   ],
