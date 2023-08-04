@@ -31,7 +31,7 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   @Output() newEmployeeEvent: EventEmitter<Employee> = new EventEmitter<Employee>();
   @Output() updateEmployeeEvent: EventEmitter<Employee> = new EventEmitter<Employee>();
 
-  constructor(private fb: FormBuilder, public translate: TranslateService, private employeeService: EmployeeService) {
+  constructor(private fb: FormBuilder, private employeeService: EmployeeService) {
     this.registerForm = this.fb.group({
       id: '',
       name: '',
@@ -41,13 +41,8 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
       skills: [''],
       projects: ['']
     });
-    translate.addLangs(['en', 'pl']);
-    translate.setDefaultLang('en');
-    translate.use('en');
   };
-  setLanguage(value: string): void {
-    this.translate.use(value);
-  }
+
 
   projects: string[] = [];
   skills: string[] = [];

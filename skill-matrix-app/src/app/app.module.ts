@@ -24,12 +24,13 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatCardModule} from "@angular/material/card";
+import { LanguagePickerComponent } from './features/language-picker/language-picker.component';
 
 
 
 
 @NgModule({
-  declarations: [AppComponent, EmployeeComponent, EmployeeDetailComponent, MessagesComponent],
+  declarations: [AppComponent, EmployeeComponent, EmployeeDetailComponent, MessagesComponent, LanguagePickerComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',

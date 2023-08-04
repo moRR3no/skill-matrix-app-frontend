@@ -1,4 +1,5 @@
-<mat-card *ngIf="messageService.messages.length">
+<section class="message">
+<mat-card *ngIf="messageService.messages.length" >
 
   <h2>{{"messages.messages" | translate}}</h2>
   <button mat-raised-button color="primary" type="button" class="clear"
@@ -7,3 +8,4 @@
   <div *ngFor='let message of messageService.messages'> {{message}} </div>
 
 </mat-card>
+</section>

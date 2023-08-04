@@ -45,11 +45,6 @@
       </mat-form-field>
       <br>
 
-      <!--            <div class="details__form&#45;&#45;field">-->
-      <!--              <label for="date">{{"details.form.date" | translate}}:</label>-->
-      <!--              <input type="date" id="date" formControlName="date" class="details__form&#45;&#45;field-input"-->
-      <!--                     [value]="registerForm.get('date')?.value | date: 'dd.MM.yyyy'"/>-->
-      <!--            </div>-->
       <mat-form-field>
         <mat-label>{{ "details.form.date" | translate }}:</mat-label>
         <input
@@ -86,32 +81,7 @@
           {{employee ? ("details.form.button.update" | translate) : ("details.form.button.register" | translate)}}
         </button>
       </div>
-
     </form>
-    <br>
-
-    <footer class="language-switch">
-      <button
-        mat-flat-button color="primary"
-        class="language-switch__button"
-        [class.language-switch__button--selected]="
-      this.translate.currentLang === 'pl'
-    "
-        (click)="setLanguage('pl')">
-        pl
-      </button>
-      |
-      <button
-        mat-flat-button color="primary"
-        class="language-switch__button"
-        [class.language-switch__button--selected]="
-      this.translate.currentLang === 'en'
-    "
-        (click)="setLanguage('en')">
-        en
-      </button>
-    </footer>
-
 
   </mat-card>
 </mat-card>
