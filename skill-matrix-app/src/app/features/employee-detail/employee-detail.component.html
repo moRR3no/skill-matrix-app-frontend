@@ -1,7 +1,8 @@
 <mat-card class="details">
   <mat-card *ngIf="employee">
-    <mat-card-title>{{employee.name | uppercase}} {{employee.surname | uppercase}} </mat-card-title>
-    <mat-card>
+
+    <mat-card-title class="elegant-card-title">{{ employee.name | uppercase }} {{ employee.surname | uppercase }}</mat-card-title>
+    <mat-card class="mat-card-content">
       <mat-card-content>{{"details.id" | translate}}: {{employee.id}}</mat-card-content>
       <mat-card-content>{{"details.name" | translate}}: {{employee.name}} {{employee.surname}}</mat-card-content>
       <mat-card-content>{{"details.manager" | translate}}
@@ -45,7 +46,7 @@
       </mat-form-field>
       <br>
 
-      <mat-form-field>
+      <mat-form-field class="details__form--field">
         <mat-label>{{ "details.form.date" | translate }}:</mat-label>
         <input
           matInput

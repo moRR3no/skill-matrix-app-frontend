@@ -10,6 +10,7 @@
 
   &__form {
 
+
     &--title {
       font-size: 1.4rem;
       margin-bottom: 0;
@@ -19,6 +20,7 @@
       font-size: 1.2rem;
       padding-bottom: 1.1rem;
 
+
       &-input, &-select {
         display: flex;
         align-items: center;
@@ -26,4 +28,52 @@
       }
     }
   }
+
+}
+
+
+.elegant-card-title {
+  font-size: 24px; /* Adjust the size as needed */
+  font-weight: bold;
+  color: #333; /* Change the color to your preferred color */
+  margin-bottom: 12px; /* Adjust spacing as needed */
+
+}
+
+.elegant-card-title::after {
+  content: ''; /* Add a pseudo-element for a decorative line */
+  display: block;
+  width: 40px; /* Adjust the width of the line */
+  height: 2px; /* Adjust the thickness of the line */
+  background-color: #333; /* Match the color of the title */
+  margin-top: 6px; /* Adjust spacing as needed */
+}
+
+.elegant-card-title:hover {
+  background-color: #f0f0f0; /* Change to your preferred hover color */
+  transition: background-color 0.3s ease;
+}
+
+.mat-card-content {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555; /* Adjust the color to your preferred color */
+  margin-bottom: 12px; /* Adjust spacing between card content */
+}
+
+.mat-card-content:last-child {
+  margin-bottom: 0; /* Remove margin from the last content item */
+}
+
+/* Style for translations */
+//.mat-card-content::before {
+//  content: '[' attr(data-translate) '] '; /* Adding a translation prefix */
+//  font-weight: bold;
+//  color: #888; /* Adjust the color to your preferred color */
+//}
+
+/* Add a hover effect on card content items */
+.mat-card-content:hover {
+  background-color: #f0f0f0; /* Change to your preferred hover color */
+  transition: background-color 0.3s ease;
 }

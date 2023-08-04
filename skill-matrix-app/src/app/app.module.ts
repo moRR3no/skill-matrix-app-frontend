@@ -29,6 +29,7 @@ import { NavbarComponent } from './features/navbar/navbar.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatBadgeModule} from "@angular/material/badge";
+import {MatTableModule} from "@angular/material/table";
 
 
 
@@ -44,7 +45,7 @@ import {MatBadgeModule} from "@angular/material/badge";
         deps: [HttpClient]
       }
     }),
-    BrowserAnimationsModule, MatNativeDateModule, MatSlideToggleModule, MatToolbarModule, MatInputModule, MatSelectModule, MatListModule, MatButtonModule, MatDatepickerModule, MatCardModule, MatIconModule, MatMenuModule, MatBadgeModule],
+    BrowserAnimationsModule, MatNativeDateModule, MatSlideToggleModule, MatToolbarModule, MatInputModule, MatSelectModule, MatListModule, MatButtonModule, MatDatepickerModule, MatCardModule, MatIconModule, MatMenuModule, MatBadgeModule, MatTableModule],
   exports: [
     TranslateModule
   ],
