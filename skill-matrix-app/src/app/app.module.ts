@@ -21,6 +21,12 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatCardModule} from "@angular/material/card";
+
+
+
 
 @NgModule({
   declarations: [AppComponent, EmployeeComponent, EmployeeDetailComponent, MessagesComponent],
@@ -33,7 +39,7 @@ import {MatButtonModule} from "@angular/material/button";
         deps: [HttpClient]
       }
     }),
-    BrowserAnimationsModule, MatSlideToggleModule, MatToolbarModule, MatInputModule, MatSelectModule, MatListModule, MatButtonModule],
+    BrowserAnimationsModule, MatNativeDateModule, MatSlideToggleModule, MatToolbarModule, MatInputModule, MatSelectModule, MatListModule, MatButtonModule, MatDatepickerModule, MatCardModule],
   exports: [
     TranslateModule
   ],
