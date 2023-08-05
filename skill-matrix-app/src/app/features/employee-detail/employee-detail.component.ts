@@ -16,6 +16,7 @@ import {TranslateService} from "@ngx-translate/core";
 // import {PROJECTS} from "../../mocks/mock-projects";
 import {EmployeeService} from "../../services/employee.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {MessageService} from "../../services/message.service";
 
 
 
@@ -30,8 +31,10 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   @Input() employeeList?: Employee[];
   @Output() newEmployeeEvent: EventEmitter<Employee> = new EventEmitter<Employee>();
   @Output() updateEmployeeEvent: EventEmitter<Employee> = new EventEmitter<Employee>();
+  @Output() cancelEdit: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private fb: FormBuilder, private employeeService: EmployeeService) {
+  constructor(private fb: FormBuilder, private employeeService: EmployeeService,
+              private messageService: MessageService, private translateService: TranslateService) {
     this.registerForm = this.fb.group({
       id: '',
       name: '',

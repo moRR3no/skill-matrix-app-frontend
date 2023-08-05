@@ -28,6 +28,8 @@ export class EmployeeComponent implements OnInit{
 
   addEmployeeToList(employee: Employee): void {
     this.setId(employee);
+    this.messageService.add(
+      this.translateService.instant('messages.employee.detail.add') + employee.id);
     this.employees.push(employee);
   }
 
@@ -38,6 +40,8 @@ export class EmployeeComponent implements OnInit{
       this.employees.splice(
         this.employees.indexOf(tempEmployee), 1, employee);
     }
+    this.messageService.add(
+      this.translateService.instant('messages.employee.detail.edit') + employee.id);
     this.selectedEmployee=undefined;
   }
 

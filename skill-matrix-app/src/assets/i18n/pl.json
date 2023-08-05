@@ -37,6 +37,10 @@
       },
       "component": {
         "selected": "EmployeesComponent: Wybrany pracownik id="
+      },
+      "detail": {
+        "edit": "EmployeeDetailComponent: Zaktualizowano pracownika id=",
+        "add": "EmployeeDetailComponent: Dodano pracownika id="
       }
     }
   }
