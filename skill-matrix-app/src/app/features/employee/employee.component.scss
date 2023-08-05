@@ -1,17 +1,14 @@
 @import '../../../styles';
 
 .employees {
-  width: 100%;
+
 
   &__button {
     display: inline-block;
     font-size: 1.2rem;
     padding: 0 2rem 0 2rem;
-    //border-radius: $button-border-radius;
-    //background: linear-gradient(to bottom, $button-color, $button-hover-color);
-    //color: $button-text-color;
-    //text-decoration: none;
-    //box-shadow: $button-shadow;
+    width: 49.2%;
+
 
     &:hover {
       background: $button-hover-color;

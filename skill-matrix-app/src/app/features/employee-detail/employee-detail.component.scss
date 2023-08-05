@@ -2,6 +2,11 @@
 
 
 .details {
+  width: 471px;
+  margin-left: 18px;
+
+
+
 
   &__info {
     font-size: 1.2rem;
@@ -9,16 +14,27 @@
   }
 
   &__form {
-
+    border: none;
 
     &--title {
+      padding-right: 120px;
       font-size: 1.4rem;
       margin-bottom: 0;
     }
 
     &--field {
+      width: 193.5%;
       font-size: 1.2rem;
-      padding-bottom: 1.1rem;
+      //padding-bottom: 1.1rem;
+      display: grid;
+      margin: 10px;
+      justify-content: center;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 16px; /* Adds gap of 16px for both rows and columns */
+
+      #label {
+
+      }
 
 
       &-input, &-select {

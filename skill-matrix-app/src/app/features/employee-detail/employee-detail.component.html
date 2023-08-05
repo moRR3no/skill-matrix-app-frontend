@@ -15,8 +15,8 @@
 
 
   <mat-card class="details__form">
-    <h2
-      class="details__form--title">{{employee ? ("details.form.title.edit" | translate) : ("details.form.title.add" | translate)}}</h2>
+
+    <mat-card-title class="elegant-card-title">{{employee ? (("details.form.title.edit" | translate) | uppercase) : (("details.form.title.add" | translate) | uppercase)}}</mat-card-title>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
       <mat-form-field *ngIf="employee" class="details__form--field">
@@ -24,18 +24,18 @@
         <input matInput readonly id="id" formControlName="id" placeholder="{{employee.id}}">
       </mat-form-field>
 
-      <br>
-      <!--      TODO: style form field to new row position and remove <br>-->
+
+      <!--      TODO: style form field to new row position and remove -->
       <mat-form-field class="details__form--field">
-        <mat-label for="name">{{"details.form.name" | translate}}:</mat-label>
+        <mat-label for="name" id="label">{{"details.form.name" | translate}}:</mat-label>
         <input matInput id="name" type="text" class="details__form--field-input" formControlName="name">
       </mat-form-field>
-      <br>
+
       <mat-form-field class="details__form--field">
         <mat-label for="surname">{{"details.form.surname" | translate}}:</mat-label>
         <input matInput id="surname" type="text" class="details__form--field-input" formControlName="surname">
       </mat-form-field>
-      <br>
+
       <mat-form-field class="details__form--field">
         <mat-label for="manager">{{"details.form.manager" | translate}}:</mat-label>
         <mat-select formControlName="manager" id="manager" class="details__form--field-select">
@@ -44,7 +44,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <br>
+
 
       <mat-form-field class="details__form--field">
         <mat-label>{{ "details.form.date" | translate }}:</mat-label>
@@ -58,7 +58,7 @@
       </mat-form-field>
 
 
-      <br>
+
       <mat-form-field class="details__form--field">
         <mat-label>{{"details.form.skills" | translate}}:</mat-label>
         <mat-select multiple formControlName="skills" class="details__form--field-select">
@@ -67,7 +67,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <br>
+
       <mat-form-field class="details__form--field">
         <mat-label>{{"details.form.projects" | translate}}:</mat-label>
         <mat-select multiple formControlName="projects" class="details__form--field-select">
