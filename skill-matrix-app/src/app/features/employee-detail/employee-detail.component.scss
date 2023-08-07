@@ -1,8 +1,5 @@
 @import '../../../styles';
 
-
-
-
 .details {
   display: flex;
   justify-content: center;
@@ -14,21 +11,21 @@
 
 
     &--title {
-      font-size: $font-employee-detail-title; /* Adjust the size as needed */
+      font-size: $font-employee-detail-title;
       font-weight: bold;
-      color: $black; /* Change the color to your preferred color */
+      color: $black;
 
       &::after {
-        content: ''; /* Add a pseudo-element for a decorative line */
+        content: '';
         display: block;
-        /* Adjust the width of the line */
-        height: 0.1rem; /* Adjust the thickness of the line */
-        background-color: $black; /* Match the color of the title */
-        margin-top: 0.6rem; /* Adjust spacing as needed */
+
+        height: 0.1rem;
+        background-color: $black;
+        margin-top: 0.6rem;
       }
 
       &:hover {
-        background-color: $white-hover; /* Change to your preferred hover color */
+        background-color: $white-hover;
         transition: background-color 0.3s ease;
       }
 
@@ -37,14 +34,14 @@
     &--content {
       font-size: $font-size-employee-details;
       line-height: 1.5;
-      color: $grey; /* Adjust the color to your preferred color */
+      color: $grey;
 
       &:last-child {
-        margin-bottom: 0; /* Remove margin from the last content item */
+        margin-bottom: 0;
       }
 
       &:hover {
-        background-color: $white-hover; /* Change to your preferred hover color */
+        background-color: $white-hover;
         transition: background-color 0.3s ease;
       }
     }
@@ -63,7 +60,7 @@
       margin: $margin-form-field;
       justify-content: center;
       grid-template-columns: 1fr 1fr;
-      grid-gap: $grid-gap-form-field; /* Adds gap of 16px for both rows and columns */
+      grid-gap: $grid-gap-form-field;
 
 
       &-input, &-select {
@@ -82,28 +79,28 @@
 }
 
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: $mobile-resolution-width) {
   .details {
 
     &__info {
-      width: 20rem;
+      width: $card-mobile-width;
     }
 
     &__form {
-      width: 20rem;
+      width: $card-mobile-width;
     }
   }
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: $tablet-resolution-width) {
   .details {
 
     &__info {
-      width: 20rem;
+      width: $card-mobile-width;
     }
 
     &__form {
-      width: 20rem;
+      width: $card-mobile-width;
     }
   }
 }

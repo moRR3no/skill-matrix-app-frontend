@@ -1,5 +1,4 @@
 <mat-card-title class="employees">
-<!--  <mat-toolbar color="primary" class="employees__title"> {{"employee.title" | translate}}: </mat-toolbar>-->
 
   <mat-list class="employees__list">
 
@@ -7,10 +6,8 @@
       <div class="employees__employee--alignment">
         <button mat-raised-button color="primary" type="button" class="employees__button"
                 (click)="onSelect(employee)" [class.selected]="employee === selectedEmployee">
-          <!--                class="employees__button"-->
 
           <span>{{employee.name}} {{employee.surname}}</span>
-<!--           class="employees__button-name"-->
         </button>
       </div>
     </mat-list-item>

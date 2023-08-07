@@ -1,24 +1,30 @@
 @import '../styles';
 
-.background {
+.app {
   padding-top: 0;
   background-color: $color-app-component-background;
-}
 
-.wrapper-card {
-  width: $desktop-resolution;
-  margin: auto;
-}
-
-
-@media screen and (max-width: $tablet-resolution-width){
-  .wrapper-card {
-    width: $mobile-resolution-width;
+  &__wrapper {
+    width: $desktop-resolution;
+    margin: auto;
   }
 }
 
-@media screen and (max-width: $desktop-resolution){
-  .wrapper-card {
-    max-width: $tablet-resolution-width;
+
+@media screen and (max-width: $tablet-resolution-width) {
+  .app {
+
+    &__wrapper {
+      width: $mobile-resolution-width;
+    }
+  }
+}
+
+@media screen and (max-width: $desktop-resolution) {
+  .app {
+
+    &__wrapper {
+      max-width: $tablet-resolution-width;
+    }
   }
 }
