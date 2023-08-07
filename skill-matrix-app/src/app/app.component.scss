@@ -1,9 +1,24 @@
+@import '../styles';
+
 .background {
   padding-top: 0;
-  background-color: #673ab7;
+  background-color: $color-app-component-background;
 }
 
 .wrapper-card {
-  width: 1024px;
+  width: $desktop-resolution;
   margin: auto;
+}
+
+
+@media screen and (max-width: $tablet-resolution-width){
+  .wrapper-card {
+    width: $mobile-resolution-width;
+  }
+}
+
+@media screen and (max-width: $desktop-resolution){
+  .wrapper-card {
+    max-width: $tablet-resolution-width;
+  }
 }

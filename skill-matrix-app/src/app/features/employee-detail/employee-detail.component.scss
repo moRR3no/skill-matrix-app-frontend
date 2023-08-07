@@ -1,45 +1,50 @@
 @import '../../../styles';
 
 
+
+
 .details {
-  width: 47.1%;
-  margin-left: 1.8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 
   &__info {
+    width: 35rem;
+
+
     &--title {
-      font-size: 24px; /* Adjust the size as needed */
+      font-size: $font-employee-detail-title; /* Adjust the size as needed */
       font-weight: bold;
-      color: #333; /* Change the color to your preferred color */
-      margin-bottom: 12px; /* Adjust spacing as needed */
+      color: $black; /* Change the color to your preferred color */
 
       &::after {
         content: ''; /* Add a pseudo-element for a decorative line */
         display: block;
-        width: 40px; /* Adjust the width of the line */
-        height: 2px; /* Adjust the thickness of the line */
-        background-color: #333; /* Match the color of the title */
-        margin-top: 6px; /* Adjust spacing as needed */
+        /* Adjust the width of the line */
+        height: 0.1rem; /* Adjust the thickness of the line */
+        background-color: $black; /* Match the color of the title */
+        margin-top: 0.6rem; /* Adjust spacing as needed */
       }
 
       &:hover {
-        background-color: #f0f0f0; /* Change to your preferred hover color */
+        background-color: $white-hover; /* Change to your preferred hover color */
         transition: background-color 0.3s ease;
       }
 
     }
 
     &--content {
-      font-size: 16px;
+      font-size: $font-size-employee-details;
       line-height: 1.5;
-      color: #555; /* Adjust the color to your preferred color */
-      margin-bottom: 12px; /* Adjust spacing between card content */
+      color: $grey; /* Adjust the color to your preferred color */
 
       &:last-child {
         margin-bottom: 0; /* Remove margin from the last content item */
       }
 
       &:hover {
-        background-color: #f0f0f0; /* Change to your preferred hover color */
+        background-color: $white-hover; /* Change to your preferred hover color */
         transition: background-color 0.3s ease;
       }
     }
@@ -48,16 +53,17 @@
 
   &__form {
     border: none;
+    align-content: center;
+    width: 35rem;
 
     &--field {
       width: 193.5%;
       font-size: 1.2rem;
-      //padding-bottom: 1.1rem;
       display: grid;
-      margin: 10px;
+      margin: $margin-form-field;
       justify-content: center;
       grid-template-columns: 1fr 1fr;
-      grid-gap: 16px; /* Adds gap of 16px for both rows and columns */
+      grid-gap: $grid-gap-form-field; /* Adds gap of 16px for both rows and columns */
 
 
       &-input, &-select {
@@ -66,7 +72,7 @@
         justify-content: center;
       }
     }
-    
+
     &--button {
       text-align: center;
 
@@ -76,4 +82,28 @@
 }
 
 
+@media screen and (max-width: 480px) {
+  .details {
 
+    &__info {
+      width: 20rem;
+    }
+
+    &__form {
+      width: 20rem;
+    }
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .details {
+
+    &__info {
+      width: 20rem;
+    }
+
+    &__form {
+      width: 20rem;
+    }
+  }
+}
