@@ -4,8 +4,7 @@
       <mat-icon>menu</mat-icon>
     </button>
 
-
-    <span class="navbar__title">{{"navbar.title" | translate}}</span>
+    <span class="navbar__title">{{ "navbar.title" | translate }}</span>
     <span class="navbar__spacer"></span>
     <app-language-picker></app-language-picker>
     <button
@@ -18,11 +17,11 @@
         [matBadgeHidden]="this.messageService.messages.length === 0"
         aria-hidden="false"
         matBadgeColor="accent"
-      >notifications</mat-icon>
+        >notifications</mat-icon
+      >
     </button>
     <mat-menu #messages="matMenu" class="navbar__messages">
       <app-messages></app-messages>
     </mat-menu>
-
   </mat-toolbar>
 </div>

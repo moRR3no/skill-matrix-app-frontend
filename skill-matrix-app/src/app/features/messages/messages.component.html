@@ -1,13 +1,21 @@
 <mat-card *ngIf="messageService.messages.length" class="messages">
-
-  <mat-card-title class="messages__toolbar">{{"messages.messages" | translate}}</mat-card-title>
-  <mat-card *ngFor='let message of messageService.messages' class="messages__content"> {{message}}
+  <mat-card-title class="messages__toolbar">{{
+    "messages.messages" | translate
+  }}</mat-card-title>
+  <mat-card
+    *ngFor="let message of messageService.messages"
+    class="messages__content"
+  >
+    {{ message }}
     <mat-divider></mat-divider>
   </mat-card>
-  <button mat-raised-button color="warn" type="button" class="messages__clear"
-          (click)="messageService.clear()">
+  <button
+    mat-raised-button
+    color="warn"
+    type="button"
+    class="messages__clear"
+    (click)="messageService.clear()"
+  >
     <mat-icon fontIcon="delete_forever" class="messages__clear-icon"></mat-icon>
   </button>
-
 </mat-card>
-

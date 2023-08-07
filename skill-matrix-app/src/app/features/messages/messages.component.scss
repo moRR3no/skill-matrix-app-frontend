@@ -1,13 +1,11 @@
-
 .messages {
-
   font-size: 0.7rem;
   padding: 0;
   margin: 0;
 
   &__toolbar {
     padding: 0;
-    margin: 0
+    margin: 0;
   }
 
   &__content {
@@ -15,10 +13,10 @@
   }
 
   &__delete {
-    display:inline-block;
+    display: inline-block;
 
     &-icon {
-      text-align:center;
+      text-align: center;
     }
   }
 }

@@ -1,22 +1,29 @@
 <mat-card-title class="employees">
-
   <mat-list class="employees__list">
-
-    <mat-list-item *ngFor="let employee of employees" class="employees__employee">
+    <mat-list-item
+      *ngFor="let employee of employees"
+      class="employees__employee"
+    >
       <div class="employees__employee--alignment">
-        <button mat-raised-button color="primary" type="button" class="employees__button"
-                (click)="onSelect(employee)" [class.selected]="employee === selectedEmployee">
-
-          <span>{{employee.name}} {{employee.surname}}</span>
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          class="employees__button"
+          (click)="onSelect(employee)"
+          [class.selected]="employee === selectedEmployee"
+        >
+          <span>{{ employee.name }} {{ employee.surname }}</span>
         </button>
       </div>
     </mat-list-item>
   </mat-list>
 
-  <app-employee-detail [employee]="selectedEmployee"
-                       [employeeList]="employees"
-                       (newEmployeeEvent)="addEmployeeToList($event)"
-                       (updateEmployeeEvent)="updateEmployee($event)"
->
+  <app-employee-detail
+    [employee]="selectedEmployee"
+    [employeeList]="employees"
+    (newEmployeeEvent)="addEmployeeToList($event)"
+    (updateEmployeeEvent)="updateEmployee($event)"
+  >
   </app-employee-detail>
 </mat-card-title>

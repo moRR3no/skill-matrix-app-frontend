@@ -5,5 +5,5 @@ export const SKILLS: string[] = [
   'Kotlin',
   'Scala',
   'C#',
-  'Ruby'
+  'Ruby',
 ];

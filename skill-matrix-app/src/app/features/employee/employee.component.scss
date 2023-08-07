@@ -1,5 +1,4 @@
-@import '../../../styles';
-
+@import "../../../styles";
 
 .employees {
   text-align: center;
@@ -24,7 +23,6 @@
 
 @media screen and (max-width: $mobile-resolution-width) {
   .employees {
-
     &__button {
       width: $card-mobile-width;
     }
@@ -33,7 +31,6 @@
 
 @media screen and (max-width: $tablet-resolution-width) {
   .employees {
-
     &__button {
       width: $card-mobile-width;
     }
