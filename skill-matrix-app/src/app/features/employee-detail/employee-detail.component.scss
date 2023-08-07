@@ -50,7 +50,7 @@
     width: 35rem;
 
     &--field {
-      width: 193.5%;
+      width: 68.5rem;
       font-size: 1.2rem;
       display: grid;
       margin: $margin-form-field;
@@ -92,6 +92,22 @@
 
     &__form {
       width: $card-mobile-width;
+    }
+  }
+}
+
+@media screen and (max-width: $tablet-resolution-width) {
+  .app {
+    &__wrapper {
+      width: $mobile-resolution-width;
+    }
+  }
+}
+
+@media screen and (max-width: $desktop-resolution) {
+  .app {
+    &__wrapper {
+      max-width: $tablet-resolution-width;
     }
   }
 }

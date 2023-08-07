@@ -1,7 +1,17 @@
 @import "../../../styles";
 
 .employees {
-  text-align: center;
+  padding-top: 0;
+  background-color: $color-app-component-background;
+
+  &__wrapper {
+    width: $desktop-resolution;
+    margin: auto;
+  }
+
+  &__title {
+    text-align: center;
+  }
 
   &__button {
     font-size: 1.2rem;
@@ -31,8 +41,20 @@
 
 @media screen and (max-width: $tablet-resolution-width) {
   .employees {
+    &__wrapper {
+      width: $mobile-resolution-width;
+    }
+
     &__button {
       width: $card-mobile-width;
+    }
+  }
+}
+
+@media screen and (max-width: $desktop-resolution) {
+  .employees {
+    &__wrapper {
+      max-width: $tablet-resolution-width;
     }
   }
 }
