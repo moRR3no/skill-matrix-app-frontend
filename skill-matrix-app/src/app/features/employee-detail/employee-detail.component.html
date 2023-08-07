@@ -1,8 +1,8 @@
 <mat-card class="details">
   <mat-card *ngIf="employee">
 
-    <mat-card-title class="elegant-card-title">{{ employee.name | uppercase }} {{ employee.surname | uppercase }}</mat-card-title>
-    <mat-card class="mat-card-content">
+    <mat-card-title class="details__info--title">{{ employee.name | uppercase }} {{ employee.surname | uppercase }}</mat-card-title>
+    <mat-card class="details__info--content">
       <mat-card-content>{{"details.id" | translate}}: {{employee.id}}</mat-card-content>
       <mat-card-content>{{"details.name" | translate}}: {{employee.name}} {{employee.surname}}</mat-card-content>
       <mat-card-content>{{"details.manager" | translate}}
@@ -16,7 +16,7 @@
 
   <mat-card class="details__form">
 
-    <mat-card-title class="elegant-card-title">{{employee ? (("details.form.title.edit" | translate) | uppercase) : (("details.form.title.add" | translate) | uppercase)}}</mat-card-title>
+    <mat-card-title class="details__info--title">{{employee ? (("details.form.title.edit" | translate) | uppercase) : (("details.form.title.add" | translate) | uppercase)}}</mat-card-title>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
       <mat-form-field *ngIf="employee" class="details__form--field">
@@ -77,7 +77,7 @@
         </mat-select>
       </mat-form-field>
 
-      <div>
+      <div class="details__form--button">
         <button mat-flat-button color="primary" type="submit">
           {{employee ? ("details.form.button.update" | translate) : ("details.form.button.register" | translate)}}
         </button>

@@ -1,12 +1,12 @@
-<p>
+<p class="navbar">
   <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button mat-icon-button aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
 
 
     <span>SkillMatrixApp</span>
-    <span class="example-spacer"></span>
+    <span class="navbar__spacer"></span>
     <app-language-picker></app-language-picker>
     <button
       mat-icon-button
@@ -18,10 +18,9 @@
         [matBadgeHidden]="this.messageService.messages.length === 0"
         aria-hidden="false"
         matBadgeColor="accent"
-      >notifications</mat-icon
-      >
+      >notifications</mat-icon>
     </button>
-    <mat-menu #messages="matMenu" class="test1">
+    <mat-menu #messages="matMenu" class="navbar__messages">
       <app-messages></app-messages>
     </mat-menu>
 

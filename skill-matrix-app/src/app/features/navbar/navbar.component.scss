@@ -1,11 +1,14 @@
 * {
-  display: flex
+  display: flex;
 }
 
-.example-spacer {
-  flex: 1 1 auto;
-}
+.navbar {
 
-.test1 {
-  display: inline-block
+  &__spacer {
+    flex: 1 1 auto;
+  }
+
+  &__messages {
+    display: inline-block
+  }
 }
