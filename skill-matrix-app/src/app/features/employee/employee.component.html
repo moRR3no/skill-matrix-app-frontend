@@ -1,21 +1,34 @@
 <section class="employees">
-  <h2 class="employees__title"> {{"employee.title" | translate}}: </h2>
-  <ul class="employees__list">
-    <li class="employees__employee" *ngFor="let employee of employees">
-      <div class="employees__employee--alignment">
-        <button type="button" (click)="onSelect(employee)" class="employees__button"
-                [class.selected]="employee === selectedEmployee">
+  <div class="employees__wrapper">
 
-          <span class="employees__button-name">{{employee.name}} {{employee.surname}}</span>
-        </button>
-      </div>
-    </li>
-  </ul>
+    <app-navbar></app-navbar>
 
-  <app-employee-detail [employee]="selectedEmployee"
-                       [employeeList]="employees"
-                       (newEmployeeEvent)="addEmployeeToList($event)"
-                       (updateEmployeeEvent)="updateEmployee($event)"
->
-  </app-employee-detail>
+    <mat-card-title class="employees__title">
+      <mat-list class="employees__list">
+        <mat-list-item *ngFor="let employee of employees">
+          <div>
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              class="employees__button"
+              (click)="onSelect(employee)"
+              [class.selected]="employee === selectedEmployee"
+            >
+              <span>{{ employee.name }} {{ employee.surname }}</span>
+            </button>
+          </div>
+        </mat-list-item>
+      </mat-list>
+
+      <app-employee-detail
+        [employee]="selectedEmployee"
+        [employeeList]="employees"
+        (newEmployeeEvent)="addEmployeeToList($event)"
+        (updateEmployeeEvent)="updateEmployee($event)"
+      >
+      </app-employee-detail>
+    </mat-card-title>
+
+  </div>
 </section>

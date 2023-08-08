@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { MessageService } from '../../services/message.service';
 
 @Component({
-  selector: 'app-messages',
-  templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.scss'],
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
 })
-export class MessagesComponent {
+export class NavbarComponent {
   constructor(public messageService: MessageService) {}
 }

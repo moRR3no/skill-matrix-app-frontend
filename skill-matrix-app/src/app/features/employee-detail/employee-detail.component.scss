@@ -1,28 +1,104 @@
-@import '../../../styles';
-
+@import "../../../styles";
 
 .details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &__info {
-    font-size: 1.2rem;
-    width: 30%;
+    width: 35rem;
+
+    &--title {
+      font-size: $font-employee-detail-title;
+      font-weight: bold;
+      color: $black;
+
+      &::after {
+        content: "";
+        display: block;
+
+        height: 0.1rem;
+        background-color: $black;
+        margin-top: 0.6rem;
+      }
+
+      &:hover {
+        background-color: $white-hover;
+        transition: background-color 0.3s ease;
+      }
+    }
+
+    &--content {
+      font-size: $font-size-employee-details;
+      line-height: 1.5;
+      color: $grey;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        background-color: $white-hover;
+        transition: background-color 0.3s ease;
+      }
+    }
   }
 
   &__form {
-
-    &--title {
-      font-size: 1.4rem;
-      margin-bottom: 0;
-    }
+    border: none;
+    align-content: center;
+    width: 35rem;
 
     &--field {
+      width: 68.5rem;
       font-size: 1.2rem;
-      padding-bottom: 1.1rem;
+      display: grid;
+      margin: $margin-form-field;
+      justify-content: center;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: $grid-gap-form-field;
 
-      &-input, &-select {
+      &-input,
+      &-select {
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+    }
+
+    &--button {
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: $mobile-resolution-width) {
+  .details {
+    &__info {
+      width: $card-mobile-width;
+    }
+
+    &__form {
+      width: $card-mobile-width;
+
+      &--field {
+        width: $card-field-mobile-width;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $tablet-resolution-width) {
+  .details {
+    &__info {
+      width: $card-mobile-width;
+    }
+
+    &__form {
+      width: $card-mobile-width;
+
+      &--field {
+        width: $card-field-mobile-width;
       }
     }
   }

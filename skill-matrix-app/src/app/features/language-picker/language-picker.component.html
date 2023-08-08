@@ -1,0 +1,21 @@
+<button
+  mat-button
+  class="language-picker__button"
+  [class.language-switch__button--selected]="
+    this.translate.currentLang === 'pl'
+  "
+  (click)="setLanguage('pl')"
+>
+  pl
+</button>
+|
+<button
+  mat-button
+  class="language-picker__button"
+  [class.language-switch__button--selected]="
+    this.translate.currentLang === 'en'
+  "
+  (click)="setLanguage('en')"
+>
+  en
+</button>

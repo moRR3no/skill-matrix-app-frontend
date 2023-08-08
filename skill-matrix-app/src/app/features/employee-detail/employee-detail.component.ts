@@ -7,31 +7,33 @@ import {
   OnChanges,
   OnInit,
   Output,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
-import {Employee} from "../../models/employee";
-import {FormBuilder, FormGroup} from "@angular/forms";
-// import {SKILLS} from "../../mocks/mock-skills";
-import {TranslateService} from "@ngx-translate/core";
-// import {PROJECTS} from "../../mocks/mock-projects";
-import {EmployeeService} from "../../services/employee.service";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-
-
+import { Employee } from '../../models/employee';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { EmployeeService } from '../../services/employee.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MessageService } from '../../services/message.service';
 
 @Component({
   selector: 'app-employee-detail',
   templateUrl: './employee-detail.component.html',
-  styleUrls: ['./employee-detail.component.scss']
+  styleUrls: ['./employee-detail.component.scss'],
 })
 export class EmployeeDetailComponent implements OnChanges, OnInit {
-
   @Input() employee?: Employee;
   @Input() employeeList?: Employee[];
-  @Output() newEmployeeEvent: EventEmitter<Employee> = new EventEmitter<Employee>();
-  @Output() updateEmployeeEvent: EventEmitter<Employee> = new EventEmitter<Employee>();
+  @Output() newEmployeeEvent: EventEmitter<Employee> =
+    new EventEmitter<Employee>();
+  @Output() updateEmployeeEvent: EventEmitter<Employee> =
+    new EventEmitter<Employee>();
+  @Output() cancelEdit: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private fb: FormBuilder, public translate: TranslateService, private employeeService: EmployeeService) {
+  constructor(
+    private fb: FormBuilder,
+    private employeeService: EmployeeService,
+  ) {
     this.registerForm = this.fb.group({
       id: '',
       name: '',
@@ -39,21 +41,14 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
       manager: {} as Employee,
       date: new Date(),
       skills: [''],
-      projects: ['']
+      projects: [''],
     });
-    translate.addLangs(['en', 'pl']);
-    translate.setDefaultLang('en');
-    translate.use('en');
-  };
-  setLanguage(value: string): void {
-    this.translate.use(value);
   }
 
   projects: string[] = [];
   skills: string[] = [];
   registerForm: FormGroup;
   destroyRef: DestroyRef = inject(DestroyRef);
-
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['employee']) {
@@ -64,26 +59,28 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
         manager: this.employee?.manager,
         date: this.employee?.date,
         skills: this.employee?.skills,
-        projects: this.employee?.projects
+        projects: this.employee?.projects,
       });
     }
-  };
-
-  ngOnInit () :void {
-    this.getProjects();
-    this.getSkills()
   }
 
-  getProjects() :void {
-    this.employeeService.getProjects()
+  ngOnInit(): void {
+    this.getProjects();
+    this.getSkills();
+  }
+
+  getProjects(): void {
+    this.employeeService
+      .getProjects()
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(projects => this.projects = projects);
+      .subscribe((projects) => (this.projects = projects));
   }
 
   getSkills(): void {
-    this.employeeService.getSkills()
+    this.employeeService
+      .getSkills()
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(skills => this.skills = skills);
+      .subscribe((skills) => (this.skills = skills));
   }
 
   onSubmit(): void {

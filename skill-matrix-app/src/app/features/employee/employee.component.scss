@@ -1,45 +1,61 @@
-@import '../../../styles';
+@import "../../../styles";
 
 .employees {
+  padding-top: 0;
+  background-color: $color-app-component-background;
+
+  &__wrapper {
+    width: $desktop-resolution;
+    margin: auto;
+    background-color: $white;
+  }
+
+  &__title {
+    text-align: center;
+  }
 
   &__button {
-    display: inline-block;
-    padding: $button-padding;
-    border-radius: $button-border-radius;
-    background: linear-gradient(to bottom, $button-color, $button-hover-color);
-    color: $button-text-color;
-    text-decoration: none;
-    box-shadow: $button-shadow;
+    font-size: 1.2rem;
+    width: 35rem;
 
     &:hover {
-      background: $button-hover-color;
-    }
-
-    &:disabled {
-      background-color: #eee;
-      color: #aaa;
-      cursor: auto;
+      background: $juicy-purple;
     }
 
     &.selected {
-      background: $button-selected-color;
+      background: $sea-blue;
     }
   }
 
   &__list {
     list-style-type: none;
-    padding-left: 0;
-  }
-
-  &__employee {
-    margin-bottom: 2rem;
-  }
-
-  &__employee--alignment {
-    margin: 0;
-    padding: 0;
-    text-align: left;
   }
 }
 
+@media screen and (max-width: $mobile-resolution-width) {
+  .employees {
+    &__button {
+      width: $card-mobile-width;
+    }
+  }
+}
 
+@media screen and (max-width: $tablet-resolution-width) {
+  .employees {
+    &__wrapper {
+      width: $mobile-resolution-width;
+    }
+
+    &__button {
+      width: $card-mobile-width;
+    }
+  }
+}
+
+@media screen and (max-width: $desktop-resolution) {
+  .employees {
+    &__wrapper {
+      max-width: $tablet-resolution-width;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@import "../styles";
+
+.app {
+  padding-top: 0;
+  background-color: $color-app-component-background;
+
+  &__wrapper {
+    width: $desktop-resolution;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: $tablet-resolution-width) {
+  .app {
+    &__wrapper {
+      width: $mobile-resolution-width;
+    }
+  }
+}
+
+@media screen and (max-width: $desktop-resolution) {
+  .app {
+    &__wrapper {
+      max-width: $tablet-resolution-width;
+    }
+  }
+}

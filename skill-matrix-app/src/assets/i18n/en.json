@@ -32,12 +32,20 @@
     "employee": {
       "service": {
         "get.employees": "EmployeeService: fetched employees",
-        "get.skills": "EmployeeService: fetched skills,",
+        "get.skills": "EmployeeService: fetched skills",
         "get.projects": "EmployeeService: fetched projects"
       },
       "component": {
         "selected": "EmployeesComponent: Selected employee id="
+      },
+      "detail": {
+        "edit": "EmployeeDetailComponent: Updated employee id=",
+        "add": "EmployeeDetailComponent: Added employee id="
       }
     }
+  },
+
+  "navbar": {
+    "title": "SkillMatrixApp"
   }
 }
