@@ -1,10 +1,15 @@
 <div class="navbar">
   <mat-toolbar color="primary" class="navbar__toolbar">
-    <button mat-icon-button aria-label="Example icon-button with menu icon">
+    <button mat-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
     </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/employees">Employees</button>
+      <button mat-menu-item routerLink="/dashboard">Dashboard</button>
+    </mat-menu>
 
     <span class="navbar__title">{{ "navbar.title" | translate }}</span>
+
     <span class="navbar__spacer"></span>
     <app-language-picker></app-language-picker>
     <button

@@ -30,6 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MatTableModule } from '@angular/material/table';
     MessagesComponent,
     LanguagePickerComponent,
     NavbarComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

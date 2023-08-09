@@ -1,0 +1,90 @@
+@import "../../../styles";
+
+@keyframes topEmployee {
+  0% {
+    background-color: $sea-blue;
+  }
+  20% {
+    background-color: $sea-blue-dark;
+  }
+  40% {
+    background-color: $dark-purple;
+  }
+  60% {
+    background-color: $juicy-purple;
+  }
+  80% {
+    background-color: $dark-purple;
+  }
+  100% {
+    background-color: $sea-blue;
+  }
+}
+
+.dashboard {
+  padding-top: 0;
+  background-color: $white;
+
+  &__wrapper {
+    margin: auto;
+    height: 40rem;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: $font-size-dashboard-title;
+    font-weight: bold;
+    color: $black;
+  }
+
+  &__employee {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $font-size-dashboard-title;
+    margin: auto;
+    width: $card-field-mobile-width;
+    padding: $padding-dashboard-employee;
+    background-color: $juicy-purple;
+    color: white;
+
+    animation-name: topEmployee;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+  }
+
+  &__count {
+    &--title {
+      padding-top: 3rem;
+      text-align: center;
+      font-size: $font-size-dashboard-title;
+      font-weight: bold;
+      color: $black;
+    }
+
+    &--number {
+      padding-top: 3rem;
+      margin-bottom: 5rem;
+      font-size: 4rem;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: $tablet-resolution-width) {
+  .dashboard {
+    &__employee {
+      font-size: 1.2rem;
+      padding: 1rem 0 1rem 0;
+    }
+
+    &__wrapper {
+      width: 20rem;
+    }
+
+    &__employee {
+      width: $card-mobile-width;
+    }
+  }
+}

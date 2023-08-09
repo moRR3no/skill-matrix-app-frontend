@@ -3,7 +3,7 @@ import { EMPLOYEES } from '../mocks/mock-employee';
 import { Employee } from '../models/employee';
 import { SKILLS } from '../mocks/mock-skills';
 import { PROJECTS } from '../mocks/mock-projects';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -24,6 +24,12 @@ export class EmployeeService {
         this.messageService.add(message);
       });
     return employees;
+  }
+
+  getEmployeesLength(): Observable<number> {
+    return this.getEmployees().pipe(
+      map((employees: Employee[]) => employees.length),
+    );
   }
 
   getSkills(): Observable<string[]> {
