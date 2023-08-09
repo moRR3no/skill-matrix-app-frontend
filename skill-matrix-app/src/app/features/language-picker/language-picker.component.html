@@ -2,7 +2,7 @@
   mat-button
   class="language-picker__button"
   [class.language-switch__button--selected]="
-    this.translate.currentLang === 'pl'
+    this.translateService.currentLang === 'pl'
   "
   (click)="setLanguage('pl')"
 >
@@ -13,7 +13,7 @@
   mat-button
   class="language-picker__button"
   [class.language-switch__button--selected]="
-    this.translate.currentLang === 'en'
+    this.translateService.currentLang === 'en'
   "
   (click)="setLanguage('en')"
 >

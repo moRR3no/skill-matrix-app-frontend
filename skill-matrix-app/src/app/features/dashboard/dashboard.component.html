@@ -2,7 +2,7 @@
   <div class="dashboard__wrapper">
     <mat-card>
       <mat-card-title class="dashboard__title"
-        >EMPLOYEE OF THE MONTH:</mat-card-title
+        >{{"dashboard.employee.top" | translate}}</mat-card-title
       >
       <mat-list class="dashboard__list">
         <mat-list-item *ngFor="let employee of employees">
@@ -15,7 +15,7 @@
     <mat-divider></mat-divider>
     <mat-card class="dashboard__count">
       <mat-card-title class="dashboard__count--title"
-        >ACTIVE EMPLOYEES:</mat-card-title
+        >{{"dashboard.employee.active" | translate}}</mat-card-title
       >
       <mat-card-content class="dashboard__count--number">
         {{ activeEmployeeCount }}</mat-card-content
