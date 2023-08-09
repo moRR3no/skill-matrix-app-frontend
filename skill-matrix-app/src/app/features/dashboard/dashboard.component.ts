@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import { Employee } from '../../models/employee';
 import { EmployeeService } from '../../services/employee.service';
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-dashboard',
@@ -10,12 +11,15 @@ import { EmployeeService } from '../../services/employee.service';
 export class DashboardComponent implements OnInit {
   employees: Employee[] = [];
   activeEmployeeCount: number = 0;
+  destroyRef: DestroyRef = inject(DestroyRef);
 
   constructor(private employeeService: EmployeeService) {}
 
   ngOnInit(): void {
     this.getEmployees();
-    this.employeeService.getEmployeesLength().subscribe((length) => {
+    this.employeeService.getEmployeesLength()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((length) => {
       this.activeEmployeeCount = length;
     });
   }
@@ -23,6 +27,7 @@ export class DashboardComponent implements OnInit {
   getEmployees(): void {
     this.employeeService
       .getEmployees()
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((employees) => (this.employees = employees.slice(1, 2)));
   }
 }

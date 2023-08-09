@@ -11,10 +11,8 @@ import {
 } from '@angular/core';
 import { Employee } from '../../models/employee';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
 import { EmployeeService } from '../../services/employee.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MessageService } from '../../services/message.service';
 
 @Component({
   selector: 'app-employee-detail',
