@@ -1,4 +1,4 @@
-import {Component, DestroyRef, inject, Input, OnInit} from '@angular/core';
+import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { Employee } from '../../models/employee';
 import { EmployeeService } from '../../services/employee.service';
 import { MessageService } from '../../services/message.service';
@@ -18,7 +18,7 @@ export class EmployeeComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private messageService: MessageService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
   ) {}
 
   ngOnInit(): void {
@@ -36,7 +36,7 @@ export class EmployeeComponent implements OnInit {
     this.selectedEmployee = employee;
     this.messageService.add(
       this.translateService.instant('messages.employee.component.selected') +
-      employee.id,
+        employee.id,
     );
   }
 }

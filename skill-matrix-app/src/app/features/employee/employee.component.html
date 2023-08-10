@@ -3,7 +3,10 @@
     <mat-card>
       <mat-card-title class="employees__title">
         <mat-list class="employees__list">
-          <mat-list-item *ngFor="let employee of employees" routerLink="/detail/{{employee.id}}">
+          <mat-list-item
+            *ngFor="let employee of employees"
+            routerLink="/detail/{{ employee.id }}"
+          >
             <div>
               <button
                 mat-raised-button
@@ -13,15 +16,13 @@
                 (click)="onSelect(employee)"
                 [class.selected]="employee === selectedEmployee"
               >
-                <span >{{ employee.name }} {{ employee.surname }}</span>
+                <span>{{ employee.name }} {{ employee.surname }}</span>
               </button>
             </div>
           </mat-list-item>
         </mat-list>
 
         <app-employee-detail></app-employee-detail>
-
-
       </mat-card-title>
     </mat-card>
   </div>

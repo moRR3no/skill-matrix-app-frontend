@@ -6,12 +6,12 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import {Employee} from '../../models/employee';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {EmployeeService} from '../../services/employee.service';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {Location} from "@angular/common";
-import {ActivatedRoute} from "@angular/router";
+import { Employee } from '../../models/employee';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { EmployeeService } from '../../services/employee.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employee-detail',
@@ -21,12 +21,16 @@ import {ActivatedRoute} from "@angular/router";
 export class EmployeeDetailComponent implements OnChanges, OnInit {
   employee?: Employee;
   employeeList?: Employee[];
+  projects: string[] = [];
+  skills: string[] = [];
+  registerForm: FormGroup;
+  destroyRef: DestroyRef = inject(DestroyRef);
 
   constructor(
     private fb: FormBuilder,
     private employeeService: EmployeeService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
   ) {
     this.registerForm = this.fb.group({
       id: '',
@@ -39,38 +43,26 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     });
   }
 
-  projects: string[] = [];
-  skills: string[] = [];
-  registerForm: FormGroup;
-  destroyRef: DestroyRef = inject(DestroyRef);
-
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['employee']) {
-      this.patchFormValues()
-    }
-  }
-
-
   ngOnInit(): void {
     this.getProjects();
     this.getSkills();
     this.getEmployee();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['employee']) {
+      this.patchFormValues();
+    }
+  }
 
   getEmployee(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id)
     if (id === 'new') {
-      console.log('new');
     } else {
-      this.employeeService.getEmployee(id)
-        .subscribe(employee => {
-            this.employee = employee;
-            this.patchFormValues();
-          }
-        )
+      this.employeeService.getEmployee(id).subscribe((employee) => {
+        this.employee = employee;
+        this.patchFormValues();
+      });
     }
   }
 
@@ -111,29 +103,25 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
       date: this.employee?.date,
       skills: this.employee?.skills,
       projects: this.employee?.projects,
-    })
+    });
   }
 
   private addNewEmployee(value: Employee): void {
-    console.log('method addNewEmployee from employee-detail.component')
-    this.employeeService.addEmployeeToList(value)
-      .subscribe(emp => {
-        this.employee != emp;
-        this.patchFormValues();
-      })
-
+    this.employeeService.addEmployeeToList(value).subscribe((emp) => {
+      this.employee != emp;
+      this.patchFormValues();
+    });
   }
 
   private updateEmployee(value: Employee): void {
     if (this.employee) {
-      console.log('method updateEmployee from employee-detail.component')
-      this.employeeService.updateEmployee(value)
-        .subscribe(updatedEmployee => {
+      this.employeeService
+        .updateEmployee(value)
+        .subscribe((updatedEmployee) => {
           this.employee != updatedEmployee;
           this.patchFormValues();
         });
     } else {
-      console.log('as')
     }
   }
 }

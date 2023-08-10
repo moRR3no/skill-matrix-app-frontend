@@ -11,7 +11,6 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root',
 })
 export class EmployeeService {
-
   employees: Employee[] = EMPLOYEES;
 
   constructor(
@@ -30,14 +29,13 @@ export class EmployeeService {
   }
 
   getEmployee(id: string | null): Observable<Employee> {
-    const employee = this.employees.find(emp => emp.id === id)!;
+    const employee = this.employees.find((emp) => emp.id === id)!;
     this.messageService.add(`EmployeeService: fetched employee id=${id}`);
     return of(employee);
   }
 
   getSkills(): Observable<string[]> {
     const skills = of(SKILLS);
-
     this.translateService
       .get('messages.employee.service.get.skills')
       .subscribe((message) => {
@@ -57,18 +55,18 @@ export class EmployeeService {
   }
 
   addEmployeeToList(employee: Employee): Observable<void> {
-    console.log('method: addEmployeeToList from employee.service')
+    console.log('method: addEmployeeToList from employee.service');
     this.setId(employee);
     this.messageService.add(
       this.translateService.instant('messages.employee.detail.add') +
-      employee.id,
+        employee.id,
     );
     this.employees.push(employee);
     return of();
   }
 
   updateEmployee(employee: Employee): Observable<void> {
-    console.log('method: updateEmployee from employee.service')
+    console.log('method: updateEmployee from employee.service');
     const tempEmployee = this.getEmployeeById(employee.id);
     this.updateManagers(employee);
     if (tempEmployee) {
@@ -76,7 +74,7 @@ export class EmployeeService {
     }
     this.messageService.add(
       this.translateService.instant('messages.employee.detail.edit') +
-      employee.id,
+        employee.id,
     );
     return of();
   }

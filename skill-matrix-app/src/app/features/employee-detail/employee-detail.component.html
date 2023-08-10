@@ -127,8 +127,22 @@
       </mat-form-field>
 
       <div class="details__form--button">
-        <button mat-flat-button color="warn" type="button" (click)="goBack()" *ngIf="employee">Back</button>
-        <button mat-flat-button color="primary" type="submit" (click)="goBack()" *ngIf="employee; else registerButton">
+        <button
+          mat-flat-button
+          color="warn"
+          type="button"
+          (click)="goBack()"
+          *ngIf="employee"
+        >
+          Back
+        </button>
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          (click)="goBack()"
+          *ngIf="employee; else registerButton"
+        >
           {{ "details.form.button.update" | translate }}
         </button>
         <ng-template #registerButton>
@@ -138,6 +152,5 @@
         </ng-template>
       </div>
     </form>
-
   </mat-card>
 </mat-card>
