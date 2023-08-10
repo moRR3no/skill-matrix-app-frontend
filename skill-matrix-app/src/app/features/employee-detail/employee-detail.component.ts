@@ -1,18 +1,15 @@
 import {
   Component,
   DestroyRef,
-  EventEmitter,
   inject,
-  Input,
   OnChanges,
   OnInit,
-  Output,
   SimpleChanges,
 } from '@angular/core';
-import { Employee } from '../../models/employee';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { EmployeeService } from '../../services/employee.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {Employee} from '../../models/employee';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {EmployeeService} from '../../services/employee.service';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {Location} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
 
@@ -22,13 +19,8 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./employee-detail.component.scss'],
 })
 export class EmployeeDetailComponent implements OnChanges, OnInit {
-  @Input() employee?: Employee;
-  @Input() employeeList?: Employee[];
-  @Output() newEmployeeEvent: EventEmitter<Employee> =
-    new EventEmitter<Employee>();
-  @Output() updateEmployeeEvent: EventEmitter<Employee> =
-    new EventEmitter<Employee>();
-  @Output() cancelEdit: EventEmitter<void> = new EventEmitter<void>();
+  employee?: Employee;
+  employeeList?: Employee[];
 
   constructor(
     private fb: FormBuilder,
@@ -51,30 +43,14 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   skills: string[] = [];
   registerForm: FormGroup;
   destroyRef: DestroyRef = inject(DestroyRef);
-  isFormVisible: boolean = false;
 
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['employee']) {
-      this.registerForm.patchValue({
-        id: this.employee?.id,
-        name: this.employee?.name,
-        surname: this.employee?.surname,
-        manager: this.employee?.manager,
-        date: this.employee?.date,
-        skills: this.employee?.skills,
-        projects: this.employee?.projects,
-      });
+      this.patchFormValues()
     }
   }
 
-  scrollToForm(): void {
-    this.isFormVisible = true;
-    const formElement = document.getElementById('employee-form');
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
 
   ngOnInit(): void {
     this.getProjects();
@@ -82,10 +58,20 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     this.getEmployee();
   }
 
-  getEmployee(): void{
+
+  getEmployee(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.employeeService.getEmployee(id)
-      .subscribe(employee => this.employee = employee);
+    console.log(id)
+    if (id === 'new') {
+      console.log('new');
+    } else {
+      this.employeeService.getEmployee(id)
+        .subscribe(employee => {
+            this.employee = employee;
+            this.patchFormValues();
+          }
+        )
+    }
   }
 
   getProjects(): void {
@@ -116,11 +102,38 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     this.location.back();
   }
 
+  private patchFormValues(): void {
+    this.registerForm.patchValue({
+      id: this.employee?.id,
+      name: this.employee?.name,
+      surname: this.employee?.surname,
+      manager: this.employee?.manager,
+      date: this.employee?.date,
+      skills: this.employee?.skills,
+      projects: this.employee?.projects,
+    })
+  }
+
   private addNewEmployee(value: Employee): void {
-    this.newEmployeeEvent.emit(value);
+    console.log('method addNewEmployee from employee-detail.component')
+    this.employeeService.addEmployeeToList(value)
+      .subscribe(emp => {
+        this.employee != emp;
+        this.patchFormValues();
+      })
+
   }
 
   private updateEmployee(value: Employee): void {
-    this.updateEmployeeEvent.emit(value);
+    if (this.employee) {
+      console.log('method updateEmployee from employee-detail.component')
+      this.employeeService.updateEmployee(value)
+        .subscribe(updatedEmployee => {
+          this.employee != updatedEmployee;
+          this.patchFormValues();
+        });
+    } else {
+      console.log('as')
+    }
   }
 }

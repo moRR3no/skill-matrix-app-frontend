@@ -1,6 +1,5 @@
 <mat-card class="details">
   <mat-card *ngIf="employee" class="details__info">
-    <button mat-button color="primary" (click)="scrollToForm()">Edit Employee</button>
     <mat-card-title class="details__info--title"
       >{{ employee.name | uppercase }}
       {{ employee.surname | uppercase }}</mat-card-title
@@ -32,7 +31,7 @@
     </mat-card>
   </mat-card>
 
-  <mat-card class="details__form" id="employee-form" *ngIf="isFormVisible">
+  <mat-card class="details__form" id="employee-form">
     <mat-card-title class="details__info--title">{{
       employee
         ? ("details.form.title.edit" | translate | uppercase)
@@ -128,15 +127,17 @@
       </mat-form-field>
 
       <div class="details__form--button">
-        <button mat-flat-button color="primary" type="submit">
-          {{
-            employee
-              ? ("details.form.button.update" | translate)
-              : ("details.form.button.register" | translate)
-          }}
+        <button mat-flat-button color="warn" type="button" (click)="goBack()" *ngIf="employee">Back</button>
+        <button mat-flat-button color="primary" type="submit" (click)="goBack()" *ngIf="employee; else registerButton">
+          {{ "details.form.button.update" | translate }}
         </button>
+        <ng-template #registerButton>
+          <button mat-flat-button color="primary" type="submit">
+            {{ "details.form.button.register" | translate }}
+          </button>
+        </ng-template>
       </div>
     </form>
-    <button type="button" (click)="goBack()">go back</button>
+
   </mat-card>
 </mat-card>

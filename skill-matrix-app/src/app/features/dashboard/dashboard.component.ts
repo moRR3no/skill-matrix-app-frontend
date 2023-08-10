@@ -1,7 +1,7 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { Employee } from '../../models/employee';
-import { EmployeeService } from '../../services/employee.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {Employee} from '../../models/employee';
+import {EmployeeService} from '../../services/employee.service';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,22 +13,20 @@ export class DashboardComponent implements OnInit {
   activeEmployeeCount: number = 0;
   destroyRef: DestroyRef = inject(DestroyRef);
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(private employeeService: EmployeeService) {
+  }
 
   ngOnInit(): void {
     this.getEmployees();
-    this.employeeService
-      .getEmployeesLength()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((length) => {
-        this.activeEmployeeCount = length;
-      });
   }
 
   getEmployees(): void {
     this.employeeService
       .getEmployees()
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((employees) => (this.employees = employees.slice(1, 2)));
+      .subscribe((employees) => {
+        this.activeEmployeeCount = employees.length;
+        (this.employees = employees.slice(1, 2))
+      });
   }
 }
