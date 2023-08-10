@@ -29,6 +29,7 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   @Output() updateEmployeeEvent: EventEmitter<Employee> =
     new EventEmitter<Employee>();
   @Output() cancelEdit: EventEmitter<void> = new EventEmitter<void>();
+  @Input() isFormVisible: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -51,29 +52,17 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   skills: string[] = [];
   registerForm: FormGroup;
   destroyRef: DestroyRef = inject(DestroyRef);
-  isFormVisible: boolean = false;
+  // isFormVisible: boolean = false;
 
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['employee']) {
-      this.registerForm.patchValue({
-        id: this.employee?.id,
-        name: this.employee?.name,
-        surname: this.employee?.surname,
-        manager: this.employee?.manager,
-        date: this.employee?.date,
-        skills: this.employee?.skills,
-        projects: this.employee?.projects,
-      });
+      this.patchFormValues()
     }
   }
 
-  scrollToForm(): void {
+  showForm(): void {
     this.isFormVisible = true;
-    const formElement = document.getElementById('employee-form');
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: 'smooth' });
-    }
   }
 
   ngOnInit(): void {
@@ -82,11 +71,15 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     this.getEmployee();
   }
 
+
+
   getEmployee(): void{
     const id = this.route.snapshot.paramMap.get('id');
     this.employeeService.getEmployee(id)
-      .subscribe(employee => this.employee = employee);
-  }
+      .subscribe(employee => {
+        this.employee = employee;
+        this.patchFormValues();
+  })}
 
   getProjects(): void {
     this.employeeService
@@ -115,6 +108,18 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   goBack(): void {
     this.location.back();
   }
+
+  private patchFormValues(): void {
+      this.registerForm.patchValue({
+        id: this.employee?.id,
+        name: this.employee?.name,
+        surname: this.employee?.surname,
+        manager: this.employee?.manager,
+        date: this.employee?.date,
+        skills: this.employee?.skills,
+        projects: this.employee?.projects,
+      })
+    }
 
   private addNewEmployee(value: Employee): void {
     this.newEmployeeEvent.emit(value);

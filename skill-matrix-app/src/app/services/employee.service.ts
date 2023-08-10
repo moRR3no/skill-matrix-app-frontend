@@ -28,7 +28,7 @@ export class EmployeeService {
 
   getEmployee(id: string | null): Observable<Employee> {
     const employee = EMPLOYEES.find(emp => emp.id === id)!;
-    this.messageService.add(`HeroService: fetched employee id=${id}`);
+    this.messageService.add(`EmployeeService: fetched employee id=${id}`);
     return of(employee);
   }
 

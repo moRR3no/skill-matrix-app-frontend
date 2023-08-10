@@ -1,6 +1,6 @@
 <mat-card class="details">
   <mat-card *ngIf="employee" class="details__info">
-    <button mat-button color="primary" (click)="scrollToForm()">Edit Employee</button>
+    <button mat-button color="primary" routerLink="/detail/{{employee.id}}/edit" (click)="showForm()">Edit Employee</button>
     <mat-card-title class="details__info--title"
       >{{ employee.name | uppercase }}
       {{ employee.surname | uppercase }}</mat-card-title

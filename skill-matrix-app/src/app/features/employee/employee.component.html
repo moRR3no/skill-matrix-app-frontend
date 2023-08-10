@@ -17,11 +17,13 @@
               </button>
             </div>
           </mat-list-item>
+          <a mat-raised-button color="primary" type="button" class="employees__button" (click)="showForm()" routerLink="/detail/new">+</a>
         </mat-list>
 
         <app-employee-detail
           [employee]="selectedEmployee"
           [employeeList]="employees"
+          [isFormVisible]="isFormVisible"
           (newEmployeeEvent)="addEmployeeToList($event)"
           (updateEmployeeEvent)="updateEmployee($event)"
         >

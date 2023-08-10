@@ -1,9 +1,11 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import {Component, DestroyRef, inject, Input, OnInit} from '@angular/core';
 import { Employee } from '../../models/employee';
 import { EmployeeService } from '../../services/employee.service';
 import { MessageService } from '../../services/message.service';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {ActivatedRoute} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-employee',
@@ -14,11 +16,14 @@ export class EmployeeComponent implements OnInit {
   employees: Employee[] = [];
   selectedEmployee?: Employee;
   destroyRef: DestroyRef = inject(DestroyRef);
+  isFormVisible: boolean = false;
 
   constructor(
     private employeeService: EmployeeService,
     private messageService: MessageService,
     private translateService: TranslateService,
+    private route: ActivatedRoute,
+    private location: Location
   ) {}
 
   getEmployees(): void {
@@ -60,6 +65,11 @@ export class EmployeeComponent implements OnInit {
       this.translateService.instant('messages.employee.component.selected') +
         employee.id,
     );
+  }
+
+  showForm(): void {
+    this.isFormVisible = true;
+    this.selectedEmployee = undefined;
   }
 
   private setId(employee: Employee): void {
