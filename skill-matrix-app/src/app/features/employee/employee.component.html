@@ -3,7 +3,7 @@
     <mat-card>
       <mat-card-title class="employees__title">
         <mat-list class="employees__list">
-          <mat-list-item *ngFor="let employee of employees">
+          <mat-list-item *ngFor="let employee of employees" routerLink="/detail/{{employee.id}}">
             <div>
               <button
                 mat-raised-button

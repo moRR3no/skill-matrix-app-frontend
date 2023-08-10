@@ -26,6 +26,12 @@ export class EmployeeService {
     return employees;
   }
 
+  getEmployee(id: string | null): Observable<Employee> {
+    const employee = EMPLOYEES.find(emp => emp.id === id)!;
+    this.messageService.add(`HeroService: fetched employee id=${id}`);
+    return of(employee);
+  }
+
   getEmployeesLength(): Observable<number> {
     return this.getEmployees().pipe(
       map((employees: Employee[]) => employees.length),

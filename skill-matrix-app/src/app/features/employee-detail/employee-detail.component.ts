@@ -13,6 +13,8 @@ import { Employee } from '../../models/employee';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmployeeService } from '../../services/employee.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {Location} from "@angular/common";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-employee-detail',
@@ -31,6 +33,8 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   constructor(
     private fb: FormBuilder,
     private employeeService: EmployeeService,
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     this.registerForm = this.fb.group({
       id: '',
@@ -47,6 +51,8 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   skills: string[] = [];
   registerForm: FormGroup;
   destroyRef: DestroyRef = inject(DestroyRef);
+  isFormVisible: boolean = false;
+
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['employee']) {
@@ -62,9 +68,24 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     }
   }
 
+  scrollToForm(): void {
+    this.isFormVisible = true;
+    const formElement = document.getElementById('employee-form');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
   ngOnInit(): void {
     this.getProjects();
     this.getSkills();
+    this.getEmployee();
+  }
+
+  getEmployee(): void{
+    const id = this.route.snapshot.paramMap.get('id');
+    this.employeeService.getEmployee(id)
+      .subscribe(employee => this.employee = employee);
   }
 
   getProjects(): void {
@@ -89,6 +110,10 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
       this.addNewEmployee(newEmployee);
     }
     this.registerForm.reset();
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   private addNewEmployee(value: Employee): void {
