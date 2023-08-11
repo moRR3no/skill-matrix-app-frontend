@@ -5,10 +5,6 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './features/employee/employee.component';
@@ -32,15 +28,14 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeComponent,
-    EmployeeDetailComponent,
-    MessagesComponent,
-    LanguagePickerComponent,
-    NavbarComponent,
-    DashboardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -58,20 +53,8 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
     }),
     BrowserAnimationsModule,
     MatNativeDateModule,
-    MatSlideToggleModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatSelectModule,
-    MatListModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatCardModule,
-    MatIconModule,
-    MatMenuModule,
-    MatBadgeModule,
-    MatTableModule,
   ],
-  exports: [TranslateModule],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent],
 })
