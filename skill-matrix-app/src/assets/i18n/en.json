@@ -42,10 +42,20 @@
         "edit": "EmployeeDetailComponent: Updated employee id=",
         "add": "EmployeeDetailComponent: Added employee id="
       }
+    },
+    "language": {
+      "pick": "EmployeeService: language="
     }
   },
 
   "navbar": {
-    "title": "SkillMatrixApp"
+    "title": "SkillMatrixApp",
+    "employees": "Employees",
+    "dashboard": "Dashboard"
+  },
+
+  "dashboard": {
+    "employee.top": "EMPLOYEE OF THE MONTH:",
+    "employee.active": "ACTIVE EMPLOYEES:"
   }
 }

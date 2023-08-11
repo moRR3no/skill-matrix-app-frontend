@@ -31,7 +31,7 @@
     </mat-card>
   </mat-card>
 
-  <mat-card class="details__form">
+  <mat-card class="details__form" id="employee-form">
     <mat-card-title class="details__info--title">{{
       employee
         ? ("details.form.title.edit" | translate | uppercase)
@@ -49,7 +49,6 @@
         />
       </mat-form-field>
 
-      <!--      TODO: style form field to new row position and remove -->
       <mat-form-field class="details__form--field">
         <mat-label for="name" id="label"
           >{{ "details.form.name" | translate }}:</mat-label
@@ -128,13 +127,29 @@
       </mat-form-field>
 
       <div class="details__form--button">
-        <button mat-flat-button color="primary" type="submit">
-          {{
-            employee
-              ? ("details.form.button.update" | translate)
-              : ("details.form.button.register" | translate)
-          }}
+        <button
+          mat-flat-button
+          color="warn"
+          type="button"
+          (click)="goBack()"
+          *ngIf="employee"
+        >
+          Back
         </button>
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          (click)="goBack()"
+          *ngIf="employee; else registerButton"
+        >
+          {{ "details.form.button.update" | translate }}
+        </button>
+        <ng-template #registerButton>
+          <button mat-flat-button color="primary" type="submit">
+            {{ "details.form.button.register" | translate }}
+          </button>
+        </ng-template>
       </div>
     </form>
   </mat-card>

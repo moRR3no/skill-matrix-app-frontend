@@ -1,20 +1,17 @@
 import {
   Component,
   DestroyRef,
-  EventEmitter,
   inject,
-  Input,
   OnChanges,
   OnInit,
-  Output,
   SimpleChanges,
 } from '@angular/core';
 import { Employee } from '../../models/employee';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
 import { EmployeeService } from '../../services/employee.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MessageService } from '../../services/message.service';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employee-detail',
@@ -22,17 +19,18 @@ import { MessageService } from '../../services/message.service';
   styleUrls: ['./employee-detail.component.scss'],
 })
 export class EmployeeDetailComponent implements OnChanges, OnInit {
-  @Input() employee?: Employee;
-  @Input() employeeList?: Employee[];
-  @Output() newEmployeeEvent: EventEmitter<Employee> =
-    new EventEmitter<Employee>();
-  @Output() updateEmployeeEvent: EventEmitter<Employee> =
-    new EventEmitter<Employee>();
-  @Output() cancelEdit: EventEmitter<void> = new EventEmitter<void>();
+  employee?: Employee;
+  employeeList?: Employee[];
+  projects: string[] = [];
+  skills: string[] = [];
+  registerForm: FormGroup;
+  destroyRef: DestroyRef = inject(DestroyRef);
 
   constructor(
     private fb: FormBuilder,
     private employeeService: EmployeeService,
+    private route: ActivatedRoute,
+    private location: Location,
   ) {
     this.registerForm = this.fb.group({
       id: '',
@@ -45,28 +43,27 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     });
   }
 
-  projects: string[] = [];
-  skills: string[] = [];
-  registerForm: FormGroup;
-  destroyRef: DestroyRef = inject(DestroyRef);
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['employee']) {
-      this.registerForm.patchValue({
-        id: this.employee?.id,
-        name: this.employee?.name,
-        surname: this.employee?.surname,
-        manager: this.employee?.manager,
-        date: this.employee?.date,
-        skills: this.employee?.skills,
-        projects: this.employee?.projects,
-      });
-    }
-  }
-
   ngOnInit(): void {
     this.getProjects();
     this.getSkills();
+    this.getEmployee();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['employee']) {
+      this.patchFormValues();
+    }
+  }
+
+  getEmployee(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id === 'new') {
+    } else {
+      this.employeeService.getEmployee(id).subscribe((employee) => {
+        this.employee = employee;
+        this.patchFormValues();
+      });
+    }
   }
 
   getProjects(): void {
@@ -93,11 +90,38 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     this.registerForm.reset();
   }
 
+  goBack(): void {
+    this.location.back();
+  }
+
+  private patchFormValues(): void {
+    this.registerForm.patchValue({
+      id: this.employee?.id,
+      name: this.employee?.name,
+      surname: this.employee?.surname,
+      manager: this.employee?.manager,
+      date: this.employee?.date,
+      skills: this.employee?.skills,
+      projects: this.employee?.projects,
+    });
+  }
+
   private addNewEmployee(value: Employee): void {
-    this.newEmployeeEvent.emit(value);
+    this.employeeService.addEmployeeToList(value).subscribe((emp) => {
+      this.employee != emp;
+      this.patchFormValues();
+    });
   }
 
   private updateEmployee(value: Employee): void {
-    this.updateEmployeeEvent.emit(value);
+    if (this.employee) {
+      this.employeeService
+        .updateEmployee(value)
+        .subscribe((updatedEmployee) => {
+          this.employee != updatedEmployee;
+          this.patchFormValues();
+        });
+    } else {
+    }
   }
 }

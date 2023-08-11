@@ -42,10 +42,20 @@
         "edit": "EmployeeDetailComponent: Zaktualizowano pracownika id=",
         "add": "EmployeeDetailComponent: Dodano pracownika id="
       }
+    },
+    "language": {
+      "pick": "EmployeeService: język="
     }
   },
 
   "navbar": {
-    "title": "SkillMatrixApp"
+    "title": "SkillMatrixApp",
+    "employees": "Pracownicy",
+    "dashboard": "Strona główna"
+  },
+
+  "dashboard": {
+    "employee.top": "PRACOWNIK MIESIĄCA:",
+    "employee.active": "AKTYWNI PRACOWNICY:"
   }
 }

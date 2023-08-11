@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { MessageService } from '../../services/message.service';
 
 @Component({
   selector: 'app-language-picker',
@@ -7,13 +8,19 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./language-picker.component.scss'],
 })
 export class LanguagePickerComponent {
-  constructor(public translate: TranslateService) {
-    translate.addLangs(['en', 'pl']);
-    translate.setDefaultLang('en');
-    translate.use('en');
+  constructor(
+    public translateService: TranslateService,
+    private messageService: MessageService,
+  ) {
+    translateService.addLangs(['en', 'pl']);
+    translateService.setDefaultLang('en');
+    translateService.use('en');
   }
 
   setLanguage(value: string): void {
-    this.translate.use(value);
+    this.translateService.use(value);
+    this.messageService.add(
+      this.translateService.instant('messages.language.pick') + value,
+    );
   }
 }
