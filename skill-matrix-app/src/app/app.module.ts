@@ -7,26 +7,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EmployeeComponent } from './features/employee/employee.component';
-import { EmployeeDetailComponent } from './features/employee-detail/employee-detail.component';
-import { MessagesComponent } from './features/messages/messages.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatListModule } from '@angular/material/list';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatCardModule } from '@angular/material/card';
-import { LanguagePickerComponent } from './features/language-picker/language-picker.component';
-import { NavbarComponent } from './features/navbar/navbar.component';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatBadgeModule } from '@angular/material/badge';
-import { MatTableModule } from '@angular/material/table';
-import { DashboardComponent } from './features/dashboard/dashboard.component';
+import {NavbarModule} from "./features/navbar/navbar.module";
+
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -34,8 +20,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     BrowserAnimationsModule,
     MatNativeDateModule,
+    NavbarModule
   ],
   exports: [],
   providers: [],
