@@ -22,7 +22,9 @@
       "projects": "Projects",
       "button": {
         "update": "Update",
-        "register": "Register"
+        "register": "Register",
+        "delete": "Delete",
+        "back": "Back"
       }
     }
   },

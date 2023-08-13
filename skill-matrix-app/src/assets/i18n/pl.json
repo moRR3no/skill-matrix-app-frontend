@@ -22,7 +22,9 @@
       "projects": "Projekty",
       "button": {
         "update": "Aktualizuj",
-        "register": "Zarejestruj"
+        "register": "Zarejestruj",
+        "delete": "Usuń",
+        "back": "Wstecz"
       }
     }
   },

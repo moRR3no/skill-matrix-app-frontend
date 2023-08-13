@@ -25,6 +25,17 @@ export class EmployeeService {
   ) {
   }
 
+
+  // getEmployees(): Observable<Employee[]> {
+  //   const employees = of(this.employees);
+  //   this.translateService
+  //     .get('messages.employee.service.get.employees')
+  //     .subscribe((message) => {
+  //       this.messageService.add(message);
+  //     });
+  //   return employees;
+  // }
+
   getEmployees(): Observable<Employee[]> {
     this.translateService
       .get('messages.employee.service.get.employees')
@@ -32,15 +43,22 @@ export class EmployeeService {
         this.messageService.add(message);
       });
     return this.http.get<Employee[]>(this.employeesUrl)
-      .pipe(
-        tap(_ => this.log('fetched heroes')),
-        catchError(this.handleError<Employee[]>('getEmployees', [])));
+      .pipe(catchError(this.handleError<Employee[]>('getEmployees', [])));
   }
 
-  getEmployee(id: string | null): Observable<Employee> {
-    const employee = this.employees.find((emp) => emp.id === id)!;
-    this.messageService.add(`EmployeeService: fetched employee id=${id}`);
-    return of(employee);
+  // getEmployee(id: string | null): Observable<Employee> {
+  //   const employee = this.employees.find((emp) => emp.id === id)!;
+  //   this.messageService.add(`EmployeeService: fetched employee id=${id}`);
+  //   return of(employee);
+  // }
+
+  getEmployee(id: string): Observable<Employee> {
+    const url = `${this.employeesUrl}/${id}`;
+    return this.http.get<Employee>(url)
+      .pipe(
+        tap(_ => this.log(`Fetched employee id=${id}`)),
+        catchError(this.handleError<Employee>('getEmployee'))
+      );
   }
 
   getSkills(): Observable<string[]> {
@@ -75,7 +93,6 @@ export class EmployeeService {
 
   addEmployeeToList(employee: Employee): Observable<any> {
     this.setId(employee);
-
     return this.http.post(this.employeesUrl, employee, this.httpOptions).pipe(
       tap(() => this.messageService.add(
         this.translateService.instant('messages.employee.detail.add') + employee.id
@@ -107,13 +124,32 @@ export class EmployeeService {
       this.employees.splice(index, 1, employee);
     }
 
-    const url = `${this.employeesUrl}/employees/${employee.id}`;
+    const url = `${this.employeesUrl}/${employee.id}`;
 
     return this.http.put(url, employee, this.httpOptions).pipe(
       tap(_ => this.messageService.add(
         this.translateService.instant('messages.employee.detail.edit') + employee.id
       )),
       catchError(this.handleError<any>('updateEmployee'))
+    );
+  }
+
+  deleteEmployee(id: string): Observable<Employee> {
+    const url = `${this.employeesUrl}/${id}`;
+
+    return this.http.delete<Employee>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted hero id=${id}`)),
+      catchError(this.handleError<Employee>('deleteEmployee'))
+    );
+  }
+
+  searchEmployees(term: string): Observable<Employee[]> {
+    if (!term.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+    return this.http.get<Employee[]>(`${this.employeesUrl}/?name=${term}`).pipe(
+      catchError(this.handleError<Employee[]>('searchEmployees', []))
     );
   }
 

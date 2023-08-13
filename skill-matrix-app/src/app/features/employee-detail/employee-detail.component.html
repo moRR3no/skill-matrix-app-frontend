@@ -129,12 +129,12 @@
       <div class="details__form--button">
         <button
           mat-flat-button
-          color="warn"
+          color="accent"
           type="button"
           (click)="goBack()"
           *ngIf="employee"
         >
-          Back
+          {{ "details.form.button.back" | translate }}
         </button>
         <button
           mat-flat-button
@@ -150,6 +150,11 @@
             {{ "details.form.button.register" | translate }}
           </button>
         </ng-template>
+
+        <button mat-flat-button
+                 color="warn"
+                 type="submit" *ngIf="employee"
+                (click)="delete(employee)">{{"details.form.button.delete" | translate}}</button>
       </div>
     </form>
   </mat-card>
