@@ -1,0 +1,17 @@
+<div id="searching">
+  <mat-label>Hero Search</mat-label>
+  <input matInput
+         type="text"
+         #searchBox
+         (input)="search(searchBox.value)"
+         class="searching__input"
+  />
+
+  <ul class="searching__result">
+    <li *ngFor="let employee of employees$ | async" >
+      <a routerLink="/detail/{{employee.id}}">
+        {{employee.name}}
+      </a>
+    </li>
+  </ul>
+</div>

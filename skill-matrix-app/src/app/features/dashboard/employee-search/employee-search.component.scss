@@ -1,0 +1,10 @@
+@import "../../../../styles";
+
+.searching {
+  width: 100%;
+  margin: 0 auto;
+
+  &__input {
+    width: 50%;
+  }
+}

@@ -6,16 +6,19 @@ import {DashboardComponent} from "./dashboard.component";
 import {MatCardModule} from "@angular/material/card";
 import {MatListModule} from "@angular/material/list";
 import {TranslateModule} from "@ngx-translate/core";
+import { EmployeeSearchComponent } from './employee-search/employee-search.component';
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, EmployeeSearchComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     MatCardModule,
     MatListModule,
-    TranslateModule
+    TranslateModule,
+    MatInputModule
   ]
 })
 export class DashboardModule { }
