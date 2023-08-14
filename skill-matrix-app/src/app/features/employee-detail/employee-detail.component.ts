@@ -57,8 +57,8 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   }
 
   getEmployee(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id === 'new') {
+    const id: string | null = this.route.snapshot.paramMap.get('id');
+    if (id === null) {
     } else {
       this.employeeService.getEmployee(id!).subscribe((employee) => {
         this.employee = employee;
