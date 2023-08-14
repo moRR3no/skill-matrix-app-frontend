@@ -1,17 +1,25 @@
-<div id="searching">
-  <mat-label>Hero Search</mat-label>
-  <input matInput
-         type="text"
-         #searchBox
-         (input)="search(searchBox.value)"
-         class="searching__input"
-  />
-
-  <ul class="searching__result">
-    <li *ngFor="let employee of employees$ | async" >
-      <a routerLink="/detail/{{employee.id}}">
-        {{employee.name}}
-      </a>
-    </li>
-  </ul>
+<div class="employee-search">
+  <mat-form-field class="employee-search__field">
+    <mat-label>Search employee: </mat-label>
+    <input
+      class="employee-search__input"
+      matInput
+      type="text"
+      #searchBox
+      (input)="search(searchBox.value)"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete
+      class="employee-search__autocomplete"
+      #auto="matAutocomplete"
+    >
+      <mat-option
+        *ngFor="let employee of employees$ | async"
+        class="employee-search__autocomplete-option"
+        (click)="navigateToEmployee(employee.id)"
+      >
+        {{ employee.name }} {{ employee.surname }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
 </div>

@@ -1,10 +1,9 @@
 @import "../../../../styles";
 
-.searching {
-  width: 100%;
-  margin: 0 auto;
-
-  &__input {
-    width: 50%;
+.employee-search {
+  width: 62%;
+  margin: 1rem auto;
+  &__field {
+    width: 100%;
   }
 }

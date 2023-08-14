@@ -6,6 +6,7 @@ import {
 } from 'rxjs/operators';
 import {Employee} from "../../../models/employee";
 import {EmployeeService} from "../../../services/employee.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-employee-search',
@@ -16,7 +17,8 @@ export class EmployeeSearchComponent implements OnInit{
   employees$!: Observable<Employee[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private employeeService: EmployeeService) {
+  constructor(private employeeService: EmployeeService,
+              private router: Router) {
   }
 
   search(term: string): void {
@@ -34,6 +36,10 @@ export class EmployeeSearchComponent implements OnInit{
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.employeeService.searchEmployees(term)),
     );
+  }
+
+  navigateToEmployee(id: string | undefined): void {
+    this.router.navigate([`/detail/${id}`]);
   }
 
 }

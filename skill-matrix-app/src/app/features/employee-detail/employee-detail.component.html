@@ -88,7 +88,7 @@
         >
           <mat-option
             *ngFor="let employeeOption of employeeList$ | async"
-            [value]="employeeOption"
+            [value]="employeeOption.id"
           >
             {{ employeeOption.name + " " + employeeOption.surname }}
           </mat-option>
@@ -132,7 +132,7 @@
         <button
           mat-flat-button
           color="accent"
-          type="button"
+          twype="button"
           (click)="goBack()"
           *ngIf="employee"
         >

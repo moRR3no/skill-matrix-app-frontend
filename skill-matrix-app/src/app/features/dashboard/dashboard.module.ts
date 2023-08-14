@@ -8,6 +8,7 @@ import {MatListModule} from "@angular/material/list";
 import {TranslateModule} from "@ngx-translate/core";
 import { EmployeeSearchComponent } from './employee-search/employee-search.component';
 import {MatInputModule} from "@angular/material/input";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {MatInputModule} from "@angular/material/input";
     MatCardModule,
     MatListModule,
     TranslateModule,
-    MatInputModule
+    MatInputModule,
+    MatAutocompleteModule
   ]
 })
 export class DashboardModule { }
