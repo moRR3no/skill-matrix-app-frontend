@@ -85,7 +85,7 @@
           class="details__form--field-select"
         >
           <mat-option
-            *ngFor="let employeeOption of employeeList"
+            *ngFor="let employeeOption of employeeList$ | async"
             [value]="employeeOption"
           >
             {{ employeeOption.name + " " + employeeOption.surname }}

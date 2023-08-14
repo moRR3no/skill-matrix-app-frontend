@@ -12,6 +12,7 @@ import { EmployeeService } from '../../services/employee.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Location } from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-employee-detail',
@@ -20,7 +21,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class EmployeeDetailComponent implements OnChanges, OnInit {
   employee?: Employee;
-  employeeList?: Employee[];
+  employeeList$: Observable<Employee[]>;
   projects: string[] = [];
   skills: string[] = [];
   registerForm: FormGroup;
@@ -33,6 +34,7 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     private location: Location,
     private router: Router
   ) {
+    this.employeeList$ = this.employeeService.getEmployees();
     this.registerForm = this.fb.group({
       id: '',
       name: '',
