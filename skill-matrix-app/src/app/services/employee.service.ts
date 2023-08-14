@@ -22,19 +22,7 @@ export class EmployeeService {
     private messageService: MessageService,
     private translateService: TranslateService,
     private http: HttpClient,
-  ) {
-  }
-
-
-  // getEmployees(): Observable<Employee[]> {
-  //   const employees = of(this.employees);
-  //   this.translateService
-  //     .get('messages.employee.service.get.employees')
-  //     .subscribe((message) => {
-  //       this.messageService.add(message);
-  //     });
-  //   return employees;
-  // }
+  ) {}
 
   getEmployees(): Observable<Employee[]> {
     this.translateService
@@ -45,12 +33,6 @@ export class EmployeeService {
     return this.http.get<Employee[]>(this.employeesUrl)
       .pipe(catchError(this.handleError<Employee[]>('getEmployees', [])));
   }
-
-  // getEmployee(id: string | null): Observable<Employee> {
-  //   const employee = this.employees.find((emp) => emp.id === id)!;
-  //   this.messageService.add(`EmployeeService: fetched employee id=${id}`);
-  //   return of(employee);
-  // }
 
   getEmployee(id: string): Observable<Employee> {
     const url = `${this.employeesUrl}/${id}`;
@@ -81,16 +63,6 @@ export class EmployeeService {
     return projects;
   }
 
-  // addEmployeeToList(employee: Employee): Observable<void> {
-  //   this.setId(employee);
-  //   this.messageService.add(
-  //     this.translateService.instant('messages.employee.detail.add') +
-  //     employee.id,
-  //   );
-  //   this.employees.push(employee);
-  //   return of();
-  // }
-
   addEmployeeToList(employee: Employee): Observable<any> {
     this.setId(employee);
     return this.http.post(this.employeesUrl, employee, this.httpOptions).pipe(
@@ -100,20 +72,6 @@ export class EmployeeService {
       catchError(this.handleError<any>('addEmployee'))
     );
   }
-
-
-  // updateEmployee(employee: Employee): Observable<void> {
-  //   const tempEmployee = this.getEmployeeById(employee.id);
-  //   this.updateManagers(employee);
-  //   if (tempEmployee) {
-  //     this.employees.splice(this.employees.indexOf(tempEmployee), 1, employee);
-  //   }
-  //   this.messageService.add(
-  //     this.translateService.instant('messages.employee.detail.edit') +
-  //     employee.id,
-  //   );
-  //   return of();
-  // }
 
   updateEmployee(employee: Employee): Observable<any> {
     const tempEmployee = this.getEmployeeById(employee.id);
@@ -145,7 +103,6 @@ export class EmployeeService {
 
   searchEmployees(term: string): Observable<Employee[]> {
     if (!term.trim()) {
-      // if not search term, return empty hero array.
       return of([]);
     }
     return this.http.get<Employee[]>(`${this.employeesUrl}/?name=${term}`).pipe(

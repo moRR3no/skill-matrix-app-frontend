@@ -58,6 +58,7 @@
 
   "dashboard": {
     "employee.top": "PRACOWNIK MIESIĄCA:",
-    "employee.active": "AKTYWNI PRACOWNICY:"
+    "employee.active": "AKTYWNI PRACOWNICY:",
+    "searching": "Wyszukaj pracownika:"
   }
 }

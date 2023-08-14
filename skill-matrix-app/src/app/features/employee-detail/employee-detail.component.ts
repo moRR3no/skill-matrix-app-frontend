@@ -97,6 +97,16 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     this.location.back();
   }
 
+  delete(employee: Employee): void {
+    this.employeeService
+      .deleteEmployee(employee.id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe();
+    this.router
+      .navigate(['/employees'], {relativeTo: this.route})
+      .then((r) => r);
+  }
+
   private patchFormValues(): void {
     this.registerForm.patchValue({
       id: this.employee?.id,
@@ -107,18 +117,6 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
       skills: this.employee?.skills,
       projects: this.employee?.projects,
     });
-  }
-
-  delete(employee: Employee): void {
-    this.employeeService
-      .deleteEmployee(employee.id)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe();
-    this.router
-      .navigate(['/employees'], {relativeTo: this.route})
-      .then((r) => r);
-    // this.employeeList = this.employeeList!.filter(emp => emp !== emp);
-    // this.employeeService.deleteEmployee(employee.id).subscribe();
   }
 
   private addNewEmployee(value: Employee): void {

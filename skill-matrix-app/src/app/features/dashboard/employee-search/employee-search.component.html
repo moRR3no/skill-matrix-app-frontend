@@ -1,8 +1,7 @@
-<div class="employee-search">
-  <mat-form-field class="employee-search__field">
-    <mat-label>Search employee: </mat-label>
+<div class="searching">
+  <mat-form-field class="searching__field">
+    <mat-label>{{"dashboard.searching" | translate}}</mat-label>
     <input
-      class="employee-search__input"
       matInput
       type="text"
       #searchBox
@@ -10,12 +9,10 @@
       [matAutocomplete]="auto"
     />
     <mat-autocomplete
-      class="employee-search__autocomplete"
       #auto="matAutocomplete"
     >
       <mat-option
         *ngFor="let employee of employees$ | async"
-        class="employee-search__autocomplete-option"
         (click)="navigateToEmployee(employee.id)"
       >
         {{ employee.name }} {{ employee.surname }}
