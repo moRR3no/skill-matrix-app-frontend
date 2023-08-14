@@ -16,6 +16,7 @@
       >{{ "details.manager" | translate }} : {{ employee.manager?.name }}
         {{ employee.manager?.surname }}</mat-card-content
       >
+
       <mat-card-content
       >{{ "details.date" | translate }}:
         {{ employee.date | date: "dd.MM.yyyy" }}</mat-card-content
@@ -132,7 +133,7 @@
         <button
           mat-flat-button
           color="accent"
-          twype="button"
+          type="button"
           (click)="goBack()"
           *ngIf="employee"
         >

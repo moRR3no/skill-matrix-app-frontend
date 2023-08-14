@@ -13,6 +13,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Location } from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-employee-detail',
@@ -60,8 +61,7 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
 
   getEmployee(): void {
     const id: string | null = this.route.snapshot.paramMap.get('id');
-    if (id === null) {
-    } else {
+    if (id !== null) {
       this.employeeService.getEmployee(id!).subscribe((employee) => {
         this.employee = employee;
         this.patchFormValues();
@@ -104,7 +104,6 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
       .subscribe();
     this.router
       .navigate(['/employees'], {relativeTo: this.route})
-      .then((r) => r);
   }
 
   private patchFormValues(): void {
@@ -125,8 +124,7 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
       this.patchFormValues();
     });
     this.router
-      .navigate(['/dashboard'], { relativeTo: this.route })
-      .then((r) => r);
+      .navigate(['/dashboard'], { relativeTo: this.route });
   }
 
   private updateEmployee(value: Employee): void {

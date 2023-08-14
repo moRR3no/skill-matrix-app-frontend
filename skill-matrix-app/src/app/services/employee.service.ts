@@ -63,7 +63,7 @@ export class EmployeeService {
     return projects;
   }
 
-  addEmployeeToList(employee: Employee): Observable<any> {
+  addEmployeeToList(employee: Employee): Observable<void> {
     this.setId(employee);
     return this.http.post(this.employeesUrl, employee, this.httpOptions).pipe(
       tap(() => this.messageService.add(
@@ -73,7 +73,7 @@ export class EmployeeService {
     );
   }
 
-  updateEmployee(employee: Employee): Observable<any> {
+  updateEmployee(employee: Employee): Observable<void> {
     const tempEmployee = this.getEmployeeById(employee.id);
     this.updateManagers(employee);
 
