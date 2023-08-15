@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import * as string_decoder from "string_decoder";
 
 @Injectable({
   providedIn: 'root'
