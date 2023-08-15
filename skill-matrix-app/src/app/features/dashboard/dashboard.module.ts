@@ -9,6 +9,7 @@ import {TranslateModule} from "@ngx-translate/core";
 import { EmployeeSearchComponent } from './employee-search/employee-search.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -16,11 +17,12 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    TranslateModule,
     MatCardModule,
     MatListModule,
-    TranslateModule,
     MatInputModule,
     MatAutocompleteModule
-  ]
+  ],
+  providers: [TranslateService]
 })
 export class DashboardModule { }
