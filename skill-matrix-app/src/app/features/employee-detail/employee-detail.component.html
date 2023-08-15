@@ -79,19 +79,19 @@
       </mat-form-field>
 
       <mat-form-field class="details__form--field">
-        <mat-label
-        >{{ "details.form.manager" | translate }}:
-        </mat-label
-        >
+        <mat-label>{{ "details.form.manager" | translate }}:</mat-label>
         <mat-select
           formControlName="manager"
+          id="manager"
           class="details__form--field-select"
+          [compareWith]="compareManagers"
         >
-          <mat-option
-            *ngFor="let employeeOption of employeeList$ | async"
-            [value]="employeeOption.id"
-          >
+          <mat-option *ngFor="let employeeOption of employeeList" [value]="employeeOption">
             {{ employeeOption.name + " " + employeeOption.surname }}
+          </mat-option>
+
+          <mat-option *ngIf="employee" [value]="employee.manager">
+            {{ employee.manager?.name }} {{ employee.manager?.surname }}
           </mat-option>
         </mat-select>
       </mat-form-field>

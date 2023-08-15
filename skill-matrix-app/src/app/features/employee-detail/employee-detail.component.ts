@@ -22,7 +22,7 @@ import {map} from "rxjs/operators";
 })
 export class EmployeeDetailComponent implements OnChanges, OnInit {
   employee?: Employee;
-  employeeList$: Observable<Employee[]>;
+  employeeList!: Employee[];
   projects: string[] = [];
   skills: string[] = [];
   registerForm: FormGroup;
@@ -35,7 +35,6 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     private location: Location,
     private router: Router
   ) {
-    this.employeeList$ = this.employeeService.getEmployees();
     this.registerForm = this.fb.group({
       id: '',
       name: '',
@@ -48,6 +47,7 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   }
 
   ngOnInit(): void {
+    this.getEmployees();
     this.getProjects();
     this.getSkills();
     this.getEmployee();
@@ -59,6 +59,13 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     }
   }
 
+  getEmployees(): void {
+    this.employeeService
+      .getEmployees()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(fetchedEmployeeList => this.employeeList = fetchedEmployeeList)
+  }
+
   getEmployee(): void {
     const id: string | null = this.route.snapshot.paramMap.get('id');
     if (id !== null) {
@@ -67,6 +74,13 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
         this.patchFormValues();
       });
     }
+  }
+
+  compareManagers(m1: Employee, m2: Employee): boolean {
+    if (m1 && m2) {
+      return m1.id === m2.id;
+    }
+    return false;
   }
 
   getProjects(): void {
