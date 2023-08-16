@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { MessageService } from '../../services/message.service';
+import { MessageService } from '../../../../services/message.service';
 
 @Component({
   selector: 'app-language-picker',

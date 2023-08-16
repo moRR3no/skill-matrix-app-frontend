@@ -11,7 +11,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmployeeService } from '../../services/employee.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-employee-detail',
@@ -20,7 +22,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EmployeeDetailComponent implements OnChanges, OnInit {
   employee?: Employee;
-  employeeList?: Employee[];
+  employeeList$: Observable<Employee[]>;
   projects: string[] = [];
   skills: string[] = [];
   registerForm: FormGroup;
@@ -31,7 +33,9 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     private employeeService: EmployeeService,
     private route: ActivatedRoute,
     private location: Location,
+    private router: Router
   ) {
+    this.employeeList$ = this.employeeService.getEmployees();
     this.registerForm = this.fb.group({
       id: '',
       name: '',
@@ -56,10 +60,9 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   }
 
   getEmployee(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id === 'new') {
-    } else {
-      this.employeeService.getEmployee(id).subscribe((employee) => {
+    const id: string | null = this.route.snapshot.paramMap.get('id');
+    if (id !== null) {
+      this.employeeService.getEmployee(id!).subscribe((employee) => {
         this.employee = employee;
         this.patchFormValues();
       });
@@ -94,6 +97,15 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     this.location.back();
   }
 
+  delete(employee: Employee): void {
+    this.employeeService
+      .deleteEmployee(employee.id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe();
+    this.router
+      .navigate(['/employees'], {relativeTo: this.route})
+  }
+
   private patchFormValues(): void {
     this.registerForm.patchValue({
       id: this.employee?.id,
@@ -111,6 +123,8 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
       this.employee != emp;
       this.patchFormValues();
     });
+    this.router
+      .navigate(['/dashboard'], { relativeTo: this.route });
   }
 
   private updateEmployee(value: Employee): void {

@@ -1,46 +1,26 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatNativeDateModule} from '@angular/material/core';
+import {NavbarModule} from "./features/navbar/navbar.module";
+import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
+import {InMemoryDataService} from "./services/in-memory-data.service";
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { EmployeeComponent } from './features/employee/employee.component';
-import { EmployeeDetailComponent } from './features/employee-detail/employee-detail.component';
-import { MessagesComponent } from './features/messages/messages.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatListModule } from '@angular/material/list';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatCardModule } from '@angular/material/card';
-import { LanguagePickerComponent } from './features/language-picker/language-picker.component';
-import { NavbarComponent } from './features/navbar/navbar.component';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatBadgeModule } from '@angular/material/badge';
-import { MatTableModule } from '@angular/material/table';
-import { DashboardComponent } from './features/dashboard/dashboard.component';
-
 @NgModule({
   declarations: [
-    AppComponent,
-    EmployeeComponent,
-    EmployeeDetailComponent,
-    MessagesComponent,
-    LanguagePickerComponent,
-    NavbarComponent,
-    DashboardComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +28,13 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, {
+        dataEncapsulation: false,
+        passThruUnknownUrl: true,
+        delay: 500
+      }
+    ),
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
@@ -58,21 +45,11 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
     }),
     BrowserAnimationsModule,
     MatNativeDateModule,
-    MatSlideToggleModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatSelectModule,
-    MatListModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatCardModule,
-    MatIconModule,
-    MatMenuModule,
-    MatBadgeModule,
-    MatTableModule,
+    NavbarModule
   ],
-  exports: [TranslateModule],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}

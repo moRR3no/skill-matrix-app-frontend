@@ -22,7 +22,9 @@
       "projects": "Projekty",
       "button": {
         "update": "Aktualizuj",
-        "register": "Zarejestruj"
+        "register": "Zarejestruj",
+        "delete": "Usuń",
+        "back": "Wstecz"
       }
     }
   },
@@ -56,6 +58,7 @@
 
   "dashboard": {
     "employee.top": "PRACOWNIK MIESIĄCA:",
-    "employee.active": "AKTYWNI PRACOWNICY:"
+    "employee.active": "AKTYWNI PRACOWNICY:",
+    "searching": "Wyszukaj pracownika:"
   }
 }
