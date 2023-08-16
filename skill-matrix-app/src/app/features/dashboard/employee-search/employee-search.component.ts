@@ -33,6 +33,6 @@ export class EmployeeSearchComponent implements OnInit {
   }
 
   navigateToEmployee(id: string | undefined): void {
-    this.router.navigate([`/detail/${id}`]);
+    this.router.navigate([`/details/${id}`]);
   }
 }

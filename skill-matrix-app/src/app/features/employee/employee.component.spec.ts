@@ -10,10 +10,6 @@ import { MatListModule } from '@angular/material/list';
 import { EmployeeDetailModule } from '../employee-details/employee-detail.module';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterTestingModule } from '@angular/router/testing';
-import {
-  MatDatepicker,
-  MatDatepickerModule,
-} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
