@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: 'detail',
     loadChildren: () =>
-      import('./features/employee-detail/employee-detail.module').then(
+      import('./features/employee-details/employee-detail.module').then(
         (m) => m.EmployeeDetailModule
       )
   },
