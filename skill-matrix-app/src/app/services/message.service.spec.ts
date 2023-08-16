@@ -18,7 +18,7 @@ describe('MessageService', () => {
     const message = 'Message';
     service.add(message);
     expect(service.messages.length).toBe(1);
-  })
+  });
 
   it('should be no messages after calling #clear', () => {
     service.add('Message#1');
@@ -26,13 +26,13 @@ describe('MessageService', () => {
     service.add('Message#3');
     service.clear();
     expect(service.messages.length).toBe(0);
-  })
+  });
 
   it('should have specific message after calling #add', () => {
     const message = 'Specific message!';
     service.add(message);
     expect(service.messages[0]).toBe(message);
-  })
+  });
 
   it('should send notification', () => {
     const spy = spyOn(service, 'add');

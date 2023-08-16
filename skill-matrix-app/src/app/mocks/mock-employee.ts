@@ -1,6 +1,5 @@
 import { Employee } from '../models/employee';
 
-
 export const EMPLOYEES: Employee[] = [
   {
     id: crypto.randomUUID(),
@@ -97,5 +96,5 @@ export const EMPLOYEES: Employee[] = [
     date: new Date(1426287600000),
     skills: ['Python', 'Java', 'JavaScript'],
     projects: ['Project 1', 'Project 2', 'Project 3'],
-  }
+  },
 ];

@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
-import {EMPLOYEES} from '../mocks/mock-employee';
-import {Employee} from '../models/employee';
-import {SKILLS} from '../mocks/mock-skills';
-import {PROJECTS} from '../mocks/mock-projects';
-import {Observable, of} from 'rxjs';
-import {MessageService} from './message.service';
-import {TranslateService} from '@ngx-translate/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {catchError, map, tap} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { EMPLOYEES } from '../mocks/mock-employee';
+import { Employee } from '../models/employee';
+import { SKILLS } from '../mocks/mock-skills';
+import { PROJECTS } from '../mocks/mock-projects';
+import { Observable, of } from 'rxjs';
+import { MessageService } from './message.service';
+import { TranslateService } from '@ngx-translate/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class EmployeeService {
   employees: Employee[] = EMPLOYEES;
   private employeesUrl = 'api/employees';
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
   constructor(
     private messageService: MessageService,
@@ -30,17 +30,17 @@ export class EmployeeService {
       .subscribe((message) => {
         this.messageService.add(message);
       });
-    return this.http.get<Employee[]>(this.employeesUrl)
+    return this.http
+      .get<Employee[]>(this.employeesUrl)
       .pipe(catchError(this.handleError<Employee[]>('getEmployees', [])));
   }
 
   getEmployee(id: string): Observable<Employee> {
     const url = `${this.employeesUrl}/${id}`;
-    return this.http.get<Employee>(url)
-      .pipe(
-        tap(_ => this.log(`Fetched employee id=${id}`)),
-        catchError(this.handleError<Employee>('getEmployee'))
-      );
+    return this.http.get<Employee>(url).pipe(
+      tap((_) => this.log(`Fetched employee id=${id}`)),
+      catchError(this.handleError<Employee>('getEmployee')),
+    );
   }
 
   getSkills(): Observable<string[]> {
@@ -66,10 +66,13 @@ export class EmployeeService {
   addEmployeeToList(employee: Employee): Observable<void> {
     this.setId(employee);
     return this.http.post(this.employeesUrl, employee, this.httpOptions).pipe(
-      tap(() => this.messageService.add(
-        this.translateService.instant('messages.employee.detail.add') + employee.id
-      )),
-      catchError(this.handleError<any>('addEmployee'))
+      tap(() =>
+        this.messageService.add(
+          this.translateService.instant('messages.employee.detail.add') +
+            employee.id,
+        ),
+      ),
+      catchError(this.handleError<any>('addEmployee')),
     );
   }
 
@@ -85,10 +88,13 @@ export class EmployeeService {
     const url = `${this.employeesUrl}/${employee.id}`;
 
     return this.http.put(url, employee, this.httpOptions).pipe(
-      tap(_ => this.messageService.add(
-        this.translateService.instant('messages.employee.detail.edit') + employee.id
-      )),
-      catchError(this.handleError<any>('updateEmployee'))
+      tap((_) =>
+        this.messageService.add(
+          this.translateService.instant('messages.employee.detail.edit') +
+            employee.id,
+        ),
+      ),
+      catchError(this.handleError<any>('updateEmployee')),
     );
   }
 
@@ -96,8 +102,8 @@ export class EmployeeService {
     const url = `${this.employeesUrl}/${id}`;
 
     return this.http.delete<Employee>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted hero id=${id}`)),
-      catchError(this.handleError<Employee>('deleteEmployee'))
+      tap((_) => this.log(`deleted hero id=${id}`)),
+      catchError(this.handleError<Employee>('deleteEmployee')),
     );
   }
 
@@ -105,11 +111,10 @@ export class EmployeeService {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Employee[]>(`${this.employeesUrl}/?name=${term}`).pipe(
-      catchError(this.handleError<Employee[]>('searchEmployees', []))
-    );
+    return this.http
+      .get<Employee[]>(`${this.employeesUrl}/?name=${term}`)
+      .pipe(catchError(this.handleError<Employee[]>('searchEmployees', [])));
   }
-
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

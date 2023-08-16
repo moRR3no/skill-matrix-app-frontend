@@ -1,32 +1,32 @@
 <mat-card class="details">
   <mat-card *ngIf="employee" class="details__info">
     <mat-card-title class="details__info--title"
-    >{{ employee.name | uppercase }}
+      >{{ employee.name | uppercase }}
       {{ employee.surname | uppercase }}</mat-card-title
     >
     <mat-card class="details__info--content">
       <mat-card-content
-      >{{ "details.id" | translate }}: {{ employee.id }}</mat-card-content
+        >{{ "details.id" | translate }}: {{ employee.id }}</mat-card-content
       >
       <mat-card-content
-      >{{ "details.name" | translate }}: {{ employee.name }}
+        >{{ "details.name" | translate }}: {{ employee.name }}
         {{ employee.surname }}</mat-card-content
       >
       <mat-card-content
-      >{{ "details.manager" | translate }} : {{ employee.manager?.name }}
+        >{{ "details.manager" | translate }} : {{ employee.manager?.name }}
         {{ employee.manager?.surname }}</mat-card-content
       >
 
       <mat-card-content
-      >{{ "details.date" | translate }}:
+        >{{ "details.date" | translate }}:
         {{ employee.date | date: "dd.MM.yyyy" }}</mat-card-content
       >
       <mat-card-content
-      >{{ "details.skills" | translate }}:
+        >{{ "details.skills" | translate }}:
         {{ employee.skills }}</mat-card-content
       >
       <mat-card-content
-      >{{ "details.projects" | translate }}:
+        >{{ "details.projects" | translate }}:
         {{ employee.projects }}</mat-card-content
       >
     </mat-card>
@@ -37,7 +37,7 @@
       employee
         ? ("details.form.title.edit" | translate | uppercase)
         : ("details.form.title.add" | translate | uppercase)
-      }}</mat-card-title>
+    }}</mat-card-title>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <mat-form-field *ngIf="employee" class="details__form--field">
         <mat-label for="id">{{ "details.form.id" | translate }}</mat-label>
@@ -52,9 +52,8 @@
 
       <mat-form-field class="details__form--field">
         <mat-label for="name" id="label"
-        >{{ "details.form.name" | translate }}:
-        </mat-label
-        >
+          >{{ "details.form.name" | translate }}:
+        </mat-label>
         <input
           matInput
           id="name"
@@ -66,9 +65,8 @@
 
       <mat-form-field class="details__form--field">
         <mat-label for="surname"
-        >{{ "details.form.surname" | translate }}:
-        </mat-label
-        >
+          >{{ "details.form.surname" | translate }}:
+        </mat-label>
         <input
           matInput
           id="surname"
@@ -86,7 +84,10 @@
           class="details__form--field-select"
           [compareWith]="compareManagers"
         >
-          <mat-option *ngFor="let employeeOption of employeeList" [value]="employeeOption">
+          <mat-option
+            *ngFor="let employeeOption of employeeList"
+            [value]="employeeOption"
+          >
             {{ employeeOption.name + " " + employeeOption.surname }}
           </mat-option>
         </mat-select>
@@ -94,7 +95,7 @@
 
       <mat-form-field class="details__form--field">
         <mat-label>{{ "details.form.date" | translate }}:</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="date"/>
+        <input matInput [matDatepicker]="picker" formControlName="date" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -150,10 +151,15 @@
           </button>
         </ng-template>
 
-        <button mat-flat-button
-                color="warn"
-                type="submit" *ngIf="employee"
-                (click)="delete(employee)">{{"details.form.button.delete" | translate}}</button>
+        <button
+          mat-flat-button
+          color="warn"
+          type="submit"
+          *ngIf="employee"
+          (click)="delete(employee)"
+        >
+          {{ "details.form.button.delete" | translate }}
+        </button>
       </div>
     </form>
   </mat-card>

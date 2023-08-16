@@ -1,6 +1,9 @@
 <div class="searchbar">
+  <mat-card-title class="searchbar__title">{{
+    "dashboard.searchbar.title" | translate
+  }}</mat-card-title>
   <mat-form-field class="searchbar__field">
-    <mat-label>{{"dashboard.searching" | translate}}</mat-label>
+    <mat-label>{{ "dashboard.searchbar.input" | translate }}</mat-label>
     <input
       matInput
       type="text"
@@ -8,9 +11,7 @@
       (input)="search(searchBox.value)"
       [matAutocomplete]="auto"
     />
-    <mat-autocomplete
-      #auto="matAutocomplete"
-    >
+    <mat-autocomplete #auto="matAutocomplete">
       <mat-option
         *ngFor="let employee of employees$ | async"
         (click)="navigateToEmployee(employee.id)"

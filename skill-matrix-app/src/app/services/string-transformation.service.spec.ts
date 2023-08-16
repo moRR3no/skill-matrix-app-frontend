@@ -20,5 +20,5 @@ describe('StringTransformationService', () => {
 
   it('#toLowerCase() should return string in lower case', () => {
     expect(service.toLowerCase('MeSsAgE')).toBe('message');
-  })
+  });
 });

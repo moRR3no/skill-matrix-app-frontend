@@ -3,6 +3,15 @@
 .searchbar {
   width: 62%;
   margin: 1rem auto;
+
+  &__title {
+    text-align: center;
+    font-size: $font-size-dashboard-title;
+    font-weight: bold;
+    color: $black;
+    margin-bottom: 1rem;
+  }
+
   &__field {
     width: 100%;
   }

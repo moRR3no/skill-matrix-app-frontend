@@ -1,15 +1,14 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {EmployeeDetailComponent} from "./employee-detail.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { EmployeeDetailComponent } from './employee-detail.component';
 
 const routes: Routes = [
-  {path: ':id', component: EmployeeDetailComponent},
-  {path: '', component: EmployeeDetailComponent},
+  { path: ':id', component: EmployeeDetailComponent },
+  { path: '', component: EmployeeDetailComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class EmployeeDetailRoutingModule {
-}
+export class EmployeeDetailRoutingModule {}

@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {InMemoryDbService} from "angular-in-memory-web-api";
-import {Employee} from "../models/employee";
+import { Injectable } from '@angular/core';
+import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { Employee } from '../models/employee';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class InMemoryDataService implements InMemoryDbService{
+export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const employees: Employee[] = [
       {
@@ -103,9 +103,9 @@ export class InMemoryDataService implements InMemoryDbService{
         date: new Date(1426287600000),
         skills: ['Python', 'Java', 'JavaScript'],
         projects: ['Project 1', 'Project 2', 'Project 3'],
-      }
+      },
     ];
-    return {employees}
+    return { employees };
   }
 
   genId(employees: Employee[]): number {
