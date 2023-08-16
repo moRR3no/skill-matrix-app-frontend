@@ -89,10 +89,6 @@
           <mat-option *ngFor="let employeeOption of employeeList" [value]="employeeOption">
             {{ employeeOption.name + " " + employeeOption.surname }}
           </mat-option>
-
-          <mat-option *ngIf="employee" [value]="employee.manager">
-            {{ employee.manager?.name }} {{ employee.manager?.surname }}
-          </mat-option>
         </mat-select>
       </mat-form-field>
 
