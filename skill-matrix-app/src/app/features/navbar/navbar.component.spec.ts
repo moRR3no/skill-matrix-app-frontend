@@ -15,6 +15,8 @@ import { MatListModule } from '@angular/material/list';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LanguagePickerComponent } from './components/language-picker/language-picker.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import {DebugElement} from "@angular/core";
+import {By} from "@angular/platform-browser";
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -50,5 +52,12 @@ describe('NavbarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have correct title', () => {
+    const navbarElement: DebugElement = fixture.debugElement;
+    const title = navbarElement.query(By.css('.navbar__title'));
+    const navbarTitle: HTMLElement = title.nativeElement;
+    expect(navbarTitle.textContent).toEqual('SkillMatrixApp');
   });
 });
