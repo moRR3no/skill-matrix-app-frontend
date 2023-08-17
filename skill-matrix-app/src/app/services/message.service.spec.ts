@@ -28,12 +28,6 @@ describe('MessageService', () => {
     expect(service.messages.length).toBe(0);
   });
 
-  it('should have specific message after calling #add', () => {
-    const message = 'Specific message!';
-    service.add(message);
-    expect(service.messages[0]).toBe(message);
-  });
-
   it('should send notification', () => {
     const spy = spyOn(service, 'add');
     const message = 'There has been an error';

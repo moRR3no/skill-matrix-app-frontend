@@ -51,6 +51,7 @@
   },
 
   "navbar": {
+    "title": "SkillMatrixApp",
     "employees": "Pracownicy",
     "dashboard": "Strona główna"
   },

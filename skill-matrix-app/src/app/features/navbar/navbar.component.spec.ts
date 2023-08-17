@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavbarComponent } from './navbar.component';
-import { TranslateModule } from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
@@ -17,10 +17,13 @@ import { LanguagePickerComponent } from './components/language-picker/language-p
 import { MessagesComponent } from './components/messages/messages.component';
 import {DebugElement} from "@angular/core";
 import {By} from "@angular/platform-browser";
+import {HttpClient} from "@angular/common/http";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
+  let translate: TranslateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -31,7 +34,13 @@ describe('NavbarComponent', () => {
       ],
       imports: [
         HttpClientTestingModule,
-        TranslateModule.forRoot(),
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (http: HttpClient) => new TranslateHttpLoader(http, './assets/i18n/', '.json'),
+            deps: [HttpClient],
+          },
+        }),
         CommonModule,
         MatToolbarModule,
         MatIconModule,

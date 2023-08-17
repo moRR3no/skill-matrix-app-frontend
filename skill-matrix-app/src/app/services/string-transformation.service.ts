@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class StringTransformationService {
-  constructor() {}
 
   toUpperCase(message: string): string {
     return message.toUpperCase();
