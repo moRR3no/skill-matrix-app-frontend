@@ -1,25 +1,24 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-import {
-  debounceTime, distinctUntilChanged, switchMap
-} from 'rxjs/operators';
-import {Employee} from "../../../models/employee";
-import {EmployeeService} from "../../../services/employee.service";
-import {Router} from "@angular/router";
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Employee } from '../../../models/employee';
+import { EmployeeService } from '../../../services/employee.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-search',
   templateUrl: './employee-search.component.html',
-  styleUrls: ['./employee-search.component.scss']
+  styleUrls: ['./employee-search.component.scss'],
 })
-export class EmployeeSearchComponent implements OnInit{
+export class EmployeeSearchComponent implements OnInit {
   employees$!: Observable<Employee[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private employeeService: EmployeeService,
-              private router: Router) {
-  }
+  constructor(
+    private employeeService: EmployeeService,
+    private router: Router,
+  ) {}
 
   search(term: string): void {
     this.searchTerms.next(term);
@@ -34,7 +33,6 @@ export class EmployeeSearchComponent implements OnInit{
   }
 
   navigateToEmployee(id: string | undefined): void {
-    this.router.navigate([`/detail/${id}`]);
+    this.router.navigate([`/details/${id}`]);
   }
-
 }

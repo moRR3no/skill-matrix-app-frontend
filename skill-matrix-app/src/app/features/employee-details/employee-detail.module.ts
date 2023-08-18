@@ -2,21 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { EmployeeDetailRoutingModule } from './employee-detail-routing.module';
-import {EmployeeDetailComponent} from "./employee-detail.component";
-import {MatInputModule} from "@angular/material/input";
-import {TranslateModule} from "@ngx-translate/core";
-import {MatSelectModule} from "@angular/material/select";
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {ReactiveFormsModule} from "@angular/forms";
-import {MatCardModule} from "@angular/material/card";
-import {MatButtonModule} from "@angular/material/button";
-
+import { EmployeeDetailComponent } from './employee-detail.component';
+import { MatInputModule } from '@angular/material/input';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [EmployeeDetailComponent],
-  exports: [
-    EmployeeDetailComponent
-  ],
+  exports: [EmployeeDetailComponent],
   imports: [
     CommonModule,
     EmployeeDetailRoutingModule,
@@ -26,7 +24,8 @@ import {MatButtonModule} from "@angular/material/button";
     MatDatepickerModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatButtonModule
-  ]
+    MatButtonModule,
+    MatProgressSpinnerModule,
+  ],
 })
-export class EmployeeDetailModule { }
+export class EmployeeDetailModule {}

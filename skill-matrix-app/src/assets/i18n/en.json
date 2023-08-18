@@ -59,6 +59,9 @@
   "dashboard": {
     "employee.top": "EMPLOYEE OF THE MONTH:",
     "employee.active": "ACTIVE EMPLOYEES:",
-    "searching": "Search employee:"
+    "searchbar": {
+      "title": "EMPLOYEE SEARCH:",
+      "input": "Enter name:"
+    }
   }
 }

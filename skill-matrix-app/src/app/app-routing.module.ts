@@ -1,9 +1,9 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { NavbarModule } from './features/navbar/navbar.module';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
     path: 'employees',
     loadChildren: () =>
@@ -19,18 +19,17 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'detail',
+    path: 'details',
     loadChildren: () =>
       import('./features/employee-details/employee-detail.module').then(
-        (m) => m.EmployeeDetailModule
-      )
+        (m) => m.EmployeeDetailModule,
+      ),
   },
-  {path: '**', redirectTo: '/dashboard'},
+  { path: '**', redirectTo: '/dashboard' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes), NavbarModule],
   exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

@@ -11,9 +11,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmployeeService } from '../../services/employee.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Location } from '@angular/common';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-detail',
@@ -22,7 +20,7 @@ import {map} from "rxjs/operators";
 })
 export class EmployeeDetailComponent implements OnChanges, OnInit {
   employee?: Employee;
-  employeeList$: Observable<Employee[]>;
+  employeeList!: Employee[];
   projects: string[] = [];
   skills: string[] = [];
   registerForm: FormGroup;
@@ -33,9 +31,8 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     private employeeService: EmployeeService,
     private route: ActivatedRoute,
     private location: Location,
-    private router: Router
+    private router: Router,
   ) {
-    this.employeeList$ = this.employeeService.getEmployees();
     this.registerForm = this.fb.group({
       id: '',
       name: '',
@@ -48,6 +45,7 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   }
 
   ngOnInit(): void {
+    this.getEmployees();
     this.getProjects();
     this.getSkills();
     this.getEmployee();
@@ -59,6 +57,15 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     }
   }
 
+  getEmployees(): void {
+    this.employeeService
+      .getEmployees()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(
+        (fetchedEmployeeList) => (this.employeeList = fetchedEmployeeList),
+      );
+  }
+
   getEmployee(): void {
     const id: string | null = this.route.snapshot.paramMap.get('id');
     if (id !== null) {
@@ -67,6 +74,13 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
         this.patchFormValues();
       });
     }
+  }
+
+  compareManagers(m1: Employee, m2: Employee): boolean {
+    if (m1 && m2) {
+      return m1.id === m2.id;
+    }
+    return false;
   }
 
   getProjects(): void {
@@ -102,8 +116,7 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
       .deleteEmployee(employee.id)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
-    this.router
-      .navigate(['/employees'], {relativeTo: this.route})
+    this.router.navigate(['/employees'], { relativeTo: this.route });
   }
 
   private patchFormValues(): void {
@@ -123,8 +136,7 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
       this.employee != emp;
       this.patchFormValues();
     });
-    this.router
-      .navigate(['/dashboard'], { relativeTo: this.route });
+    this.router.navigate(['/dashboard'], { relativeTo: this.route });
   }
 
   private updateEmployee(value: Employee): void {
