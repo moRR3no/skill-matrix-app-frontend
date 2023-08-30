@@ -8,13 +8,14 @@ import { MessageService } from './message.service';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root',
 })
 export class EmployeeService {
   employees: Employee[] = EMPLOYEES;
-  private employeesUrl = 'api/employees';
+  private employeesUrl = environment.apiBaseUrl = '/employees';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
