@@ -1,9 +1,11 @@
-export const SKILLS: string[] = [
-  'Java',
-  'JavaScript',
-  'Python',
-  'Kotlin',
-  'Scala',
-  'C#',
-  'Ruby',
-];
+// import {Skill} from "../models/skill";
+//
+// export const SKILLS: Skill[] = [
+//   // 'Java',
+//   // 'JavaScript',
+//   // 'Python',
+//   // 'Kotlin',
+//   // 'Scala',
+//   // 'C#',
+//   // 'Ruby',
+// ];

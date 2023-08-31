@@ -12,6 +12,8 @@ import { EmployeeService } from '../../services/employee.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import {Skill} from "../../models/skill";
+import {Project} from "../../models/project";
 
 @Component({
   selector: 'app-employee-detail',
@@ -21,8 +23,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EmployeeDetailComponent implements OnChanges, OnInit {
   employee?: Employee;
   employeeList!: Employee[];
-  projects: string[] = [];
-  skills: string[] = [];
+  projects: Project[] = [];
+  skills: Skill[] = [];
   registerForm: FormGroup;
   destroyRef: DestroyRef = inject(DestroyRef);
 
@@ -35,16 +37,16 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   ) {
     this.registerForm = this.fb.group({
       id: '',
-      name: '',
+      firstName: '',
       surname: '',
-      manager: {} as Employee,
+      managerId: '',
       date: new Date(),
-      skills: [''],
-      projects: [''],
+      skills: [],
+      projects: []
     });
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.getEmployees();
     this.getProjects();
     this.getSkills();
@@ -76,7 +78,7 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     }
   }
 
-  compareManagers(m1: Employee, m2: Employee): boolean {
+  compareSkills(m1: Skill | Project, m2: Skill | Project): boolean {
     if (m1 && m2) {
       return m1.id === m2.id;
     }
@@ -122,9 +124,9 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   private patchFormValues(): void {
     this.registerForm.patchValue({
       id: this.employee?.id,
-      name: this.employee?.name,
+      firstName: this.employee?.firstName,
       surname: this.employee?.surname,
-      manager: this.employee?.manager,
+      managerId: this.employee?.managerId,
       date: this.employee?.date,
       skills: this.employee?.skills,
       projects: this.employee?.projects,
@@ -149,5 +151,13 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
         });
     } else {
     }
+  }
+
+  getManagerName(managerId: string): string {
+    if (!this.employeeList || !managerId) {
+      return '';
+    }
+    const manager = this.employeeList.find((employee) => employee.id === managerId);
+    return manager ? `${manager.firstName} ${manager.surname}` : '';
   }
 }

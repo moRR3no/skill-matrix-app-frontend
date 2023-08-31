@@ -1,29 +1,32 @@
-import { Injectable } from '@angular/core';
-import { EMPLOYEES } from '../mocks/mock-employee';
-import { Employee } from '../models/employee';
-import { SKILLS } from '../mocks/mock-skills';
-import { PROJECTS } from '../mocks/mock-projects';
-import { Observable, of } from 'rxjs';
-import { MessageService } from './message.service';
-import { TranslateService } from '@ngx-translate/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {Employee} from '../models/employee';
+import {Observable, of} from 'rxjs';
+import {MessageService} from './message.service';
+import {TranslateService} from '@ngx-translate/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {catchError, map, tap} from 'rxjs/operators';
 import {environment} from "../../environments/environment";
+import {Skill} from "../models/skill";
+import {Project} from "../models/project";
 
 @Injectable({
   providedIn: 'root',
 })
 export class EmployeeService {
-  employees: Employee[] = EMPLOYEES;
-  private employeesUrl = environment.apiBaseUrl = '/employees';
+  employees: Employee[] = [];
+  private employeesUrl = environment.apiBaseUrl + '/employees';
+  private projectsUrl = environment.apiBaseUrl + '/projects';
+  private skillsUrl = environment.apiBaseUrl + '/skills';
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({'Content-Type': 'application/json'}),
   };
+
   constructor(
     private messageService: MessageService,
     private translateService: TranslateService,
     private http: HttpClient,
-  ) {}
+  ) {
+  }
 
   getEmployees(): Observable<Employee[]> {
     this.translateService
@@ -33,7 +36,12 @@ export class EmployeeService {
       });
     return this.http
       .get<Employee[]>(this.employeesUrl)
-      .pipe(catchError(this.handleError<Employee[]>('getEmployees', [])));
+      .pipe(
+        tap((fetchedEmployees) => {
+          this.employees = fetchedEmployees;
+          this.log('Fetched employees');
+        }),
+        catchError(this.handleError<Employee[]>('getEmployees', [])));
   }
 
   getEmployee(id: string): Observable<Employee> {
@@ -44,24 +52,28 @@ export class EmployeeService {
     );
   }
 
-  getSkills(): Observable<string[]> {
-    const skills = of(SKILLS);
+  getSkills(): Observable<Skill[]> {
+    const url = `${this.skillsUrl}`;
     this.translateService
       .get('messages.employee.service.get.skills')
       .subscribe((message) => {
         this.messageService.add(message);
       });
-    return skills;
+    return this.http.get<Skill[]>(url).pipe(
+      catchError(this.handleError<Skill[]>('getSkills'))
+    );
   }
 
-  getProjects(): Observable<string[]> {
-    const projects = of(PROJECTS);
+  getProjects(): Observable<Project[]> {
+    const url = `${this.projectsUrl}`;
     this.translateService
       .get('messages.employee.service.get.projects')
       .subscribe((message) => {
         this.messageService.add(message);
       });
-    return projects;
+    return this.http.get<Project[]>(url).pipe(
+      catchError(this.handleError<Project[]>('getProjects'))
+    )
   }
 
   addEmployeeToList(employee: Employee): Observable<void> {
@@ -70,7 +82,7 @@ export class EmployeeService {
       tap(() =>
         this.messageService.add(
           this.translateService.instant('messages.employee.detail.add') +
-            employee.id,
+          employee.id,
         ),
       ),
       catchError(this.handleError<any>('addEmployee')),
@@ -78,13 +90,13 @@ export class EmployeeService {
   }
 
   updateEmployee(employee: Employee): Observable<void> {
-    const tempEmployee = this.getEmployeeById(employee.id);
-    this.updateManagers(employee);
-
-    if (tempEmployee) {
-      const index = this.employees.indexOf(tempEmployee);
-      this.employees.splice(index, 1, employee);
-    }
+    // const tempEmployee = this.getEmployeeById(employee.id);
+    // this.updateManagers(employee);
+    //
+    // if (tempEmployee) {
+    //   const index = this.employees.indexOf(tempEmployee);
+    //   this.employees.splice(index, 1, employee);
+    // }
 
     const url = `${this.employeesUrl}/${employee.id}`;
 
@@ -113,7 +125,7 @@ export class EmployeeService {
       return of([]);
     }
     return this.http
-      .get<Employee[]>(`${this.employeesUrl}/?name=${term}`)
+      .get<Employee[]>(`${this.employeesUrl}?name=${term}`)
       .pipe(catchError(this.handleError<Employee[]>('searchEmployees', [])));
   }
 
@@ -139,8 +151,8 @@ export class EmployeeService {
 
   private updateManagers(employeeManager: Employee) {
     this.employees.map((employee) => {
-      if (employee.manager?.id == employeeManager.id) {
-        employee.manager = employeeManager;
+      if (employee.managerId == employeeManager.id) {
+        employee.managerId = employeeManager.id;
       }
     });
   }

@@ -1,1 +1,3 @@
-export const PROJECTS: string[] = ['Project 1', 'Project 2', 'Project 3'];
+// import {Project} from "../models/project";
+//
+// export const PROJECTS: Project[] = [];

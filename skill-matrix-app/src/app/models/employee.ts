@@ -1,9 +1,12 @@
+import {Skill} from "./skill";
+import {Project} from "./project";
+
 export interface Employee {
   id: string;
-  name: string;
+  firstName: string;
   surname: string;
-  manager?: Employee;
+  managerId?: string;
   date: Date;
-  skills: string[];
-  projects: string[];
+  skills: Skill[];
+  projects: Project[];
 }
