@@ -90,14 +90,6 @@ export class EmployeeService {
   }
 
   updateEmployee(employee: Employee): Observable<void> {
-    // const tempEmployee = this.getEmployeeById(employee.id);
-    // this.updateManagers(employee);
-    //
-    // if (tempEmployee) {
-    //   const index = this.employees.indexOf(tempEmployee);
-    //   this.employees.splice(index, 1, employee);
-    // }
-
     const url = `${this.employeesUrl}/${employee.id}`;
 
     return this.http.put(url, employee, this.httpOptions).pipe(

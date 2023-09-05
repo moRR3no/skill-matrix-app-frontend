@@ -78,7 +78,7 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     }
   }
 
-  compareSkills(m1: Skill | Project, m2: Skill | Project): boolean {
+  compareSkillsOrProjects(m1: Skill | Project, m2: Skill | Project): boolean {
     if (m1 && m2) {
       return m1.id === m2.id;
     }
