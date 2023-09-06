@@ -21,20 +21,24 @@
       >{{ "details.date" | translate }}:
         {{ employee.date | date: "dd.MM.yyyy" }}</mat-card-content
       >
-      <mat-card-content
-      >{{ "details.skills" | translate }}:
-        <ng-container *ngFor="let skill of employee.skills; let last = last">
-          {{ skill.name }}<span *ngIf="!last">,</span>
+      <mat-card-content>
+        {{ "details.skills" | translate }}:
+        <ng-container *ngIf="employee.skills && employee.skills.length > 0; else notAssignedSkills">
+          <ng-container *ngFor="let skill of employee.skills; let last = last">
+            {{ skill.name }} <span *ngIf="!last">,</span>
+          </ng-container>
         </ng-container>
-      </mat-card-content
-      >
-      <mat-card-content
-      >{{ "details.projects" | translate }}:
-        <ng-container *ngFor="let project of employee.projects; let last = last">
-          {{ project.name }}<span *ngIf="!last">,</span>
+        <ng-template #notAssignedSkills>N/A</ng-template>
+      </mat-card-content>
+      <mat-card-content>
+        {{ "details.projects" | translate }}:
+        <ng-container *ngIf="employee.projects && employee.projects.length > 0; else notAssignedProjects">
+          <ng-container *ngFor="let project of employee.projects; let last = last">
+            {{ project.name }}<span *ngIf="!last">,</span>
+          </ng-container>
         </ng-container>
-      </mat-card-content
-      >
+        <ng-template #notAssignedProjects>N/A</ng-template>
+      </mat-card-content>
     </mat-card>
   </mat-card>
 
