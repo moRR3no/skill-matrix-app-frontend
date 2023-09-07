@@ -3,20 +3,16 @@
     <mat-card>
       <mat-card-title class="dashboard__title">{{
         "dashboard.employee.top" | translate
-      }}</mat-card-title>
-      <mat-list class="dashboard__list">
-        <mat-list-item *ngFor="let employee of employees">
-          <span class="dashboard__employee">
-            {{ employee.firstName }} {{ employee.surname }}</span
-          >
-        </mat-list-item>
-      </mat-list>
+        }}</mat-card-title>
+      <mat-card class="dashboard__list" *ngIf="employeeOfTheMonth">
+        <span class="dashboard__employee">{{ employeeOfTheMonth.firstName }} {{ employeeOfTheMonth.surname }}</span>
+      </mat-card>
     </mat-card>
     <mat-divider></mat-divider>
     <mat-card class="dashboard__count">
       <mat-card-title class="dashboard__count-title">{{
         "dashboard.employee.active" | translate
-      }}</mat-card-title>
+        }}</mat-card-title>
       <mat-card-content class="dashboard__count--number">
         {{ activeEmployeeCount }}</mat-card-content
       >

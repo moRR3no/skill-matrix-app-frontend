@@ -10,6 +10,8 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {LoginFormComponent} from "./login-form/login-form.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {TranslateModule} from "@ngx-translate/core";
+import {MatIconModule} from "@angular/material/icon";
 
 
 
@@ -26,7 +28,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatOptionModule,
     MatSelectModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule,
+    MatIconModule
   ]
 })
 export class AuthModule { }

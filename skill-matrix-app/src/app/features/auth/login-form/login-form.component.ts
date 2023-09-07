@@ -15,6 +15,7 @@ export class LoginFormComponent {
   loading = false;
   submitted = false;
   error = '';
+  showPassword: boolean = false;
 
 
   //TODO: add validations for inputs
@@ -61,6 +62,10 @@ export class LoginFormComponent {
           this.loading = false;
         }
       });
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }
 

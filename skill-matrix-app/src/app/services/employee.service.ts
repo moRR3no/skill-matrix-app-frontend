@@ -52,6 +52,13 @@ export class EmployeeService {
     );
   }
 
+  getEmployeeOfTheMonth(): Observable<Employee> {
+    const url = `${this.employeesUrl}/employeeOfTheMonth`;
+    return this.http.get<Employee>(url).pipe(
+      catchError(this.handleError<Employee>('getEmployeeOfTheMonth'))
+    )
+  }
+
   getSkills(): Observable<Skill[]> {
     const url = `${this.skillsUrl}`;
     this.translateService
@@ -117,9 +124,11 @@ export class EmployeeService {
       return of([]);
     }
     return this.http
-      .get<Employee[]>(`${this.employeesUrl}?name=${term}`)
+      .get<Employee[]>(`${this.employeesUrl}?firstName=${term}`)
       .pipe(catchError(this.handleError<Employee[]>('searchEmployees', [])));
   }
+
+
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

@@ -25,6 +25,10 @@
   padding-top: 0;
   background-color: $white-basic;
 
+  &__list {
+    padding: 1rem 1rem;
+  }
+
   &__wrapper {
     margin: auto;
     height: 40rem;

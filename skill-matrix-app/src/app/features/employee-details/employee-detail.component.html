@@ -157,7 +157,7 @@
           {{ "details.form.button.update" | translate }}
         </button>
         <ng-template #registerButton>
-          <button mat-flat-button color="primary" type="submit">
+          <button mat-flat-button color="primary" type="submit" (click)="refresh()">
             {{ "details.form.button.register" | translate }}
           </button>
         </ng-template>

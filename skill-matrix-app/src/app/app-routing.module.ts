@@ -11,7 +11,7 @@ const routes: Routes = [
       import('./features/employee/employee.module').then(
         (m) => m.EmployeeModule,
       ),
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'dashboard',
@@ -19,7 +19,7 @@ const routes: Routes = [
       import('./features/dashboard/dashboard.module').then(
         (m) => m.DashboardModule,
       ),
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'details',
@@ -27,7 +27,7 @@ const routes: Routes = [
       import('./features/employee-details/employee-detail.module').then(
         (m) => m.EmployeeDetailModule,
       ),
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',

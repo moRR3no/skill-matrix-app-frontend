@@ -63,5 +63,12 @@
       "title": "EMPLOYEE SEARCH:",
       "input": "Enter name:"
     }
+  },
+
+  "authorization": {
+    "login": "Log In",
+    "username": "Username",
+    "password": "Password",
+    "login.button": "Log In"
   }
 }

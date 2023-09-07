@@ -113,6 +113,10 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
     this.location.back();
   }
 
+  refresh(): void {
+    location.reload();
+  }
+
   delete(employee: Employee): void {
     this.employeeService
       .deleteEmployee(employee.id)

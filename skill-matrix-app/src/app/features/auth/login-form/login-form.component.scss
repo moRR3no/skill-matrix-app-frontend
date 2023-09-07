@@ -1,0 +1,100 @@
+@import "../../../../styles";
+
+.details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__info {
+    width: 30rem;
+
+    &--title {
+      font-size: $font-employee-detail-title;
+      font-weight: bold;
+      color: $black;
+
+      &::after {
+        content: "";
+        display: block;
+
+        height: 0.1rem;
+        background-color: $black;
+        margin-top: 0.6rem;
+      }
+
+      &:hover {
+        background-color: $white-hover;
+        transition: background-color 0.3s ease;
+      }
+    }
+
+    &--content {
+      font-size: $font-size-employee-details;
+      line-height: 1.5;
+      color: $grey;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        background-color: $white-hover;
+        transition: background-color 0.3s ease;
+      }
+    }
+  }
+
+  &__form {
+    border: none;
+    align-content: center;
+    width: 64rem;
+
+    &--field {
+      width: 68.5rem;
+      font-size: 1.2rem;
+      display: grid;
+      margin: $margin-form-field;
+      justify-content: center;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: $grid-gap-form-field;
+
+      &-input,
+      &-select {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    &--button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+  }
+}
+@media screen and (min-width: $mobile-resolution-width) {
+  .details {
+
+
+    &__form {
+      width: 48.8rem;
+
+      &--field {
+        width: 80rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $tablet-resolution-width) {
+  .details {
+    &__form {
+      width: 30rem;
+
+      &--field {
+        width: 45rem;      }
+    }
+  }
+}

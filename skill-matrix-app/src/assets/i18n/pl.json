@@ -63,5 +63,12 @@
       "title": "WYSZUKAJ PRACOWNIKA:",
       "input": "Wprowadź nazwę:"
     }
+  },
+
+  "authorization": {
+    "login": "Logowanie",
+    "username": "Nazwa użytkownia",
+    "password": "Hasło",
+    "login.button": "Zaloguj się"
   }
 }

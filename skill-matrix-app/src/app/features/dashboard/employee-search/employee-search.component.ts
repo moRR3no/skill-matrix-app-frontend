@@ -21,6 +21,7 @@ export class EmployeeSearchComponent implements OnInit {
   ) {}
 
   search(term: string): void {
+    term = term.charAt(0).toUpperCase() + term.slice(1).toLowerCase();
     this.searchTerms.next(term);
   }
 
