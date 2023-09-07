@@ -1,0 +1,45 @@
+@import "../../../styles";
+
+.navbar {
+  padding: $padding-navbar;
+  background-color: $white-basic;
+
+  &__toolbar {
+    resize: both;
+    padding: 0;
+  }
+
+  &__spacer {
+    flex: 1 1 auto;
+  }
+
+  &__messages {
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width: $mobile-resolution-width) {
+  .navbar {
+    &__title {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: $tablet-resolution-width) {
+  .navbar {
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: $desktop-resolution) {
+  .navbar {
+    &__spacer {
+      flex: 1 1 auto;
+    }
+
+    &__messages {
+      display: inline-block;
+    }
+  }
+}

@@ -8,11 +8,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatNativeDateModule, MatOptionModule} from '@angular/material/core';
+import {MatNativeDateModule} from '@angular/material/core';
 import { NavbarModule } from './features/navbar/navbar.module';
 import {Location} from "@angular/common";
 import {BasicAuthInterceptor} from "./core/auth.interceptor";
 import {ErrorInterceptor} from "./core/error.interceptor";
+import {NavbarLoginModule} from "./features/navbar-login/navbar-login.module";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -37,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     MatNativeDateModule,
     NavbarModule,
+    NavbarLoginModule
   ],
   exports: [],
   providers: [Location,

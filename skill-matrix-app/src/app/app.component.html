@@ -1,6 +1,17 @@
+<!--<section class="app">-->
+<!--  <div class="app__wrapper">-->
+<!--    <app-navbar></app-navbar>-->
+<!--    <router-outlet></router-outlet>-->
+<!--  </div>-->
+<!--</section>-->
 <section class="app">
   <div class="app__wrapper">
-    <app-navbar></app-navbar>
+    <ng-container *ngIf="isDefaultNavbarVisible">
+      <app-navbar></app-navbar>
+    </ng-container>
+    <ng-container *ngIf="isLoginFormNavbarVisible">
+      <app-navbar-login></app-navbar-login>
+    </ng-container>
     <router-outlet></router-outlet>
   </div>
 </section>
