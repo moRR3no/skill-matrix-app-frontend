@@ -1,11 +1,6 @@
 <section class="app">
   <div class="app__wrapper">
-    <ng-container *ngIf="isLoginFormNavbarVisible; else defaultNavbar">
-<!--      <app-navbar-login></app-navbar-login>-->
-    </ng-container>
-    <ng-template #defaultNavbar>
-      <app-navbar></app-navbar>
-    </ng-template>
+    <app-navbar *ngIf="!isLoginFormNavbarVisible"></app-navbar>
     <router-outlet></router-outlet>
   </div>
 </section>
