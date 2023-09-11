@@ -13,10 +13,11 @@ import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { RouterTestingModule } from '@angular/router/testing';
+import {NavbarLoginComponent} from "./navbar-login/navbar-login.component";
 
 @NgModule({
-  declarations: [NavbarComponent, LanguagePickerComponent, MessagesComponent],
-  exports: [NavbarComponent],
+  declarations: [NavbarComponent, LanguagePickerComponent, MessagesComponent, NavbarLoginComponent],
+  exports: [NavbarComponent, NavbarLoginComponent],
   imports: [
     CommonModule,
     MatToolbarModule,

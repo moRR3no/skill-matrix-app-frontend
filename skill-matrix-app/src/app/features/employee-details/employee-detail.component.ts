@@ -40,7 +40,7 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
       firstName: '',
       surname: '',
       managerId: '',
-      date: new Date(),
+      date: '',
       skills: [],
       projects: []
     });
