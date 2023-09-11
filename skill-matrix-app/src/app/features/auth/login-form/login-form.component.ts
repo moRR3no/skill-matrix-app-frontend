@@ -17,7 +17,6 @@ export class LoginFormComponent {
   allowFormSubmission = true;
   hide = true;
 
-  //TODO: add validations for inputs
   constructor(
     fb: FormBuilder,
     private route: ActivatedRoute,
@@ -39,7 +38,7 @@ export class LoginFormComponent {
       this.allowFormSubmission = false;
       setTimeout(() => {
         this.allowFormSubmission = true;
-      }, 1000); // Allow form submission after 1 second
+      }, 1000);
       return;
     }
 
@@ -58,16 +57,6 @@ export class LoginFormComponent {
           this.error = error;
         }
       });
-  }
-
-  togglePasswordVisibility() {
-    // Check if the form is allowed to be submitted
-    if (!this.allowFormSubmission) {
-      return;
-    }
-
-    // Toggle password visibility
-    this.hide = !this.hide;
   }
 }
 

@@ -1,4 +1,4 @@
-import {Component, DestroyRef, inject, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import { Employee } from '../../models/employee';
 import { EmployeeService } from '../../services/employee.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
