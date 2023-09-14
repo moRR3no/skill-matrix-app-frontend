@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../../services/auth.service";
 import {first} from "rxjs";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-login-form',
@@ -21,7 +22,8 @@ export class LoginFormComponent {
     fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private snackBar: MatSnackBar
   ) {
     this.loginForm = fb.group({
       username: ['', Validators.required],
@@ -48,15 +50,20 @@ export class LoginFormComponent {
       .pipe(first())
       .subscribe({
         next: () => {
-
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
           this.router.navigate(["/employees"]);
         },
         error: error => {
           this.loading = false;
           this.error = error;
+
+          this.snackBar.open('Incorrect username or password', 'Close', {
+            duration: 3000,
+              verticalPosition: 'top',
+              horizontalPosition: 'center',
+            panelClass: ['snackbar-error']
+          });
         }
       });
   }
 }
-
