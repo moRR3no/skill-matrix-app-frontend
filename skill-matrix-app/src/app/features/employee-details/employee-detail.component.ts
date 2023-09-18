@@ -1,19 +1,20 @@
 import {
   Component,
-  DestroyRef,
+  DestroyRef, EventEmitter,
   inject,
   OnChanges,
-  OnInit,
+  OnInit, Output,
   SimpleChanges,
 } from '@angular/core';
-import { Employee } from '../../models/employee';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { EmployeeService } from '../../services/employee.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Location } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Employee} from '../../models/employee';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {EmployeeService} from '../../services/employee.service';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {Location} from '@angular/common';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Skill} from "../../models/skill";
 import {Project} from "../../models/project";
+import {switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-employee-detail',
@@ -27,6 +28,10 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   skills: Skill[] = [];
   registerForm: FormGroup;
   destroyRef: DestroyRef = inject(DestroyRef);
+  today = new Date().toJSON().split('T')[0];
+  isLoading = true;
+
+  @Output() employeeDeleted: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     private fb: FormBuilder,
@@ -37,10 +42,10 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   ) {
     this.registerForm = this.fb.group({
       id: '',
-      firstName: '',
-      surname: '',
+      firstName: ['', Validators.required],
+      surname: ['', Validators.required],
       managerId: '',
-      date: '',
+      date: ['', Validators.required],
       skills: [],
       projects: []
     });
@@ -60,12 +65,16 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   }
 
   getEmployees(): void {
-    this.employeeService
-      .getEmployees()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(
-        (fetchedEmployeeList) => (this.employeeList = fetchedEmployeeList),
-      );
+    this.isLoading = true;
+    setTimeout( () => {
+      this.employeeService
+        .getEmployees()
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe((fetchedEmployeeList) => {
+          this.employeeList = fetchedEmployeeList;
+          this.isLoading = false;
+        });
+    }, 400);
   }
 
   getEmployee(): void {
@@ -120,9 +129,15 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
   delete(employee: Employee): void {
     this.employeeService
       .deleteEmployee(employee.id)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe();
-    this.router.navigate(['/employees'], { relativeTo: this.route });
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        switchMap(() => {
+          // After deleting the employee, fetch the updated employee list
+          return this.employeeService.getEmployees();
+        })
+      )
+      .subscribe(() => this.employeeDeleted.emit());
+    this.router.navigate(['/dashboard'], {relativeTo: this.route});
   }
 
   private patchFormValues(): void {
@@ -142,7 +157,7 @@ export class EmployeeDetailComponent implements OnChanges, OnInit {
       this.employee != emp;
       this.patchFormValues();
     });
-    this.router.navigate(['/dashboard'], { relativeTo: this.route });
+    this.router.navigate(['/dashboard'], {relativeTo: this.route});
   }
 
   private updateEmployee(value: Employee): void {

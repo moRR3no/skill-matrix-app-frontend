@@ -26,10 +26,12 @@ export class EmployeeComponent implements OnInit {
   }
 
   getEmployees(): void {
-    this.employeeService
-      .getEmployees()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((employees) => (this.employees = employees));
+    setTimeout(() => {
+      this.employeeService
+        .getEmployees()
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe((employees) => (this.employees = employees));
+    }, 400); // Adjust the delay time (in milliseconds) as needed
   }
 
   onSelect(employee: Employee): void {

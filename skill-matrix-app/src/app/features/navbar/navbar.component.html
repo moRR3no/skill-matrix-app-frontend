@@ -10,7 +10,9 @@
       <button mat-menu-item routerLink="/employees">
         {{ "navbar.employees" | translate }}
       </button>
-      <button mat-menu-item (click)="logout()">Logout</button>
+      <button mat-menu-item (click)="logout()">
+        {{ "navbar.logout" | translate }}
+      </button>
     </mat-menu>
 
     <span class="navbar__title">SkillMatrixApp</span>

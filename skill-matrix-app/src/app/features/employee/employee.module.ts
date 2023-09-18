@@ -7,9 +7,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { EmployeeDetailModule } from '../employee-details/employee-detail.module';
 import { MatButtonModule } from '@angular/material/button';
+import {OrderByPipe} from "../../../assets/pipes/order-by.pipe";
 
 @NgModule({
-  declarations: [EmployeeComponent],
+  declarations: [EmployeeComponent, OrderByPipe],
   imports: [
     CommonModule,
     EmployeeRoutingModule,

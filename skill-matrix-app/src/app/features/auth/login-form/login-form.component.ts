@@ -51,7 +51,7 @@ export class LoginFormComponent {
       .subscribe({
         next: () => {
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-          this.router.navigate(["/employees"]);
+          this.router.navigate(["/dashboard"]);
         },
         error: error => {
           this.loading = false;

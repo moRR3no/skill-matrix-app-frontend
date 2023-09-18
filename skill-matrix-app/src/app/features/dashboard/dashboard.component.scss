@@ -25,6 +25,10 @@
   padding-top: 0;
   background-color: $white-basic;
 
+  &__spinner {
+    margin-left: 43%;
+  }
+
   &__list {
     padding: 1rem 1rem;
   }
@@ -51,6 +55,7 @@
     padding: $padding-dashboard-employee;
     background-color: $juicy-purple;
     color: white;
+    border-radius: 5px;
 
     animation-name: topEmployee;
     animation-duration: 4s;
@@ -79,16 +84,7 @@
 @media screen and (max-width: $tablet-resolution-width) {
   .dashboard {
     &__employee {
-      font-size: 1.2rem;
-      padding: 1rem 0 1rem 0;
-    }
-
-    &__wrapper {
-      width: 20rem;
-    }
-
-    &__employee {
-      width: $card-mobile-width;
+      width: 18rem;
     }
   }
 }

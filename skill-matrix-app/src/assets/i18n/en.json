@@ -53,7 +53,8 @@
   "navbar": {
     "title": "SkillMatrixApp",
     "employees": "Employees",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "logout": "Logout"
   },
 
   "dashboard": {

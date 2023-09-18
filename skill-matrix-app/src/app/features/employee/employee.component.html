@@ -1,10 +1,11 @@
+<script src="../employee-details/employee-detail.component.ts"></script>
 <section class="employees">
   <div class="employees__wrapper">
     <mat-card>
       <mat-card-title class="employees__title">
         <mat-list class="employees__list">
           <mat-list-item
-            *ngFor="let employee of employees"
+            *ngFor="let employee of employees | orderBy: 'surname'"
             routerLink="/details/{{ employee.id }}"
           >
             <div>
@@ -16,7 +17,7 @@
                 (click)="onSelect(employee)"
                 [class.selected]="employee === selectedEmployee"
               >
-                <span>{{ employee.firstName }} {{ employee.surname }}</span>
+                <span>{{ employee.surname }} {{ employee.firstName }}</span>
               </button>
             </div>
           </mat-list-item>

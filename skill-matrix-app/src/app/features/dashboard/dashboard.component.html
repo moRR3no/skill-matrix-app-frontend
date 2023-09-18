@@ -1,22 +1,25 @@
 <section class="dashboard">
   <div class="dashboard__wrapper">
-    <mat-card>
-      <mat-card-title class="dashboard__title">{{
-        "dashboard.employee.top" | translate
-        }}</mat-card-title>
+    <div *ngIf="isLoading">
+      <mat-progress-spinner mode="indeterminate" class="dashboard__spinner"></mat-progress-spinner>
+    </div>
+    <mat-card *ngIf="!isLoading">
+      <mat-card-title class="dashboard__title">
+        {{ "dashboard.employee.top" | translate }}
+      </mat-card-title>
       <mat-card class="dashboard__list" *ngIf="employeeOfTheMonth">
         <span class="dashboard__employee">{{ employeeOfTheMonth.firstName }} {{ employeeOfTheMonth.surname }}</span>
       </mat-card>
+      <mat-divider></mat-divider>
+      <mat-card class="dashboard__count">
+        <mat-card-title class="dashboard__count-title">
+          {{ "dashboard.employee.active" | translate }}
+        </mat-card-title>
+        <mat-card-content class="dashboard__count--number">
+          {{ activeEmployeeCount }}
+        </mat-card-content>
+      </mat-card>
+      <app-employee-search></app-employee-search>
     </mat-card>
-    <mat-divider></mat-divider>
-    <mat-card class="dashboard__count">
-      <mat-card-title class="dashboard__count-title">{{
-        "dashboard.employee.active" | translate
-        }}</mat-card-title>
-      <mat-card-content class="dashboard__count--number">
-        {{ activeEmployeeCount }}</mat-card-content
-      >
-    </mat-card>
-    <app-employee-search></app-employee-search>
   </div>
 </section>
